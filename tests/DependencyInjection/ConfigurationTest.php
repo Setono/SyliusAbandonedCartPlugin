@@ -19,31 +19,4 @@ final class ConfigurationTest extends TestCase
     {
         return new Configuration();
     }
-
-    /**
-     * @test
-     */
-    public function values_are_invalid_if_required_value_is_not_provided(): void
-    {
-        $this->assertConfigurationIsInvalid(
-            [
-                [], // no values at all
-            ],
-            '/The child (config|node) "option" (under|at path) "setono_sylius_abandoned_cart" must be configured/',
-            true
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function processed_value_contains_required_value(): void
-    {
-        $this->assertProcessedConfigurationEquals([
-            ['option' => 'first value'],
-            ['option' => 'last value'],
-        ], [
-            'option' => 'last value',
-        ]);
-    }
 }
