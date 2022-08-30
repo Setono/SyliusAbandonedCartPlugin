@@ -1,4 +1,4 @@
-setono_sylius_abandoned_cart_admin_invitation:
+setono_sylius_abandoned_cart_admin_notification:
     resource: |
         alias: setono_sylius_abandoned_cart.notification
         section: admin
