@@ -15,6 +15,10 @@
         "string",
         "true",
         "void",
-        "Sylius\\Bundle\\CoreBundle\\Application\\SyliusPluginTrait"
+        "Sylius\\Bundle\\CoreBundle\\Application\\SyliusPluginTrait",
+        "Sylius\\Bundle\\UiBundle\\Menu\\Event\\MenuBuilderEvent",
+        "Sylius\\Component\\Core\\Model\\OrderInterface",
+        "Sylius\\Component\\Mailer\\Sender\\SenderInterface",
+        "Sylius\\Component\\Order\\Model\\OrderInterface"
     ]
 }
