@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\DependencyInjection;
+namespace Tests\Setono\SyliusAbandonedCartPlugin\DependencyInjection;
 
-use Acme\SyliusExamplePlugin\DependencyInjection\Configuration;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;
+use Setono\SyliusAbandonedCartPlugin\DependencyInjection\Configuration;
 
 /**
  * See examples of tests and configuration options here: https://github.com/SymfonyTest/SymfonyConfigTest
@@ -29,7 +29,7 @@ final class ConfigurationTest extends TestCase
             [
                 [], // no values at all
             ],
-            '/The child (config|node) "option" (under|at path) "acme_sylius_example" must be configured/',
+            '/The child (config|node) "option" (under|at path) "setono_sylius_abandoned_cart" must be configured/',
             true
         );
     }

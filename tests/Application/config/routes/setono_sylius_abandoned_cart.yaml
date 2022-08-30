@@ -1,0 +1,2 @@
+setono_sylius_abandoned_cart:
+    resource: "@SetonoSyliusAbandonedCartPlugin/Resources/config/routes.yaml"

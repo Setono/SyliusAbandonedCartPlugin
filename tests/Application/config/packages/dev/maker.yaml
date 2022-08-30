@@ -1,2 +1,2 @@
 maker:
-    root_namespace: 'Acme\SyliusExamplePlugin'
+    root_namespace: 'Setono\SyliusAbandonedCartPlugin'
