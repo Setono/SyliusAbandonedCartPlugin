@@ -9,9 +9,13 @@
     ],
     "require": {
         "php": ">=7.4",
+        "doctrine/persistence": "^2.5",
+        "setono/doctrine-object-manager-trait": "^1.1",
+        "sylius/resource-bundle": "^1.6",
         "symfony/config": "^4.4 || ^5.4 || ^6.0",
         "symfony/dependency-injection": "^4.4 || ^5.4 || ^6.0",
-        "symfony/http-kernel": "^4.4 || ^5.4 || ^6.0"
+        "symfony/http-kernel": "^4.4 || ^5.4 || ^6.0",
+        "webmozart/assert": "^1.11"
     },
     "require-dev": {
         "api-platform/core": "^2.6",
@@ -24,7 +28,6 @@
         "psalm/plugin-symfony": "^3.1",
         "roave/security-advisories": "dev-latest",
         "setono/code-quality-pack": "^2.2",
-        "setono/doctrine-object-manager-trait": "^1.1",
         "sylius/admin-api-bundle": "^1.11",
         "sylius/sylius": "~1.10.14",
         "symfony/debug-bundle": "^4.4 || ^5.4 || ^6.0",
