@@ -24,4 +24,7 @@
         </pluginClass>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
+    <issueHandlers>
+        <UnnecessaryVarAnnotation errorLevel="suppress"/>
+    </issueHandlers>
 </psalm>
