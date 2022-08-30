@@ -1,0 +1,2 @@
+imports:
+    - { resource: "@SetonoSyliusAbandonedCartPlugin/Resources/config/app/config.yaml" }

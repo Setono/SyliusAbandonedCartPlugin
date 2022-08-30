@@ -1,0 +1,24 @@
+{# @var \Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface data #}
+{%
+    set viewOptions = {
+        failed: { icon: 'ban', color: 'red' },
+        ineligible: { icon: 'ban', color: 'red' },
+        initial: { icon: 'clock', color: 'gray' },
+        pending: { icon: 'clock', color: 'olive' },
+        processing: { icon: 'check', color: 'violet' },
+        sent: { icon: 'check', color: 'green' },
+}
+%}
+{% set value = 'setono_sylius_abandoned_cart.ui.' ~ data.state %}
+
+{% set popupClass = '' %}
+{% set popupHtml = '' %}
+{% if data.ineligible or data.failed %}
+    {% set popupClass = ' notification-popup' %}
+    {% set popupHtml = '<ul class="ui list"><li>' ~ data.processingErrors|join('</li><li>') ~ '</li></ul>' %}
+{% endif %}
+
+<span class="ui {{ viewOptions[data.state]['color'] }} label notification-state{{ popupClass }}" data-html="{{ popupHtml|e('html_attr') }}">
+    <i class="{{ viewOptions[data.state]['icon'] }} icon"></i>
+    {{ value|trans }}
+</span>

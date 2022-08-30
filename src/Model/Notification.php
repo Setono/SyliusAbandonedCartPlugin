@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAbandonedCartPlugin\Model;
 
 use DateTimeInterface;
+use Setono\SyliusAbandonedCartPlugin\Workflow\NotificationWorkflow;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
@@ -16,7 +17,7 @@ class Notification implements NotificationInterface
 
     protected ?int $version = 1;
 
-    protected ?string $state = null;
+    protected string $state = NotificationWorkflow::STATE_INITIAL;
 
     protected ?OrderInterface $cart = null;
 
@@ -40,12 +41,12 @@ class Notification implements NotificationInterface
         $this->version = $version;
     }
 
-    public function getState(): ?string
+    public function getState(): string
     {
         return $this->state;
     }
 
-    public function setState(?string $state): void
+    public function setState(string $state): void
     {
         $this->state = $state;
     }
@@ -55,7 +56,7 @@ class Notification implements NotificationInterface
         return $this->cart;
     }
 
-    public function setCart(?OrderInterface $cart): void
+    public function setCart(OrderInterface $cart): void
     {
         $this->cart = $cart;
     }
@@ -87,9 +88,24 @@ class Notification implements NotificationInterface
         return $this->sentAt;
     }
 
-    public function setSentAt(?DateTimeInterface $sentAt): void
+    public function setSentAt(DateTimeInterface $sentAt): void
     {
         $this->sentAt = $sentAt;
+    }
+
+    public function isFailed(): bool
+    {
+        return $this->getState() === NotificationWorkflow::STATE_FAILED;
+    }
+
+    public function isIneligible(): bool
+    {
+        return $this->getState() === NotificationWorkflow::STATE_INELIGIBLE;
+    }
+
+    public function isDeletable(): bool
+    {
+        return $this->getState() !== NotificationWorkflow::STATE_SENT;
     }
 
     public function getEmail(): ?string

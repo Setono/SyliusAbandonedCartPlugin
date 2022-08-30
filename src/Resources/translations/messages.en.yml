@@ -1,0 +1,13 @@
+setono_sylius_abandoned_cart:
+    ui:
+        abandoned_cart: Abandoned cart
+        failed: Failed
+        ineligible: Ineligible
+        initial: Initial
+        not_completed: Not completed
+        notifications: Notifications
+        pending: Pending
+        processing: Processing
+        sent: Sent
+        sent_at: Sent at
+        state: State

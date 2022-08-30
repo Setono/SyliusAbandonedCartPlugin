@@ -23,7 +23,7 @@
         <field name="sentAt" type="datetime" nullable="true"/>
 
         <many-to-one field="cart" target-entity="Sylius\Component\Order\Model\OrderInterface">
-            <join-column name="order_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
+            <join-column name="cart_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
 
         <indexes>

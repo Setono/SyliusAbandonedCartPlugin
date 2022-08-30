@@ -14,7 +14,7 @@ interface NotificationInterface extends ResourceInterface, TimestampableInterfac
 {
     public function getId(): ?int;
 
-    public function getState(): ?string;
+    public function getState(): string;
 
     public function setState(string $state): void;
 
@@ -42,6 +42,15 @@ interface NotificationInterface extends ResourceInterface, TimestampableInterfac
     public function getSentAt(): ?DateTimeInterface;
 
     public function setSentAt(DateTimeInterface $sentAt): void;
+
+    public function isFailed(): bool;
+
+    public function isIneligible(): bool;
+
+    /**
+     * Returns true if the notification is deletable
+     */
+    public function isDeletable(): bool;
 
     public function getEmail(): ?string;
 }

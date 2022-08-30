@@ -1,0 +1,5 @@
+{% if data.number is not null %}
+    <a href="{{ path('sylius_admin_order_show', {'id' : data.id })|raw }}">#{{ data.number }}</a>
+{% else %}
+    {{ 'setono_sylius_abandoned_cart.ui.not_completed'|trans }}
+{% endif %}

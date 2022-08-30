@@ -1,1 +1,12 @@
-# TODO Add your admin routes here
+setono_sylius_abandoned_cart_admin_invitation:
+    resource: |
+        alias: setono_sylius_abandoned_cart.notification
+        section: admin
+        permission: true
+        templates: '@SyliusAdmin\\Crud'
+        redirect: index
+        grid: setono_sylius_abandoned_cart_admin_notification
+        vars:
+            index:
+                icon: 'envelope outline'
+    type: sylius.resource

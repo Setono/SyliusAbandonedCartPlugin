@@ -1,0 +1,13 @@
+imports:
+    - { resource: "@SetonoSyliusAbandonedCartPlugin/Resources/config/grids/setono_sylius_abandoned_cart_admin_notification.yaml" }
+
+framework:
+    messenger:
+        buses:
+            setono_sylius_abandoned_cart.command_bus: ~
+
+sylius_mailer:
+    emails:
+        abandoned_cart_email:
+            subject: setono_sylius_abandoned_cart.emails.notification.subject
+            template: "@SetonoSyliusAbandonedCartPlugin/email/notification.html.twig"
