@@ -17,7 +17,6 @@
         "symfony/console": "^4.4 || ^5.4 || ^6.0",
         "symfony/dependency-injection": "^4.4 || ^5.4 || ^6.0",
         "symfony/event-dispatcher": "^4.4 || ^5.4 || ^6.0",
-        "symfony/http-kernel": "^4.4 || ^5.4 || ^6.0",
         "symfony/messenger": "^4.4 || ^5.4 || ^6.0",
         "symfony/workflow": "^4.4 || ^5.4 || ^6.0",
         "webmozart/assert": "^1.11"
