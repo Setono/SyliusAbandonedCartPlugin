@@ -12,6 +12,7 @@
         "doctrine/persistence": "^2.5",
         "knplabs/knp-menu": "^3.3",
         "setono/doctrine-object-manager-trait": "^1.1",
+        "setono/symfony-main-request-trait": "^1.0",
         "sylius/resource-bundle": "^1.6",
         "symfony/config": "^4.4 || ^5.4 || ^6.0",
         "symfony/console": "^4.4 || ^5.4 || ^6.0",
