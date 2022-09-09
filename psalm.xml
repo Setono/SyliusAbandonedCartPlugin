@@ -25,6 +25,7 @@
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
     <issueHandlers>
+        <PluginIssue name="QueryBuilderSetParameter" errorLevel="suppress"/>
         <UnnecessaryVarAnnotation errorLevel="suppress"/>
     </issueHandlers>
 </psalm>
