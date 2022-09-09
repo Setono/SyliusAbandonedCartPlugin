@@ -34,7 +34,10 @@ final class ProcessNotificationHandler implements MessageHandlerInterface
         Assert::nullOrIsInstanceOf($notification, NotificationInterface::class);
 
         if (null === $notification) {
-            return;
+            throw new UnrecoverableMessageHandlingException(sprintf(
+                'Could not find notification with id %d',
+                $message->notificationId
+            ));
         }
 
         try {
