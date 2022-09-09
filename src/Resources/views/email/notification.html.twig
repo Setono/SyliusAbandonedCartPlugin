@@ -1,7 +1,8 @@
+{# @var \Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface notification #}
 {% extends '@SyliusShop/Email/layout.html.twig' %}
 
 {% block subject %}{% endblock %}
 
 {% block content %}
-You forgot something
+    {{ url('sylius_shop_cart_summary', { 'tokenValue': notification.cart.tokenValue, '_locale': localeCode }) }}
 {% endblock %}
