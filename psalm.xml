@@ -25,6 +25,11 @@
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
     <issueHandlers>
+        <DeprecatedMethod>
+            <errorLevel type="suppress">
+                <referencedMethod name="Sylius\Component\Mailer\Sender\SenderInterface::send"/>
+            </errorLevel>
+        </DeprecatedMethod>
         <PluginIssue name="QueryBuilderSetParameter" errorLevel="suppress"/>
         <UnnecessaryVarAnnotation errorLevel="suppress"/>
     </issueHandlers>
