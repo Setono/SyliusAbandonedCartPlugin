@@ -10,6 +10,7 @@
             <argument type="service" id="setono_sylius_abandoned_cart.command_bus"/>
             <argument type="service" id="setono_sylius_abandoned_cart.repository.notification"/>
             <argument type="service" id="workflow.registry"/>
+            <argument>%setono_sylius_abandoned_cart.idle_threshold%</argument>
         </service>
     </services>
 </container>

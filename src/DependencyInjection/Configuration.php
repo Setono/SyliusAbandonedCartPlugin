@@ -28,6 +28,10 @@ final class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('driver')
                     ->defaultValue(SyliusResourceBundle::DRIVER_DOCTRINE_ORM)
+                ->end()
+                ->integerNode('idle_threshold')
+                    ->defaultValue(60)
+                    ->info('The number of minutes before a cart is considered idle and could be considered for an abandoned cart notification')
         ;
 
         $this->addResourcesSection($rootNode);
