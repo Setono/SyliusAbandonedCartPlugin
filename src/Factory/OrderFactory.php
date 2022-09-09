@@ -7,6 +7,7 @@ namespace Setono\SyliusAbandonedCartPlugin\Factory;
 use Doctrine\Persistence\ManagerRegistry;
 use Setono\DoctrineObjectManagerTrait\ORM\ORMManagerTrait;
 use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Core\TokenAssigner\OrderTokenAssignerInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
 /**
@@ -19,14 +20,18 @@ final class OrderFactory implements FactoryInterface
 
     private FactoryInterface $decorated;
 
+    private OrderTokenAssignerInterface $orderTokenAssigner;
+
     private NotificationFactoryInterface $notificationFactory;
 
     public function __construct(
         FactoryInterface $decorated,
+        OrderTokenAssignerInterface $orderTokenAssigner,
         NotificationFactoryInterface $notificationFactory,
         ManagerRegistry $managerRegistry
     ) {
         $this->decorated = $decorated;
+        $this->orderTokenAssigner = $orderTokenAssigner;
         $this->notificationFactory = $notificationFactory;
         $this->managerRegistry = $managerRegistry;
     }
@@ -36,6 +41,8 @@ final class OrderFactory implements FactoryInterface
         $order = $this->decorated->createNew();
 
         if ($order instanceof OrderInterface) {
+            $this->orderTokenAssigner->assignTokenValueIfNotSet($order);
+
             $notification = $this->notificationFactory->createWithOrder($order);
             $this->getManager($notification)->persist($notification);
         }
