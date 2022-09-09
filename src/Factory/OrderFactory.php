@@ -10,8 +10,8 @@ use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
 /**
- * This factory decorates the order factory and create a notification each time a new order is created.
- * If then the order is persisted and flushed, the notification will also be persisted
+ * This factory decorates the order factory and creates a notification each time a new order is created.
+ * If the order is persisted and flushed, the notification will also be persisted
  */
 final class OrderFactory implements FactoryInterface
 {
