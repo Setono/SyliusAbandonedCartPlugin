@@ -11,6 +11,9 @@
             <argument type="service" id="setono_sylius_abandoned_cart.repository.notification"/>
             <argument type="service" id="workflow.registry"/>
             <argument>%setono_sylius_abandoned_cart.idle_threshold%</argument>
+            <call method="setLogger">
+                <argument type="service" id="logger"/>
+            </call>
         </service>
     </services>
 </container>
