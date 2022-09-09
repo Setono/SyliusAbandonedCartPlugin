@@ -9,7 +9,6 @@ use Sylius\Component\Core\Repository\OrderRepositoryInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
 use Sylius\Component\Order\Context\CartNotFoundException;
 use Sylius\Component\Order\Model\OrderInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 final class TokenValueBasedCartContext implements CartContextInterface
@@ -28,7 +27,11 @@ final class TokenValueBasedCartContext implements CartContextInterface
 
     public function getCart(): OrderInterface
     {
-        $request = $this->getMainRequest();
+        $request = $this->getMainRequestFromRequestStack($this->requestStack);
+        if (null === $request) {
+            throw new CartNotFoundException('There is no main request on the request stack.');
+        }
+
         $tokenValue = $request->query->get('tokenValue');
         if (!is_string($tokenValue)) {
             throw new CartNotFoundException('The token value is not a string.');
@@ -40,15 +43,5 @@ final class TokenValueBasedCartContext implements CartContextInterface
         }
 
         return $cart;
-    }
-
-    private function getMainRequest(): Request
-    {
-        $request = $this->getMainRequestFromRequestStack($this->requestStack);
-        if (null === $request) {
-            throw new CartNotFoundException('There is no main request on the request stack.');
-        }
-
-        return $request;
     }
 }
