@@ -1,4 +1,12 @@
 setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Whoops! Did you forget something?
+            intro: |
+                Hi, %customer%<br><br>                
+                Sometimes life gets in the way of what you want.<br><br>
+                We saved your cart for you, so you can continue your shopping - just click the button below.
+            continue_shopping: Continue shopping
     ui:
         abandoned_cart: Abandoned cart
         failed: Failed

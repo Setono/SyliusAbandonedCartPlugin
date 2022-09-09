@@ -122,4 +122,29 @@ class Notification implements NotificationInterface
 
         return $customer->getEmailCanonical();
     }
+
+    public function getRecipientFirstName(): ?string
+    {
+        $cart = $this->getCart();
+        if (null === $cart) {
+            return null;
+        }
+
+        $customer = $cart->getCustomer();
+        if (null === $customer) {
+            return null;
+        }
+
+        $firstName = $customer->getFirstName();
+        if (null !== $firstName) {
+            return $firstName;
+        }
+
+        $billingAddress = $cart->getBillingAddress();
+        if (null === $billingAddress) {
+            return null;
+        }
+
+        return $billingAddress->getFirstName();
+    }
 }

@@ -53,4 +53,6 @@ interface NotificationInterface extends ResourceInterface, TimestampableInterfac
     public function isDeletable(): bool;
 
     public function getEmail(): ?string;
+
+    public function getRecipientFirstName(): ?string;
 }

@@ -9,7 +9,6 @@ framework:
 sylius_mailer:
     emails:
         abandoned_cart_email:
-            subject: setono_sylius_abandoned_cart.emails.notification.subject
             template: "@SetonoSyliusAbandonedCartPlugin/email/notification.html.twig"
 
 sylius_ui:
