@@ -7,4 +7,4 @@ setono_sylius_abandoned_cart_shop:
 
 setono_sylius_abandoned_cart_admin:
     resource: "@SetonoSyliusAbandonedCartPlugin/Resources/config/routes/admin.yaml"
-    prefix: /admin
+    prefix: /admin/abandoned-cart
