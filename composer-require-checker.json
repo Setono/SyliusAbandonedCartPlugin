@@ -18,7 +18,11 @@
         "Sylius\\Bundle\\CoreBundle\\Application\\SyliusPluginTrait",
         "Sylius\\Bundle\\UiBundle\\Menu\\Event\\MenuBuilderEvent",
         "Sylius\\Component\\Core\\Model\\OrderInterface",
+        "Sylius\\Component\\Core\\Repository\\OrderRepositoryInterface",
+        "Sylius\\Component\\Core\\TokenAssigner\\OrderTokenAssignerInterface",
         "Sylius\\Component\\Mailer\\Sender\\SenderInterface",
+        "Sylius\\Component\\Order\\Context\\CartContextInterface",
+        "Sylius\\Component\\Order\\Context\\CartNotFoundException",
         "Sylius\\Component\\Order\\Model\\OrderInterface"
     ]
 }
