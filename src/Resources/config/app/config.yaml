@@ -11,3 +11,10 @@ sylius_mailer:
         abandoned_cart_email:
             subject: setono_sylius_abandoned_cart.emails.notification.subject
             template: "@SetonoSyliusAbandonedCartPlugin/email/notification.html.twig"
+
+sylius_ui:
+    events:
+        setono_sylius_abandoned_cart.admin.notification.index.javascripts:
+            blocks:
+                javascript_popup:
+                    template: "@SetonoSyliusAbandonedCartPlugin/admin/block/_javascript_popup.html.twig"
