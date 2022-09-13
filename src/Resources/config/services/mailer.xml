@@ -7,7 +7,8 @@
         <service id="setono_sylius_abandoned_cart.mailer.email_manager"
                  class="Setono\SyliusAbandonedCartPlugin\Mailer\EmailManager">
             <argument type="service" id="sylius.email_sender"/>
-            <argument type="service" id="setono_sylius_abandoned_cart.hasher.email"/>
+            <argument type="service" id="setono_sylius_abandoned_cart.url_generator.cart_recovery"/>
+            <argument type="service" id="setono_sylius_abandoned_cart.url_generator.unsubscribe"/>
         </service>
     </services>
 </container>
