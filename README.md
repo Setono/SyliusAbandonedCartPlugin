@@ -29,6 +29,10 @@ return [
 # config/packages/setono_sylius_abandoned_cart.yaml
 imports:
     - { resource: "@SetonoSyliusAbandonedCartPlugin/Resources/config/app/config.yaml" }
+
+setono_sylius_abandoned_cart:
+    # When unsubscribing a customer a hash is used to prevent false unsubscribes. This hash is generated using this salt.
+    salt: your_secret_salt
 ```
 
 ### Configure routes

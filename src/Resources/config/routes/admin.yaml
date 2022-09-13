@@ -10,3 +10,16 @@ setono_sylius_abandoned_cart_admin_notification:
             index:
                 icon: 'envelope outline'
     type: sylius.resource
+    
+setono_sylius_abandoned_cart_admin_unsubscribed_customer:
+    resource: |
+        alias: setono_sylius_abandoned_cart.unsubscribed_customer
+        section: admin
+        permission: true
+        templates: '@SyliusAdmin\\Crud'
+        redirect: index
+        grid: setono_sylius_abandoned_cart_admin_unsubscribed_customer
+        vars:
+            index:
+                icon: 'ban'
+    type: sylius.resource

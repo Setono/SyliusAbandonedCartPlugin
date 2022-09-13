@@ -9,6 +9,7 @@
     ],
     "require": {
         "php": ">=7.4",
+        "ext-hash": "*",
         "doctrine/persistence": "^2.5",
         "knplabs/knp-menu": "^3.3",
         "psr/log": "^1.1 || ^2.0 || ^3.0",
@@ -19,9 +20,12 @@
         "symfony/console": "^4.4 || ^5.4 || ^6.0",
         "symfony/dependency-injection": "^4.4 || ^5.4 || ^6.0",
         "symfony/event-dispatcher": "^4.4 || ^5.4 || ^6.0",
+        "symfony/form": "^4.4 || ^5.4 || ^6.0",
         "symfony/http-foundation": "^4.4 || ^5.4 || ^6.0",
         "symfony/messenger": "^4.4 || ^5.4 || ^6.0",
+        "symfony/validator": "^4.4 || ^5.4 || ^6.0",
         "symfony/workflow": "^4.4 || ^5.4 || ^6.0",
+        "twig/twig": "^2.15",
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
@@ -30,6 +34,7 @@
         "lexik/jwt-authentication-bundle": "^2.16",
         "matthiasnoback/symfony-config-test": "^4.3",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
+        "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.17",
         "psalm/plugin-symfony": "^3.1",

@@ -10,6 +10,12 @@
             <argument type="service" id="setono_sylius_abandoned_cart.custom_factory.notification.inner"/>
         </service>
 
+        <service id="setono_sylius_abandoned_cart.custom_factory.unsubscribed_customer"
+                 class="Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactory" decoration-priority="64"
+                 decorates="setono_sylius_abandoned_cart.factory.unsubscribed_customer">
+            <argument type="service" id="setono_sylius_abandoned_cart.custom_factory.unsubscribed_customer.inner"/>
+        </service>
+
         <service id="setono_sylius_abandoned_cart.custom_factory.order"
                  class="Setono\SyliusAbandonedCartPlugin\Factory\OrderFactory" decoration-priority="64"
                  decorates="sylius.factory.order">

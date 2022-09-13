@@ -12,6 +12,8 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 
 /**
  * This factory decorates the order factory and creates a notification each time a new order is created.
+ * Also, it sets the token on the order because we need this token if we want to reinstate a cart to a customer.
+ *
  * If the order is persisted and flushed, the notification will also be persisted
  */
 final class OrderFactory implements FactoryInterface
@@ -44,7 +46,11 @@ final class OrderFactory implements FactoryInterface
             $this->orderTokenAssigner->assignTokenValueIfNotSet($order);
 
             $notification = $this->notificationFactory->createWithOrder($order);
-            $this->getManager($notification)->persist($notification);
+
+            $manager = $this->getManager($notification);
+            if ($manager->isOpen()) {
+                $manager->persist($notification);
+            }
         }
 
         return $order;
