@@ -38,6 +38,7 @@ final class ConfigurationTest extends TestCase
             'driver' => SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
             'salt' => 's3cr3t',
             'idle_threshold' => 60,
+            'prune_older_than' => 43_200,
             'resources' => [
                 'notification' => [
                     'classes' => [
