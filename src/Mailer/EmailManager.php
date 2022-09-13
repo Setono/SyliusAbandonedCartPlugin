@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Mailer;
 
-use Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasherInterface;
 use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
+use Setono\SyliusAbandonedCartPlugin\UrlGenerator\CartRecoveryUrlGeneratorInterface;
+use Setono\SyliusAbandonedCartPlugin\UrlGenerator\UnsubscribeUrlGeneratorInterface;
 use Sylius\Component\Mailer\Sender\SenderInterface;
 use Webmozart\Assert\Assert;
 
@@ -13,12 +14,18 @@ final class EmailManager implements EmailManagerInterface
 {
     private SenderInterface $emailSender;
 
-    private EmailHasherInterface $emailHasher;
+    private CartRecoveryUrlGeneratorInterface $cartRecoveryUrlGenerator;
 
-    public function __construct(SenderInterface $emailSender, EmailHasherInterface $emailHasher)
-    {
+    private UnsubscribeUrlGeneratorInterface $unsubscribeUrlGenerator;
+
+    public function __construct(
+        SenderInterface $emailSender,
+        CartRecoveryUrlGeneratorInterface $cartRecoveryUrlGenerator,
+        UnsubscribeUrlGeneratorInterface $unsubscribeUrlGenerator
+    ) {
         $this->emailSender = $emailSender;
-        $this->emailHasher = $emailHasher;
+        $this->cartRecoveryUrlGenerator = $cartRecoveryUrlGenerator;
+        $this->unsubscribeUrlGenerator = $unsubscribeUrlGenerator;
     }
 
     public function sendNotification(NotificationInterface $notification): void
@@ -35,8 +42,10 @@ final class EmailManager implements EmailManagerInterface
             'notification' => $notification,
             'channel' => $channel,
             'localeCode' => $order->getLocaleCode(),
-            'email' => $email,
-            'hashedEmail' => $this->emailHasher->hash($email),
+            'urls' => [
+                'cartRecovery' => $this->cartRecoveryUrlGenerator->generate($order),
+                'unsubscribe' => $this->unsubscribeUrlGenerator->generate($email, (string) $order->getLocaleCode()),
+            ],
         ]);
     }
 }

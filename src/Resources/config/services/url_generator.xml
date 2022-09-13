@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_sylius_abandoned_cart.url_generator.cart_recovery"
+                 class="Setono\SyliusAbandonedCartPlugin\UrlGenerator\CartRecoveryUrlGenerator">
+            <argument type="service" id="router"/>
+            <argument>sylius_shop_cart_summary</argument>
+        </service>
+
+        <service id="setono_sylius_abandoned_cart.url_generator.unsubscribe"
+                 class="Setono\SyliusAbandonedCartPlugin\UrlGenerator\UnsubscribeUrlGenerator">
+            <argument type="service" id="router"/>
+            <argument type="service" id="setono_sylius_abandoned_cart.hasher.email"/>
+            <argument>setono_sylius_abandoned_cart_shop_unsubscribe_customer</argument>
+        </service>
+    </services>
+</container>
