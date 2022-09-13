@@ -17,5 +17,6 @@
         <import resource="services/menu.xml"/>
         <import resource="services/message.xml"/>
         <import resource="services/processor.xml"/>
+        <import resource="services/pruner.xml"/>
     </imports>
 </container>

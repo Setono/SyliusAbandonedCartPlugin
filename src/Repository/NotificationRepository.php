@@ -6,6 +6,7 @@ namespace Setono\SyliusAbandonedCartPlugin\Repository;
 
 use DateInterval;
 use DateTimeImmutable;
+use DateTimeInterface;
 use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Setono\SyliusAbandonedCartPlugin\Workflow\NotificationWorkflow;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -33,5 +34,16 @@ class NotificationRepository extends EntityRepository implements NotificationRep
         ;
 
         return $objs;
+    }
+
+    public function removeOlderThan(DateTimeInterface $threshold): void
+    {
+        $this->createQueryBuilder('o')
+            ->delete()
+            ->andWhere('o.createdAt <= :threshold')
+            ->setParameter('threshold', $threshold)
+            ->getQuery()
+            ->execute()
+        ;
     }
 }

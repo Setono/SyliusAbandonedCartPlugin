@@ -40,6 +40,10 @@ final class Configuration implements ConfigurationInterface
                 ->integerNode('idle_threshold')
                     ->defaultValue(60)
                     ->info('The number of minutes before a cart is considered idle and could be considered for an abandoned cart notification')
+                ->end()
+                ->integerNode('prune_older_than')
+                    ->info('Prune notifications that are older than this number of minutes. Default: 30 days (30 * 24 * 60)')
+                    ->defaultValue(43_200) // 30 days
         ;
 
         $this->addResourcesSection($rootNode);

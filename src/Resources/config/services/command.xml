@@ -10,5 +10,12 @@
 
             <tag name="console.command"/>
         </service>
+
+        <service id="setono_sylius_abandoned_cart.command.prune"
+                 class="Setono\SyliusAbandonedCartPlugin\Command\PruneCommand">
+            <argument type="service" id="setono_sylius_abandoned_cart.pruner.default"/>
+
+            <tag name="console.command"/>
+        </service>
     </services>
 </container>
