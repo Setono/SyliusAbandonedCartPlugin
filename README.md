@@ -61,10 +61,16 @@ bin/console doctrine:migrations:migrate
 
 ### Add cronjob
 
-The following command should be run on a regular basis:
+The following command should run on a regular basis:
 
 ```bash
 bin/console setono:sylius-abandoned-cart:process
+```
+
+also, if you want to prune the notifications table you can run:
+
+```bash
+bin/console setono:sylius-abandoned-cart:prune
 ```
 
 [ico-version]: https://poser.pugx.org/setono/sylius-abandoned-cart-plugin/v/stable
