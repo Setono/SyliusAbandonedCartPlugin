@@ -6,10 +6,13 @@
     <imports>
         <import resource="services/command.xml"/>
         <import resource="services/context.xml"/>
+        <import resource="services/controller.xml"/>
         <import resource="services/dispatcher.xml"/>
         <import resource="services/eligibility_checker.xml"/>
         <import resource="services/event_subscriber.xml"/>
         <import resource="services/factory.xml"/>
+        <import resource="services/form.xml"/>
+        <import resource="services/hasher.xml"/>
         <import resource="services/mailer.xml"/>
         <import resource="services/menu.xml"/>
         <import resource="services/message.xml"/>

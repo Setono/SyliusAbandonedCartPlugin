@@ -4,17 +4,21 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Mailer;
 
+use Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasherInterface;
 use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Sylius\Component\Mailer\Sender\SenderInterface;
 use Webmozart\Assert\Assert;
 
-class EmailManager implements EmailManagerInterface
+final class EmailManager implements EmailManagerInterface
 {
     private SenderInterface $emailSender;
 
-    public function __construct(SenderInterface $emailSender)
+    private EmailHasherInterface $emailHasher;
+
+    public function __construct(SenderInterface $emailSender, EmailHasherInterface $emailHasher)
     {
         $this->emailSender = $emailSender;
+        $this->emailHasher = $emailHasher;
     }
 
     public function sendNotification(NotificationInterface $notification): void
@@ -24,10 +28,15 @@ class EmailManager implements EmailManagerInterface
 
         $channel = $order->getChannel();
 
-        $this->emailSender->send('abandoned_cart_email', [$notification->getEmail()], [
+        $email = $notification->getEmail();
+        Assert::notNull($email);
+
+        $this->emailSender->send('abandoned_cart_email', [$email], [
             'notification' => $notification,
             'channel' => $channel,
             'localeCode' => $order->getLocaleCode(),
+            'email' => $email,
+            'hashedEmail' => $this->emailHasher->hash($email),
         ]);
     }
 }

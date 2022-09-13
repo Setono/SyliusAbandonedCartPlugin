@@ -34,3 +34,7 @@ sylius_grid:
                     sortable: ~
                     options:
                         format: d-m-Y H:i
+            actions:
+                main:
+                    unsubscribed_customers:
+                        type: unsubscribed_customers

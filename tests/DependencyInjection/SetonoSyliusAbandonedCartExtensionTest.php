@@ -25,5 +25,8 @@ final class SetonoSyliusAbandonedCartExtensionTest extends AbstractExtensionTest
     public function after_loading_the_correct_parameter_has_been_set(): void
     {
         $this->load();
+
+        $this->assertContainerBuilderHasParameter('setono_sylius_abandoned_cart.salt', 's3cr3t');
+        $this->assertContainerBuilderHasParameter('setono_sylius_abandoned_cart.idle_threshold', 60);
     }
 }

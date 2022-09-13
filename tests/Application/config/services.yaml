@@ -2,3 +2,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en_US
+    
+    # This makes the links in test emails work
+    router.request_context.scheme: https
+    router.request_context.host: 127.0.0.1
+    request_listener.https_port: 8000

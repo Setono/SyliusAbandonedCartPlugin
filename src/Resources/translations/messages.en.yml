@@ -7,11 +7,21 @@ setono_sylius_abandoned_cart:
                 Sometimes life gets in the way of what you want.<br><br>
                 We saved your cart for you, so you can continue your shopping - just click the button below.
             continue_shopping: Continue shopping
+            unsubscribe: Unsubscribe
+    form:
+        unsubscribed_customer:
+            email: Email
     ui:
         abandoned_cart: Abandoned cart
+        edit_unsubscribed_customer: Edit unsubscribed customer
+        email_already_unsubscribed: The email is already unsubscribed
         failed: Failed
         ineligible: Ineligible
         initial: Initial
+        invalid_hash: The hash is invalid
+        new_unsubscribed_customer: New unsubscribed customer
+        no_email_provided: You need to provide an email
+        no_hash_provided: You need to provide a hash to unsubscribe
         not_completed: Not completed
         notifications: Notifications
         pending: Pending
@@ -19,3 +29,5 @@ setono_sylius_abandoned_cart:
         sent: Sent
         sent_at: Sent at
         state: State
+        successfully_unsubscribed: You have been successfully unsubscribed
+        unsubscribed_customers: Unsubscribed customers

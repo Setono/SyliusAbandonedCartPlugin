@@ -11,4 +11,10 @@
             {{ 'setono_sylius_abandoned_cart.emails.notification.continue_shopping'|trans({}, null, localeCode) }}
         </a>
     </div>
+
+    <div style="text-align: center; margin-bottom: 30px;">
+        <a href="{{ url('setono_sylius_abandoned_cart_shop_unsubscribe_customer', { 'email': email, 'hash': hashedEmail, '_locale': localeCode })|raw }}">
+            {{ 'setono_sylius_abandoned_cart.emails.notification.unsubscribe'|trans({}, null, localeCode) }}
+        </a>
+    </div>
 {% endblock %}

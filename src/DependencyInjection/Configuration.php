@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\DependencyInjection;
 
+use Setono\SyliusAbandonedCartPlugin\Form\Type\UnsubscribedCustomerType;
 use Setono\SyliusAbandonedCartPlugin\Model\Notification;
+use Setono\SyliusAbandonedCartPlugin\Model\UnsubscribedCustomer;
 use Setono\SyliusAbandonedCartPlugin\Repository\NotificationRepository;
+use Setono\SyliusAbandonedCartPlugin\Repository\UnsubscribedCustomerRepository;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\Form\Type\DefaultResourceType;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -28,6 +31,11 @@ final class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('driver')
                     ->defaultValue(SyliusResourceBundle::DRIVER_DOCTRINE_ORM)
+                ->end()
+                ->scalarNode('salt')
+                    ->defaultValue('s3cr3t')
+                    ->info('When unsubscribing a customer a hash is used to prevent false unsubscribes. This hash is generated using this salt.')
+                    ->cannotBeEmpty()
                 ->end()
                 ->integerNode('idle_threshold')
                     ->defaultValue(60)
@@ -58,6 +66,22 @@ final class Configuration implements ConfigurationInterface
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                         ->scalarNode('repository')->defaultValue(NotificationRepository::class)->cannotBeEmpty()->end()
                                         ->scalarNode('form')->defaultValue(DefaultResourceType::class)->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('unsubscribed_customer')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode('options')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(UnsubscribedCustomer::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(UnsubscribedCustomerRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(UnsubscribedCustomerType::class)->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
         ;
     }
