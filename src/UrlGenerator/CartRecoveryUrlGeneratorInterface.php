@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Setono\SyliusAbandonedCartPlugin\UrlGenerator;
 
 use Sylius\Component\Core\Model\OrderInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 interface CartRecoveryUrlGeneratorInterface
 {
@@ -14,7 +13,6 @@ interface CartRecoveryUrlGeneratorInterface
      */
     public function generate(
         OrderInterface $order,
-        array $parameters = [],
-        int $referenceType = UrlGeneratorInterface::ABSOLUTE_URL
+        array $parameters = []
     ): string;
 }

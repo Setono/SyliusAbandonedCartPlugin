@@ -34,6 +34,7 @@ final class EmailManager implements EmailManagerInterface
         Assert::notNull($order);
 
         $channel = $order->getChannel();
+        Assert::notNull($channel);
 
         $email = $notification->getEmail();
         Assert::notNull($email);
@@ -44,7 +45,7 @@ final class EmailManager implements EmailManagerInterface
             'localeCode' => $order->getLocaleCode(),
             'urls' => [
                 'cartRecovery' => $this->cartRecoveryUrlGenerator->generate($order),
-                'unsubscribe' => $this->unsubscribeUrlGenerator->generate($email, (string) $order->getLocaleCode()),
+                'unsubscribe' => $this->unsubscribeUrlGenerator->generate($channel, $email, (string) $order->getLocaleCode()),
             ],
         ]);
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\UrlGenerator;
 
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Sylius\Component\Channel\Model\ChannelInterface;
 
 interface UnsubscribeUrlGeneratorInterface
 {
@@ -12,9 +12,9 @@ interface UnsubscribeUrlGeneratorInterface
      * Generates an unsubscribe URL for a given email
      */
     public function generate(
+        ChannelInterface $channel,
         string $email,
         string $locale,
-        array $parameters = [],
-        int $referenceType = UrlGeneratorInterface::ABSOLUTE_URL
+        array $parameters = []
     ): string;
 }
