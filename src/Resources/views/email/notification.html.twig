@@ -4,13 +4,33 @@
 {% block subject %}{{ 'setono_sylius_abandoned_cart.emails.notification.subject'|trans }}{% endblock %}
 
 {% block content %}
-    {{ 'setono_sylius_abandoned_cart.emails.notification.intro'|trans({ '%customer%': notification.recipientFirstName })|raw }}
+    <div style="text-align: center; margin-bottom: 30px;">
+        {{ 'setono_sylius_abandoned_cart.emails.notification.intro'|trans({ '%customer%': notification.recipientFirstName })|raw }}
+    </div>
 
     <div style="text-align: center; margin-bottom: 30px;">
         <a href="{{ urls.cartRecovery }}" style="display: inline-block; text-align: center; background: #1abb9c; padding: 18px 28px; color: #fff; text-decoration: none; border-radius: 3px;">
             {{ 'setono_sylius_abandoned_cart.emails.notification.continue_shopping'|trans({}, null, localeCode) }}
         </a>
     </div>
+
+    <div style="text-align: center; margin-bottom: 30px;">
+        {{ 'setono_sylius_abandoned_cart.emails.notification.cart_contents'|trans({ '%customer%': notification.recipientFirstName })|raw }}
+    </div>
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" style=" margin-bottom: 30px;">
+        <tr>
+            <th style="text-align: left; padding: 5px 10px">Quantity</th>
+            <th style="text-align: left; padding: 5px 10px">Product</th>
+        </tr>
+        {# @var \Sylius\Component\Core\Model\OrderItemInterface item #}
+        {% for item in notification.cart.items %}
+            <tr>
+                <td style="padding: 5px 10px">{{ item.quantity }}</td>
+                <td style="padding: 5px 10px">{{ item.productName }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 
     <div style="text-align: center; margin-bottom: 30px;">
         <a href="{{ urls.unsubscribe }}">

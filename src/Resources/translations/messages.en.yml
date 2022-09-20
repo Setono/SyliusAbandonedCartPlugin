@@ -8,6 +8,7 @@ setono_sylius_abandoned_cart:
                 We saved your cart for you, so you can continue your shopping - just click the button below.
             continue_shopping: Continue shopping
             unsubscribe: Unsubscribe
+            cart_contents: You had the following exceptional, well selected items in your cart when something interrupted your shopping. Don't abandon this!
     form:
         unsubscribed_customer:
             email: Email

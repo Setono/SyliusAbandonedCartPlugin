@@ -8,6 +8,7 @@ setono_sylius_abandoned_cart:
                 Vi har gemt din indkøbskurv for dig, så du kan fortsætte dit indkøb. Klik blot på knappen herunder.
             continue_shopping: Fortsæt dit indkøb
             unsubscribe: Afmeld
+            cart_contents: Du havde følgende exceptionelle og velvalgte varer i kurven, da der var noget, der afbrød dit indkøb. Lad være med at forlad disse varer!
     form:
         unsubscribed_customer:
             email: Email
