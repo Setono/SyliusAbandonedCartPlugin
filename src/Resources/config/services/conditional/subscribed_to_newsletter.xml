@@ -4,8 +4,9 @@
            xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_abandoned_cart.notification_eligibility_checker.composite"
-                 class="Setono\SyliusAbandonedCartPlugin\EligibilityChecker\CompositeNotificationEligibilityChecker">
+        <service id="setono_sylius_abandoned_cart.notification_eligibility_checker.subscribed_to_newsletter"
+                 class="Setono\SyliusAbandonedCartPlugin\EligibilityChecker\SubscribedToNewsletterNotificationEligibilityChecker">
+            <tag name="setono_sylius_abandoned_cart.notification_eligibility_checker"/>
         </service>
     </services>
 </container>

@@ -18,7 +18,7 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
         /**
          * @psalm-suppress PossiblyNullArgument
          *
-         * @var array{driver: string, salt: string, idle_threshold: int, prune_older_than: int, resources: array} $config
+         * @var array{driver: string, salt: string, idle_threshold: int, prune_older_than: int, eligibility_checkers: array{unsubscribed_customer: bool, subscribed_to_newsletter: bool}, resources: array} $config
          */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -30,6 +30,15 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
         $this->registerResources('setono_sylius_abandoned_cart', $config['driver'], $config['resources'], $container);
 
         $loader->load('services.xml');
+
+        $eligibilityCheckers = $config['eligibility_checkers'];
+        if ($eligibilityCheckers['unsubscribed_customer']) {
+            $loader->load('services/conditional/unsubscribed_customer.xml');
+        }
+
+        if ($eligibilityCheckers['subscribed_to_newsletter']) {
+            $loader->load('services/conditional/subscribed_to_newsletter.xml');
+        }
     }
 
     public function prepend(ContainerBuilder $container): void
