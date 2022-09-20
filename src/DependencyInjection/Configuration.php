@@ -44,6 +44,17 @@ final class Configuration implements ConfigurationInterface
                 ->integerNode('prune_older_than')
                     ->info('Prune notifications that are older than this number of minutes. Default: 30 days (30 * 24 * 60)')
                     ->defaultValue(43_200) // 30 days
+                ->end()
+                ->arrayNode('eligibility_checkers')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('unsubscribed_customer')
+                            ->info('If this is true, you will not send notifications to customer who actively unsubscribed from a previous abandoned cart notification')
+                            ->defaultTrue()
+                        ->end()
+                        ->booleanNode('subscribed_to_newsletter')
+                            ->info('If this is true, you will not send notifications to customer who have not subscribed to your newsletter')
+                            ->defaultFalse()
         ;
 
         $this->addResourcesSection($rootNode);

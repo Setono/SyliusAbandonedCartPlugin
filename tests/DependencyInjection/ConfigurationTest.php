@@ -39,6 +39,10 @@ final class ConfigurationTest extends TestCase
             'salt' => 's3cr3t',
             'idle_threshold' => 60,
             'prune_older_than' => 43_200,
+            'eligibility_checkers' => [
+                'unsubscribed_customer' => true,
+                'subscribed_to_newsletter' => false,
+            ],
             'resources' => [
                 'notification' => [
                     'classes' => [
