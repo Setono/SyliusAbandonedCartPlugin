@@ -1,0 +1,33 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Ups! Glemte du noget?
+            intro: |
+                Hej, %customer%<br><br>
+                Nogle gange kommer livet i vejen for hvad du vil have.<br><br>
+                Vi har gemt din indkøbskurv for dig, så du kan fortsætte dit indkøb. Klik blot på knappen herunder.
+            continue_shopping: Fortsæt dit indkøb
+            unsubscribe: Afmeld
+    form:
+        unsubscribed_customer:
+            email: Email
+    ui:
+        abandoned_cart: Abandoned cart
+        edit_unsubscribed_customer: Rediger afmeldt kunde
+        email_already_unsubscribed: Emailen er allerede afmeldt
+        failed: Fejlede
+        ineligible: Ikke berettiget
+        initial: Initial
+        invalid_hash: Hashen er ugyldig
+        new_unsubscribed_customer: Ny afmeldt kunde
+        no_email_provided: Du skal angive en email
+        no_hash_provided: Du skal angive en hash for at afmelde
+        not_completed: Ikke gennemført
+        notifications: Notifikationer
+        pending: Afventer
+        processing: Processerer
+        sent: Afsendt
+        sent_at: Afsendt
+        state: Tilstand
+        successfully_unsubscribed: Du er afmeldt
+        unsubscribed_customers: Afmeldte kunder
