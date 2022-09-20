@@ -13,6 +13,9 @@ $ composer require setono/sylius-abandoned-cart-plugin
 
 ### Add bundle to `config/bundles.php`:
 
+Make sure you add it before `SyliusGridBundle`, otherwise you'll get
+`You have requested a non-existent parameter "setono_sylius_abandoned_cart.model.notification.class".` exception.
+
 ```php
 <?php
 // config/bundles.php
