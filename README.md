@@ -8,7 +8,7 @@
 ## Installation
 
 ```bash
-$ composer require setono/sylius-abandoned-cart-plugin
+composer require setono/sylius-abandoned-cart-plugin
 ```
 
 ### Add bundle to `config/bundles.php`:
