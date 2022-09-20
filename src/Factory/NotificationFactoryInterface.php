@@ -12,5 +12,5 @@ interface NotificationFactoryInterface extends FactoryInterface
 {
     public function createNew(): NotificationInterface;
 
-    public function createWithOrder(OrderInterface $order): NotificationInterface;
+    public function createWithCart(OrderInterface $order): NotificationInterface;
 }

@@ -45,7 +45,7 @@ final class OrderFactory implements FactoryInterface
         if ($order instanceof OrderInterface) {
             $this->orderTokenAssigner->assignTokenValueIfNotSet($order);
 
-            $notification = $this->notificationFactory->createWithOrder($order);
+            $notification = $this->notificationFactory->createWithCart($order);
 
             $manager = $this->getManager($notification);
             if ($manager->isOpen()) {

@@ -27,7 +27,7 @@ final class NotificationFactory implements NotificationFactoryInterface
         return $obj;
     }
 
-    public function createWithOrder(OrderInterface $order): NotificationInterface
+    public function createWithCart(OrderInterface $order): NotificationInterface
     {
         $obj = $this->createNew();
         $obj->setCart($order);
