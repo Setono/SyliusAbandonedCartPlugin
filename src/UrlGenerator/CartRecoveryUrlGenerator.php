@@ -6,6 +6,7 @@ namespace Setono\SyliusAbandonedCartPlugin\UrlGenerator;
 
 use Sylius\Component\Core\Model\OrderInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Webmozart\Assert\Assert;
 
 final class CartRecoveryUrlGenerator implements CartRecoveryUrlGeneratorInterface
 {
@@ -21,9 +22,11 @@ final class CartRecoveryUrlGenerator implements CartRecoveryUrlGeneratorInterfac
 
     public function generate(
         OrderInterface $order,
-        array $parameters = [],
-        int $referenceType = UrlGeneratorInterface::ABSOLUTE_URL
+        array $parameters = []
     ): string {
+        $channel = $order->getChannel();
+        Assert::notNull($channel);
+
         $parameters = array_merge([
             'tokenValue' => $order->getTokenValue(),
             'utm_source' => 'sylius',
@@ -32,6 +35,11 @@ final class CartRecoveryUrlGenerator implements CartRecoveryUrlGeneratorInterfac
             '_locale' => $order->getLocaleCode(),
         ], $parameters);
 
-        return $this->urlGenerator->generate($this->route, $parameters, $referenceType);
+        return sprintf(
+            '%s://%s%s',
+            $this->urlGenerator->getContext()->getScheme(),
+            (string) $channel->getHostname(),
+            $this->urlGenerator->generate($this->route, $parameters, UrlGeneratorInterface::ABSOLUTE_PATH)
+        );
     }
 }

@@ -23,6 +23,7 @@
         "Sylius\\Component\\Mailer\\Sender\\SenderInterface",
         "Sylius\\Component\\Order\\Context\\CartContextInterface",
         "Sylius\\Component\\Order\\Context\\CartNotFoundException",
-        "Sylius\\Component\\Order\\Model\\OrderInterface"
+        "Sylius\\Component\\Order\\Model\\OrderInterface",
+        "Sylius\\Component\\Channel\\Model\\ChannelInterface"
     ]
 }

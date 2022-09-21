@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAbandonedCartPlugin\UrlGenerator;
 
 use Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasherInterface;
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class UnsubscribeUrlGenerator implements UnsubscribeUrlGeneratorInterface
@@ -23,10 +24,10 @@ final class UnsubscribeUrlGenerator implements UnsubscribeUrlGeneratorInterface
     }
 
     public function generate(
+        ChannelInterface $channel,
         string $email,
         string $locale,
-        array $parameters = [],
-        int $referenceType = UrlGeneratorInterface::ABSOLUTE_URL
+        array $parameters = []
     ): string {
         $parameters = array_merge([
             'email' => $email,
@@ -37,6 +38,11 @@ final class UnsubscribeUrlGenerator implements UnsubscribeUrlGeneratorInterface
             '_locale' => $locale,
         ], $parameters);
 
-        return $this->urlGenerator->generate($this->route, $parameters, $referenceType);
+        return sprintf(
+            '%s://%s%s',
+            $this->urlGenerator->getContext()->getScheme(),
+            (string) $channel->getHostname(),
+            $this->urlGenerator->generate($this->route, $parameters, UrlGeneratorInterface::ABSOLUTE_PATH)
+        );
     }
 }

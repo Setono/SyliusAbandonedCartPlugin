@@ -6,6 +6,7 @@ namespace Tests\Setono\SyliusAbandonedCartPlugin\UrlGenerator;
 
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\UrlGenerator\CartRecoveryUrlGenerator;
+use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\Order;
 use Symfony\Component\Routing\Route;
 
@@ -26,9 +27,13 @@ final class CartRecoveryUrlGeneratorTest extends UrlGeneratorAwareTestCase
      */
     public function it_generates_url(): void
     {
+        $channel = new Channel();
+        $channel->setHostname('example.com');
+
         $order = new Order();
         $order->setLocaleCode('en_US');
         $order->setTokenValue('token');
+        $order->setChannel($channel);
 
         $cartRecoveryUrlGenerator = new CartRecoveryUrlGenerator($this->urlGenerator, 'sylius_shop_cart_summary');
         self::assertSame('https://example.com/cart?tokenValue=token&utm_source=sylius&utm_medium=email&utm_campaign=Abandoned%20Cart&_locale=en_US', $cartRecoveryUrlGenerator->generate($order));
@@ -39,9 +44,13 @@ final class CartRecoveryUrlGeneratorTest extends UrlGeneratorAwareTestCase
      */
     public function it_allows_to_overwrite_parameters(): void
     {
+        $channel = new Channel();
+        $channel->setHostname('example.com');
+
         $order = new Order();
         $order->setLocaleCode('en_US');
         $order->setTokenValue('token');
+        $order->setChannel($channel);
 
         $cartRecoveryUrlGenerator = new CartRecoveryUrlGenerator($this->urlGenerator, 'sylius_shop_cart_summary');
         self::assertSame('https://example.com/cart?tokenValue=token&utm_source=sylius&utm_medium=email&utm_campaign=Abandoned%20Cart%20%232&_locale=en_US&utm_content=Number%20two', $cartRecoveryUrlGenerator->generate($order, [
