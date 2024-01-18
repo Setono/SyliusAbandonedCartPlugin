@@ -1,0 +1,34 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Vous avez oublié quelque chose ?
+            intro: |
+                Bonjour, %customer%<br><br>                
+                Parfois tout ne se passe pas comme prévu.<br><br>
+                Nous avons conservés votre panier pour vous, vous pouvez reprendre vos achats d'un simple clic.
+            continue_shopping: Continuer mes achats
+            unsubscribe: Me désinscrire
+            cart_contents: Votre sélection d'article exceptionnel vous attends. N'abandonnez pas si vite !
+    form:
+        unsubscribed_customer:
+            email: Email
+    ui:
+        abandoned_cart: Paniers abandonnées
+        edit_unsubscribed_customer: Modifier un utilisateur désinscrit
+        email_already_unsubscribed: Cet email est déjà désinscrit
+        failed: Échec
+        ineligible: Non-éligible
+        initial: Initial
+        invalid_hash: Le hash est invalide
+        new_unsubscribed_customer: Nouvel utilisateur désinscrit
+        no_email_provided: Vous devez fournir un email
+        no_hash_provided: Vous devez fournir un hash à désinscrire
+        not_completed: Non complété
+        notifications: Notifications
+        pending: En attente
+        processing: En cours
+        sent: Envoyé
+        sent_at: Envoyé à
+        state: État
+        successfully_unsubscribed: Vous avez correctement été désinscrit
+        unsubscribed_customers: Utilisateurs désinscrits
