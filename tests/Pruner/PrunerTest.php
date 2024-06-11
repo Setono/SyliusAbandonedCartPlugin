@@ -23,6 +23,7 @@ final class PrunerTest extends TestCase
     public function it_prunes(): void
     {
         $expected = (new \DateTimeImmutable())->sub(new \DateInterval('PT30M'));
+        self::assertNotFalse($expected);
 
         $repository = $this->prophesize(NotificationRepositoryInterface::class);
         $repository->removeOlderThan(Argument::that(static function (\DateTimeInterface $dateTime) use ($expected) {
