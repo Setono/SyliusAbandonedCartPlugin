@@ -13,6 +13,7 @@ use Setono\SyliusAbandonedCartPlugin\Workflow\NotificationWorkflow;
 use Symfony\Component\Workflow\Registry;
 use Symfony\Component\Workflow\WorkflowInterface;
 use Throwable;
+use Twig\Error\Error;
 use Webmozart\Assert\Assert;
 
 final class NotificationProcessor implements NotificationProcessorInterface
@@ -64,11 +65,23 @@ final class NotificationProcessor implements NotificationProcessorInterface
                 }
             );
         } catch (Throwable $e) {
-            $notification->addProcessingError(sprintf(
+            $message = sprintf(
                 'An unexpected error occurred when processing notification %d: %s',
                 (int) $notification->getId(),
-                $e->getMessage()
-            ));
+                $e->getMessage(),
+            );
+
+            if ($e instanceof Error) {
+                $message = sprintf(
+                    "A Twig error occurred when processing notification %d.\nTemplate: %s\nError: %s\nLine: %d",
+                    (int) $notification->getId(),
+                    (string) ($e->getSourceContext()?->getName() ?? 'Unknown'),
+                    $e->getRawMessage(),
+                    $e->getTemplateLine(),
+                );
+            }
+
+            $notification->addProcessingError($message);
 
             $this->tryTransition($notification, NotificationWorkflow::TRANSITION_FAIL);
 
