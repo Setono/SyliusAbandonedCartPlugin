@@ -28,6 +28,12 @@ sylius_grid:
                     path: .
                     options:
                         template: "@SetonoSyliusAbandonedCartPlugin/admin/grid/label/notification_state.html.twig"
+                createdAt:
+                    type: datetime
+                    label: sylius.ui.created_at
+                    sortable: ~
+                    options:
+                        format: d-m-Y H:i
                 sentAt:
                     type: datetime
                     label: setono_sylius_abandoned_cart.ui.sent_at
