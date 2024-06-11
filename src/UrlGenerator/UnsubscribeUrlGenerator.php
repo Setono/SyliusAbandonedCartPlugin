@@ -28,7 +28,7 @@ final class UnsubscribeUrlGenerator implements UnsubscribeUrlGeneratorInterface
         ChannelInterface $channel,
         string $email,
         string $locale,
-        array $parameters = []
+        array $parameters = [],
     ): string {
         $parameters = array_merge([
             'email' => $email,
@@ -51,7 +51,7 @@ final class UnsubscribeUrlGenerator implements UnsubscribeUrlGeneratorInterface
             '%s://%s%s',
             $this->urlGenerator->getContext()->getScheme(),
             (string) $channel->getHostname(),
-            $path
+            $path,
         );
     }
 }

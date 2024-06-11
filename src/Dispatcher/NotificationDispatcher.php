@@ -39,7 +39,7 @@ final class NotificationDispatcher implements NotificationDispatcherInterface, L
         MessageBusInterface $commandBus,
         NotificationRepositoryInterface $notificationRepository,
         Registry $workflowRegistry,
-        int $idleThresholdInMinutes
+        int $idleThresholdInMinutes,
     ) {
         $this->managerRegistry = $managerRegistry;
         $this->logger = new NullLogger();
@@ -52,12 +52,12 @@ final class NotificationDispatcher implements NotificationDispatcherInterface, L
     public function dispatch(): void
     {
         $notifications = $this->notificationRepository->findNew(
-            new DateInterval(sprintf('PT%dM', $this->idleThresholdInMinutes))
+            new DateInterval(sprintf('PT%dM', $this->idleThresholdInMinutes)),
         );
 
         $this->logger->debug(sprintf(
             'Notifications with associated orders that have not been updated for %d minutes will be notified',
-            $this->idleThresholdInMinutes
+            $this->idleThresholdInMinutes,
         ));
 
         $dispatchCount = 0;
@@ -68,7 +68,7 @@ final class NotificationDispatcher implements NotificationDispatcherInterface, L
                 $this->logger->warning(sprintf(
                     'The notification with id %d could not take the transition "%s"',
                     (int) $notification->getId(),
-                    NotificationWorkflow::TRANSITION_START
+                    NotificationWorkflow::TRANSITION_START,
                 ));
 
                 continue;

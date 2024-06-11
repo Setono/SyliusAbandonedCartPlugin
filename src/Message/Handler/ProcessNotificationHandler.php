@@ -21,7 +21,7 @@ final class ProcessNotificationHandler implements MessageHandlerInterface
 
     public function __construct(
         NotificationRepositoryInterface $notificationRepository,
-        NotificationProcessorInterface $notificationProcessor
+        NotificationProcessorInterface $notificationProcessor,
     ) {
         $this->notificationRepository = $notificationRepository;
         $this->notificationProcessor = $notificationProcessor;
@@ -36,7 +36,7 @@ final class ProcessNotificationHandler implements MessageHandlerInterface
         if (null === $notification) {
             throw new UnrecoverableMessageHandlingException(sprintf(
                 'Could not find notification with id %d',
-                $message->notificationId
+                $message->notificationId,
             ));
         }
 

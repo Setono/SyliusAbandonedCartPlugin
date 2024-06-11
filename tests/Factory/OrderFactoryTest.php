@@ -30,7 +30,7 @@ final class OrderFactoryTest extends TestCase
 
         $factory = new OrderFactory(
             new Factory(Order::class),
-            $orderTokenAssigner->reveal()
+            $orderTokenAssigner->reveal(),
         );
         $factory->createNew();
     }

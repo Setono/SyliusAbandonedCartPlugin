@@ -22,7 +22,7 @@ final class Pruner implements PrunerInterface
     public function prune(): void
     {
         $this->notificationRepository->removeOlderThan(
-            new DateTimeImmutable(sprintf('-%d minutes', $this->pruneOlderThan))
+            new DateTimeImmutable(sprintf('-%d minutes', $this->pruneOlderThan)),
         );
     }
 }

@@ -23,7 +23,7 @@ final class CartRecoveryUrlGenerator implements CartRecoveryUrlGeneratorInterfac
 
     public function generate(
         OrderInterface $order,
-        array $parameters = []
+        array $parameters = [],
     ): string {
         $channel = $order->getChannel();
         Assert::notNull($channel);
@@ -48,7 +48,7 @@ final class CartRecoveryUrlGenerator implements CartRecoveryUrlGeneratorInterfac
             '%s://%s%s',
             $this->urlGenerator->getContext()->getScheme(),
             (string) $channel->getHostname(),
-            $path
+            $path,
         );
     }
 }

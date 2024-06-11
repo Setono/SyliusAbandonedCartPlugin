@@ -21,7 +21,7 @@ final class EmailManager implements EmailManagerInterface
     public function __construct(
         SenderInterface $emailSender,
         CartRecoveryUrlGeneratorInterface $cartRecoveryUrlGenerator,
-        UnsubscribeUrlGeneratorInterface $unsubscribeUrlGenerator
+        UnsubscribeUrlGeneratorInterface $unsubscribeUrlGenerator,
     ) {
         $this->emailSender = $emailSender;
         $this->cartRecoveryUrlGenerator = $cartRecoveryUrlGenerator;

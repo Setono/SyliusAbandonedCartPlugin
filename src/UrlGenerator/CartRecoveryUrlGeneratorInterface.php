@@ -13,6 +13,6 @@ interface CartRecoveryUrlGeneratorInterface
      */
     public function generate(
         OrderInterface $order,
-        array $parameters = []
+        array $parameters = [],
     ): string;
 }

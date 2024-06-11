@@ -15,6 +15,6 @@ interface UnsubscribeUrlGeneratorInterface
         ChannelInterface $channel,
         string $email,
         string $locale,
-        array $parameters = []
+        array $parameters = [],
     ): string;
 }

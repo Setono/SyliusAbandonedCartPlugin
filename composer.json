@@ -39,7 +39,6 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.17",
-        "psalm/plugin-symfony": "^3.1",
         "setono/code-quality-pack": "^2.2",
         "sylius/admin-api-bundle": "^1.11",
         "sylius/sylius": "~1.10.14",
@@ -75,12 +74,8 @@
         "sort-packages": true
     },
     "scripts": {
-        "analyse": [
-            "@ensure-test-container-exists",
-            "psalm"
-        ],
+        "analyse": "psalm",
         "check-style": "ecs check",
-        "ensure-test-container-exists": "[[ -f tests/Application/var/cache/test/Tests_Setono_SyliusAbandonedCartPlugin_Application_KernelTestDebugContainer.xml ]] || tests/Application/bin/console cache:warmup --env=test",
         "fix-style": "ecs check --fix",
         "phpunit": "phpunit"
     }

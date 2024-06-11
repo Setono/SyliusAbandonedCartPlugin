@@ -20,7 +20,7 @@ final class OrderFactory implements FactoryInterface
 
     public function __construct(
         FactoryInterface $decorated,
-        OrderTokenAssignerInterface $orderTokenAssigner
+        OrderTokenAssignerInterface $orderTokenAssigner,
     ) {
         $this->decorated = $decorated;
         $this->orderTokenAssigner = $orderTokenAssigner;

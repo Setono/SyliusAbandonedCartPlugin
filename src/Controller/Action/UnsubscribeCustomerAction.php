@@ -26,7 +26,7 @@ final class UnsubscribeCustomerAction
         EmailHasherInterface $emailHasher,
         UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository,
         UnsubscribedCustomerFactoryInterface $unsubscribedCustomerFactory,
-        Environment $twig
+        Environment $twig,
     ) {
         $this->emailHasher = $emailHasher;
         $this->unsubscribedCustomerRepository = $unsubscribedCustomerRepository;
@@ -50,7 +50,7 @@ final class UnsubscribeCustomerAction
 
             Assert::false(
                 $this->unsubscribedCustomerRepository->isUnsubscribed($email),
-                'setono_sylius_abandoned_cart.ui.email_already_unsubscribed'
+                'setono_sylius_abandoned_cart.ui.email_already_unsubscribed',
             );
 
             $this->unsubscribedCustomerRepository->add($this->unsubscribedCustomerFactory->createWithEmail($email));

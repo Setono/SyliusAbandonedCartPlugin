@@ -18,7 +18,7 @@ final class CreateNotificationOnOrderPersistenceListener
 
     public function __construct(
         NotificationFactoryInterface $notificationFactory,
-        ManagerRegistry $managerRegistry
+        ManagerRegistry $managerRegistry,
     ) {
         $this->notificationFactory = $notificationFactory;
         $this->managerRegistry = $managerRegistry;

@@ -30,7 +30,7 @@ final class UnsubscribeUrlGeneratorTest extends UrlGeneratorAwareTestCase
         $urlGenerator = new UnsubscribeUrlGenerator(
             $this->urlGenerator,
             new EmailHasher('salt'),
-            'setono_sylius_abandoned_cart_shop_unsubscribe_customer'
+            'setono_sylius_abandoned_cart_shop_unsubscribe_customer',
         );
 
         $channel = new Channel();
@@ -38,7 +38,7 @@ final class UnsubscribeUrlGeneratorTest extends UrlGeneratorAwareTestCase
 
         self::assertSame(
             'https://example.com/abandoned-cart/unsubscribe?email=johndoe@example.com&hash=2ac21379842b5445001475a596caab5843ecbc6be46c27f882cb6c0bd75fb9f9&utm_source=sylius&utm_medium=email&utm_campaign=Abandoned%20Cart%20Unsubscribe&_locale=en_US',
-            $urlGenerator->generate($channel, 'johndoe@example.com', 'en_US')
+            $urlGenerator->generate($channel, 'johndoe@example.com', 'en_US'),
         );
     }
 
@@ -50,7 +50,7 @@ final class UnsubscribeUrlGeneratorTest extends UrlGeneratorAwareTestCase
         $urlGenerator = new UnsubscribeUrlGenerator(
             $this->urlGenerator,
             new EmailHasher('salt'),
-            'setono_sylius_abandoned_cart_shop_unsubscribe_customer'
+            'setono_sylius_abandoned_cart_shop_unsubscribe_customer',
         );
 
         $channel = new Channel();
@@ -61,7 +61,7 @@ final class UnsubscribeUrlGeneratorTest extends UrlGeneratorAwareTestCase
             $urlGenerator->generate($channel, 'johndoe@example.com', 'en_US', [
                 'utm_campaign' => 'Abandoned Cart Unsubscribe #2',
                 'utm_content' => 'Number two',
-            ])
+            ]),
         );
     }
 }

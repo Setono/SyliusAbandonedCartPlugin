@@ -32,7 +32,7 @@ final class NotificationProcessor implements NotificationProcessorInterface
         ManagerRegistry $managerRegistry,
         EmailManagerInterface $emailManager,
         Registry $workflowRegistry,
-        NotificationEligibilityCheckerInterface $notificationEligibilityChecker
+        NotificationEligibilityCheckerInterface $notificationEligibilityChecker,
     ) {
         $this->managerRegistry = $managerRegistry;
         $this->emailManager = $emailManager;
@@ -62,7 +62,7 @@ final class NotificationProcessor implements NotificationProcessorInterface
                     Assert::notNull($order);
 
                     $this->emailManager->sendNotification($notification);
-                }
+                },
             );
         } catch (Throwable $e) {
             $message = sprintf(
@@ -99,7 +99,7 @@ final class NotificationProcessor implements NotificationProcessorInterface
                 $notification->addProcessingError(sprintf(
                     'Could not take transition "%s". The state when trying to take the transition was: "%s"',
                     $transition,
-                    $notification->getState()
+                    $notification->getState(),
                 ));
 
                 $this->tryTransition($notification, NotificationWorkflow::TRANSITION_FAIL);
