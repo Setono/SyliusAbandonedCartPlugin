@@ -15,16 +15,10 @@ use Webmozart\Assert\Assert;
 
 final class ProcessNotificationHandler implements MessageHandlerInterface
 {
-    private NotificationRepositoryInterface $notificationRepository;
-
-    private NotificationProcessorInterface $notificationProcessor;
-
     public function __construct(
-        NotificationRepositoryInterface $notificationRepository,
-        NotificationProcessorInterface $notificationProcessor,
+        private readonly NotificationRepositoryInterface $notificationRepository,
+        private readonly NotificationProcessorInterface $notificationProcessor,
     ) {
-        $this->notificationRepository = $notificationRepository;
-        $this->notificationProcessor = $notificationProcessor;
     }
 
     public function __invoke(ProcessNotification $message): void

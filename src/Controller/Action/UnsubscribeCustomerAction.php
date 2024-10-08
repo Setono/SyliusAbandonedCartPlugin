@@ -14,24 +14,12 @@ use Webmozart\Assert\Assert;
 
 final class UnsubscribeCustomerAction
 {
-    private EmailHasherInterface $emailHasher;
-
-    private UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository;
-
-    private UnsubscribedCustomerFactoryInterface $unsubscribedCustomerFactory;
-
-    private Environment $twig;
-
     public function __construct(
-        EmailHasherInterface $emailHasher,
-        UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository,
-        UnsubscribedCustomerFactoryInterface $unsubscribedCustomerFactory,
-        Environment $twig,
+        private readonly EmailHasherInterface $emailHasher,
+        private readonly UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository,
+        private readonly UnsubscribedCustomerFactoryInterface $unsubscribedCustomerFactory,
+        private readonly Environment $twig,
     ) {
-        $this->emailHasher = $emailHasher;
-        $this->unsubscribedCustomerRepository = $unsubscribedCustomerRepository;
-        $this->unsubscribedCustomerFactory = $unsubscribedCustomerFactory;
-        $this->twig = $twig;
     }
 
     public function __invoke(Request $request): Response

@@ -11,14 +11,10 @@ use Webmozart\Assert\Assert;
 
 final class CartRecoveryUrlGenerator implements CartRecoveryUrlGeneratorInterface
 {
-    private UrlGeneratorInterface $urlGenerator;
-
-    private string $route;
-
-    public function __construct(UrlGeneratorInterface $urlGenerator, string $route)
-    {
-        $this->urlGenerator = $urlGenerator;
-        $this->route = $route;
+    public function __construct(
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly string $route,
+    ) {
     }
 
     public function generate(
@@ -38,7 +34,7 @@ final class CartRecoveryUrlGenerator implements CartRecoveryUrlGeneratorInterfac
 
         try {
             $path = $this->urlGenerator->generate($this->route, $parameters, UrlGeneratorInterface::ABSOLUTE_PATH);
-        } catch (SessionNotFoundException $e) {
+        } catch (SessionNotFoundException) {
             // it's a long story, but this exception is thrown if the store doesn't use locale based channels
             unset($parameters['_locale']);
             $path = $this->urlGenerator->generate($this->route, $parameters, UrlGeneratorInterface::ABSOLUTE_PATH);

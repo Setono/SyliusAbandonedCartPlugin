@@ -11,11 +11,8 @@ use Webmozart\Assert\Assert;
 
 final class NotificationFactory implements NotificationFactoryInterface
 {
-    private FactoryInterface $decorated;
-
-    public function __construct(FactoryInterface $decorated)
+    public function __construct(private readonly FactoryInterface $decorated)
     {
-        $this->decorated = $decorated;
     }
 
     public function createNew(): NotificationInterface

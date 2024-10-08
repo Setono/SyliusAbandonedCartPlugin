@@ -26,27 +26,15 @@ final class NotificationDispatcher implements NotificationDispatcherInterface, L
 
     private ?WorkflowInterface $workflow = null;
 
-    private MessageBusInterface $commandBus;
-
-    private NotificationRepositoryInterface $notificationRepository;
-
-    private Registry $workflowRegistry;
-
-    private int $idleThresholdInMinutes;
-
     public function __construct(
         ManagerRegistry $managerRegistry,
-        MessageBusInterface $commandBus,
-        NotificationRepositoryInterface $notificationRepository,
-        Registry $workflowRegistry,
-        int $idleThresholdInMinutes,
+        private readonly MessageBusInterface $commandBus,
+        private readonly NotificationRepositoryInterface $notificationRepository,
+        private readonly Registry $workflowRegistry,
+        private readonly int $idleThresholdInMinutes,
     ) {
         $this->managerRegistry = $managerRegistry;
         $this->logger = new NullLogger();
-        $this->commandBus = $commandBus;
-        $this->notificationRepository = $notificationRepository;
-        $this->workflowRegistry = $workflowRegistry;
-        $this->idleThresholdInMinutes = $idleThresholdInMinutes;
     }
 
     public function dispatch(): void

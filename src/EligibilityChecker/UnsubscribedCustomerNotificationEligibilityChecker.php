@@ -9,11 +9,8 @@ use Setono\SyliusAbandonedCartPlugin\Repository\UnsubscribedCustomerRepositoryIn
 
 final class UnsubscribedCustomerNotificationEligibilityChecker implements NotificationEligibilityCheckerInterface
 {
-    private UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository;
-
-    public function __construct(UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository)
+    public function __construct(private readonly UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository)
     {
-        $this->unsubscribedCustomerRepository = $unsubscribedCustomerRepository;
     }
 
     public function check(NotificationInterface $notification): EligibilityCheck

@@ -25,11 +25,10 @@ final class PrunerTest extends TestCase
         $expected = (new \DateTimeImmutable())->sub(new \DateInterval('PT30M'));
 
         $repository = $this->prophesize(NotificationRepositoryInterface::class);
-        $repository->removeOlderThan(Argument::that(static function (\DateTimeInterface $dateTime) use ($expected) {
+        $repository->removeOlderThan(Argument::that(static fn (\DateTimeInterface $dateTime) =>
             // the reason we don't do an exact match between the two timestamps is that this test allows a second to pass
             // between call of the method and the instantiation of the new DateTime object
-            return abs($dateTime->getTimestamp() - $expected->getTimestamp()) <= 1;
-        }))->shouldBeCalled();
+            abs($dateTime->getTimestamp() - $expected->getTimestamp()) <= 1))->shouldBeCalled();
 
         $pruner = new Pruner($repository->reveal(), 30);
         $pruner->prune();

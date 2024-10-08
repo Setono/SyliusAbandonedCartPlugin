@@ -11,17 +11,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class UnsubscribeUrlGenerator implements UnsubscribeUrlGeneratorInterface
 {
-    private UrlGeneratorInterface $urlGenerator;
-
-    private EmailHasherInterface $emailHasher;
-
-    private string $route;
-
-    public function __construct(UrlGeneratorInterface $urlGenerator, EmailHasherInterface $emailHasher, string $route)
-    {
-        $this->urlGenerator = $urlGenerator;
-        $this->emailHasher = $emailHasher;
-        $this->route = $route;
+    public function __construct(
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly EmailHasherInterface $emailHasher,
+        private readonly string $route,
+    ) {
     }
 
     public function generate(
@@ -41,7 +35,7 @@ final class UnsubscribeUrlGenerator implements UnsubscribeUrlGeneratorInterface
 
         try {
             $path = $this->urlGenerator->generate($this->route, $parameters, UrlGeneratorInterface::ABSOLUTE_PATH);
-        } catch (SessionNotFoundException $e) {
+        } catch (SessionNotFoundException) {
             // it's a long story, but this exception is thrown if the store doesn't use locale based channels
             unset($parameters['_locale']);
             $path = $this->urlGenerator->generate($this->route, $parameters, UrlGeneratorInterface::ABSOLUTE_PATH);

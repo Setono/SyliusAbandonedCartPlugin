@@ -14,13 +14,10 @@ final class CreateNotificationOnOrderPersistenceListener
 {
     use ORMTrait;
 
-    private NotificationFactoryInterface $notificationFactory;
-
     public function __construct(
-        NotificationFactoryInterface $notificationFactory,
+        private readonly NotificationFactoryInterface $notificationFactory,
         ManagerRegistry $managerRegistry,
     ) {
-        $this->notificationFactory = $notificationFactory;
         $this->managerRegistry = $managerRegistry;
     }
 
