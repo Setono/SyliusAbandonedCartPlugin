@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAbandonedCartPlugin\Processor;
 
 use Doctrine\Persistence\ManagerRegistry;
-use Setono\DoctrineObjectManagerTrait\ORM\ORMManagerTrait;
+use Setono\Doctrine\ORMTrait;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\NotificationEligibilityCheckerInterface;
 use Setono\SyliusAbandonedCartPlugin\Mailer\EmailManagerInterface;
 use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
@@ -18,7 +18,7 @@ use Webmozart\Assert\Assert;
 
 final class NotificationProcessor implements NotificationProcessorInterface
 {
-    use ORMManagerTrait;
+    use ORMTrait;
 
     private ?WorkflowInterface $workflow = null;
 

@@ -9,7 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Setono\DoctrineObjectManagerTrait\ORM\ORMManagerTrait;
+use Setono\Doctrine\ORMTrait;
 use Setono\SyliusAbandonedCartPlugin\Message\Command\ProcessNotification;
 use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Setono\SyliusAbandonedCartPlugin\Repository\NotificationRepositoryInterface;
@@ -20,7 +20,7 @@ use Symfony\Component\Workflow\WorkflowInterface;
 
 final class NotificationDispatcher implements NotificationDispatcherInterface, LoggerAwareInterface
 {
-    use ORMManagerTrait;
+    use ORMTrait;
 
     private LoggerInterface $logger;
 

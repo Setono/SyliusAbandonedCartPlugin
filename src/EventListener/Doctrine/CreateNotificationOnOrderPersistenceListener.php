@@ -6,13 +6,13 @@ namespace Setono\SyliusAbandonedCartPlugin\EventListener\Doctrine;
 
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Persistence\ManagerRegistry;
-use Setono\DoctrineObjectManagerTrait\ORM\ORMManagerTrait;
+use Setono\Doctrine\ORMTrait;
 use Setono\SyliusAbandonedCartPlugin\Factory\NotificationFactoryInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 
 final class CreateNotificationOnOrderPersistenceListener
 {
-    use ORMManagerTrait;
+    use ORMTrait;
 
     private NotificationFactoryInterface $notificationFactory;
 

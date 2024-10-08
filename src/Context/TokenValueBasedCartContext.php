@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Context;
 
-use Setono\MainRequestTrait\MainRequestTrait;
 use Sylius\Component\Core\Repository\OrderRepositoryInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
 use Sylius\Component\Order\Context\CartNotFoundException;
@@ -13,21 +12,15 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class TokenValueBasedCartContext implements CartContextInterface
 {
-    use MainRequestTrait;
-
-    private RequestStack $requestStack;
-
-    private OrderRepositoryInterface $orderRepository;
-
-    public function __construct(RequestStack $requestStack, OrderRepositoryInterface $orderRepository)
-    {
-        $this->requestStack = $requestStack;
-        $this->orderRepository = $orderRepository;
+    public function __construct(
+        private readonly RequestStack $requestStack,
+        private readonly OrderRepositoryInterface $orderRepository,
+    ) {
     }
 
     public function getCart(): OrderInterface
     {
-        $request = $this->getMainRequestFromRequestStack($this->requestStack);
+        $request = $this->requestStack->getMainRequest();
         if (null === $request) {
             throw new CartNotFoundException('There is no main request on the request stack.');
         }
