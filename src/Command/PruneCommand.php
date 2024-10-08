@@ -16,13 +16,9 @@ final class PruneCommand extends Command
     /** @var string|null */
     protected static $defaultDescription = 'Prune older notifications';
 
-    private PrunerInterface $pruner;
-
-    public function __construct(PrunerInterface $pruner)
+    public function __construct(private readonly PrunerInterface $pruner)
     {
         parent::__construct();
-
-        $this->pruner = $pruner;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

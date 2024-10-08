@@ -22,22 +22,13 @@ final class NotificationProcessor implements NotificationProcessorInterface
 
     private ?WorkflowInterface $workflow = null;
 
-    private EmailManagerInterface $emailManager;
-
-    private Registry $workflowRegistry;
-
-    private NotificationEligibilityCheckerInterface $notificationEligibilityChecker;
-
     public function __construct(
         ManagerRegistry $managerRegistry,
-        EmailManagerInterface $emailManager,
-        Registry $workflowRegistry,
-        NotificationEligibilityCheckerInterface $notificationEligibilityChecker,
+        private readonly EmailManagerInterface $emailManager,
+        private readonly Registry $workflowRegistry,
+        private readonly NotificationEligibilityCheckerInterface $notificationEligibilityChecker,
     ) {
         $this->managerRegistry = $managerRegistry;
-        $this->emailManager = $emailManager;
-        $this->workflowRegistry = $workflowRegistry;
-        $this->notificationEligibilityChecker = $notificationEligibilityChecker;
     }
 
     public function process(NotificationInterface $notification): void

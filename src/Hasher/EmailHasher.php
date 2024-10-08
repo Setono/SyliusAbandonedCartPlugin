@@ -6,11 +6,8 @@ namespace Setono\SyliusAbandonedCartPlugin\Hasher;
 
 final class EmailHasher implements EmailHasherInterface
 {
-    private string $salt;
-
-    public function __construct(string $salt)
+    public function __construct(private readonly string $salt)
     {
-        $this->salt = $salt;
     }
 
     public function hash(string $email): string

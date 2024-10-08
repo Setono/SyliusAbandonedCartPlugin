@@ -18,13 +18,9 @@ final class ProcessCommand extends Command
     /** @var string|null */
     protected static $defaultDescription = 'Process pending notifications';
 
-    private NotificationDispatcherInterface $notificationDispatcher;
-
-    public function __construct(NotificationDispatcherInterface $notificationDispatcher)
+    public function __construct(private readonly NotificationDispatcherInterface $notificationDispatcher)
     {
         parent::__construct();
-
-        $this->notificationDispatcher = $notificationDispatcher;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

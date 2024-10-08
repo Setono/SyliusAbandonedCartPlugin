@@ -12,20 +12,11 @@ use Webmozart\Assert\Assert;
 
 final class EmailManager implements EmailManagerInterface
 {
-    private SenderInterface $emailSender;
-
-    private CartRecoveryUrlGeneratorInterface $cartRecoveryUrlGenerator;
-
-    private UnsubscribeUrlGeneratorInterface $unsubscribeUrlGenerator;
-
     public function __construct(
-        SenderInterface $emailSender,
-        CartRecoveryUrlGeneratorInterface $cartRecoveryUrlGenerator,
-        UnsubscribeUrlGeneratorInterface $unsubscribeUrlGenerator,
+        private readonly SenderInterface $emailSender,
+        private readonly CartRecoveryUrlGeneratorInterface $cartRecoveryUrlGenerator,
+        private readonly UnsubscribeUrlGeneratorInterface $unsubscribeUrlGenerator,
     ) {
-        $this->emailSender = $emailSender;
-        $this->cartRecoveryUrlGenerator = $cartRecoveryUrlGenerator;
-        $this->unsubscribeUrlGenerator = $unsubscribeUrlGenerator;
     }
 
     public function sendNotification(NotificationInterface $notification): void
