@@ -7,5 +7,10 @@
         <service id="setono_sylius_abandoned_cart.notification_eligibility_checker.composite"
                  class="Setono\SyliusAbandonedCartPlugin\EligibilityChecker\CompositeNotificationEligibilityChecker">
         </service>
+
+        <service id="setono_sylius_abandoned_cart.notification_eligibility_checker.order_has_items"
+                 class="Setono\SyliusAbandonedCartPlugin\EligibilityChecker\OrderHasItemsNotificationEligibilityChecker">
+            <tag name="setono_sylius_abandoned_cart.notification_eligibility_checker"/>
+        </service>
     </services>
 </container>
