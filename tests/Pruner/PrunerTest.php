@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusAbandonedCartPlugin\Pruner;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\Pruner;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;

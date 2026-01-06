@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusAbandonedCartPlugin\Factory;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusAbandonedCartPlugin\Factory\NotificationFactory;

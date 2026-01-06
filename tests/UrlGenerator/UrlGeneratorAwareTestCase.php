@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusAbandonedCartPlugin\UrlGenerator;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\UrlGenerator;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGenerator;
