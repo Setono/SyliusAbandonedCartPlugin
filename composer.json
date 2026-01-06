@@ -13,7 +13,7 @@
         "doctrine/persistence": "^2.5 || ^3.0",
         "knplabs/knp-menu": "^3.3",
         "psr/log": "^1.1 || ^2.0 || ^3.0",
-        "setono/doctrine-orm-trait": "^1.1",
+        "setono/doctrine-orm-trait": "^1.2",
         "sylius/channel": "^1.0",
         "sylius/core": "^1.0",
         "sylius/core-bundle": "^1.0",
@@ -21,40 +21,37 @@
         "sylius/order": "^1.0",
         "sylius/resource-bundle": "^1.6",
         "sylius/ui-bundle": "^1.0",
-        "symfony/config": "^5.4 || ^6.4 || ^7.0",
-        "symfony/console": "^5.4 || ^6.4 || ^7.0",
-        "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0",
-        "symfony/event-dispatcher": "^5.4 || ^6.4 || ^7.0",
-        "symfony/form": "^5.4 || ^6.4 || ^7.0",
-        "symfony/http-foundation": "^5.4 || ^6.4 || ^7.0",
-        "symfony/messenger": "^5.4 || ^6.4 || ^7.0",
-        "symfony/routing": "^5.4 || ^6.4 || ^7.0",
-        "symfony/validator": "^5.4 || ^6.4 || ^7.0",
-        "symfony/workflow": "^5.4 || ^6.4 || ^7.0",
+        "symfony/config": "^6.4",
+        "symfony/console": "^6.4",
+        "symfony/dependency-injection": "^6.4",
+        "symfony/event-dispatcher": "^6.4",
+        "symfony/form": "^6.4",
+        "symfony/http-foundation": "^6.4",
+        "symfony/messenger": "^6.4",
+        "symfony/routing": "^6.4",
+        "symfony/validator": "^6.4",
+        "symfony/workflow": "^6.4",
         "twig/twig": "^2.15 || ^3.0",
-        "webmozart/assert": "^1.11"
+        "webmozart/assert": "^1.12"
     },
     "require-dev": {
-        "api-platform/core": "^2.7",
-        "friendsofsymfony/oauth-server-bundle": ">2.0.0-alpha.0 ^2.0@dev",
-        "lexik/jwt-authentication-bundle": "^2.16",
-        "matthiasnoback/symfony-config-test": "^4.3 || ^5.1",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.3 || ^5.1",
-        "php-http/message-factory": "^1.1",
-        "phpspec/prophecy-phpunit": "^2.0",
-        "phpunit/phpunit": "^9.6",
-        "psalm/plugin-phpunit": "^0.18.4",
-        "setono/code-quality-pack": "^2.8.3",
-        "shipmonk/composer-dependency-analyser": "^1.7",
-        "sylius/admin-api-bundle": "^1.11",
-        "sylius/sylius": "~1.10.14",
-        "symfony/debug-bundle": "^5.4 || ^6.4 || ^7.0",
-        "symfony/dotenv": "^5.4 || ^6.4 || ^7.0",
-        "symfony/intl": "^5.4 || ^6.4 || ^7.0",
-        "symfony/property-info": "^5.4 || ^6.4 || ^7.0",
-        "symfony/serializer": "^5.4 || ^6.4 || ^7.0",
-        "symfony/web-profiler-bundle": "^5.4 || ^6.4 || ^7.0",
-        "symfony/webpack-encore-bundle": "^1.15"
+        "api-platform/core": "^2.7.16",
+        "babdev/pagerfanta-bundle": "^3.8",
+        "behat/behat": "^3.14",
+        "doctrine/doctrine-bundle": "^2.11",
+        "jms/serializer-bundle": "^4.2",
+        "lexik/jwt-authentication-bundle": "^2.17",
+        "setono/sylius-plugin-pack": "~1.14.2",
+        "shipmonk/composer-dependency-analyser": "^1.6",
+        "sylius-labs/polyfill-symfony-security": "^1.1.2",
+        "symfony/debug-bundle": "^6.4",
+        "symfony/dotenv": "^6.4",
+        "symfony/intl": "^6.4",
+        "symfony/property-info": "^6.4",
+        "symfony/serializer": "^6.4",
+        "symfony/web-profiler-bundle": "^6.4",
+        "symfony/webpack-encore-bundle": "^1.17.2",
+        "willdurand/negotiation": "^3.1"
     },
     "prefer-stable": true,
     "autoload": {
@@ -64,7 +61,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Setono\\SyliusAbandonedCartPlugin\\": "tests/"
+            "Setono\\SyliusAbandonedCartPlugin\\Tests\\": "tests/"
         },
         "classmap": [
             "tests/Application/Kernel.php"
@@ -72,14 +69,19 @@
     },
     "config": {
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": false,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
             "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true,
+            "phpstan/extension-installer": true,
             "symfony/thanks": false
+        },
+        "audit": {
+            "block-insecure": false
         },
         "sort-packages": true
     },
     "scripts": {
-        "analyse": "psalm",
+        "analyse": "phpstan analyse",
         "check-style": "ecs check",
         "fix-style": "ecs check --fix",
         "phpunit": "phpunit"
