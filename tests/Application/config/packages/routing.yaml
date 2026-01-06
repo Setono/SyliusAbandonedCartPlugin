@@ -1,3 +1,4 @@
 framework:
     router:
+        default_uri: 'https://127.0.0.1:8000'
         strict_requirements: ~
