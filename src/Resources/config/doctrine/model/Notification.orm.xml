@@ -10,6 +10,7 @@
 
         <field name="state" column="state"/>
 
+        <!-- TODO: Use JSON instead -->
         <field name="processingErrors" type="array" nullable="true"/>
 
         <field name="createdAt" column="created_at" type="datetime">
