@@ -42,8 +42,10 @@ final class UnsubscribeCustomerAction
             );
 
             $this->unsubscribedCustomerRepository->add($this->unsubscribedCustomerFactory->createWithEmail($email));
-        } catch (\Throwable $e) {
+        } catch (\InvalidArgumentException $e) {
             $error = $e->getMessage();
+        } catch (\Throwable $e) {
+            throw $e;
         }
 
         return new Response($this->twig->render('@SetonoSyliusAbandonedCartPlugin/shop/unsubscribe.html.twig', [
