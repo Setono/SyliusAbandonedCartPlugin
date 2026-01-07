@@ -31,3 +31,6 @@ parameters:
             -
                 identifier: missingType.generics
                 path: src/Form
+            -
+                identifier: missingType.generics
+                path: src/Repository
