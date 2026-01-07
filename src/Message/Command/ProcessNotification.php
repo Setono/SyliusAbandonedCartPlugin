@@ -9,13 +9,9 @@ use Webmozart\Assert\Assert;
 
 final class ProcessNotification implements CommandInterface
 {
-    /** @readonly */
-    public int $notificationId;
+    public readonly int $notification;
 
-    /**
-     * @param int|NotificationInterface $notification
-     */
-    public function __construct($notification)
+    public function __construct(NotificationInterface|int $notification)
     {
         if ($notification instanceof NotificationInterface) {
             $notification = $notification->getId();
@@ -23,6 +19,6 @@ final class ProcessNotification implements CommandInterface
 
         Assert::integer($notification);
 
-        $this->notificationId = $notification;
+        $this->notification = $notification;
     }
 }

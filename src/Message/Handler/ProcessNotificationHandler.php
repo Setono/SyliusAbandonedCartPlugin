@@ -9,11 +9,10 @@ use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Setono\SyliusAbandonedCartPlugin\Processor\NotificationProcessorInterface;
 use Setono\SyliusAbandonedCartPlugin\Repository\NotificationRepositoryInterface;
 use Symfony\Component\Messenger\Exception\UnrecoverableMessageHandlingException;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Throwable;
 use Webmozart\Assert\Assert;
 
-final class ProcessNotificationHandler implements MessageHandlerInterface
+final class ProcessNotificationHandler
 {
     public function __construct(
         private readonly NotificationRepositoryInterface $notificationRepository,
@@ -24,13 +23,13 @@ final class ProcessNotificationHandler implements MessageHandlerInterface
     public function __invoke(ProcessNotification $message): void
     {
         /** @var NotificationInterface|null $notification */
-        $notification = $this->notificationRepository->find($message->notificationId);
+        $notification = $this->notificationRepository->find($message->notification);
         Assert::nullOrIsInstanceOf($notification, NotificationInterface::class);
 
         if (null === $notification) {
             throw new UnrecoverableMessageHandlingException(sprintf(
                 'Could not find notification with id %d',
-                $message->notificationId,
+                $message->notification,
             ));
         }
 
