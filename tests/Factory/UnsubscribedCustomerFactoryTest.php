@@ -27,6 +27,7 @@ final class UnsubscribedCustomerFactoryTest extends TestCase
 
     private function getFactory(): UnsubscribedCustomerFactoryInterface
     {
+        /** @phpstan-ignore argument.type */
         return new UnsubscribedCustomerFactory(new Factory(UnsubscribedCustomer::class));
     }
 }

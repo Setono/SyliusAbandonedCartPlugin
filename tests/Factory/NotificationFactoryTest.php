@@ -22,6 +22,7 @@ final class NotificationFactoryTest extends TestCase
     {
         $order = new Order();
 
+        /** @phpstan-ignore argument.type */
         $factory = new NotificationFactory(new Factory(Notification::class));
         $notification = $factory->createWithCart($order);
 

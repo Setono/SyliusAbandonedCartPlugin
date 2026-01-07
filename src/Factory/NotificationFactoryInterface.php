@@ -8,6 +8,7 @@ use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
+/** @extends FactoryInterface<NotificationInterface> */
 interface NotificationFactoryInterface extends FactoryInterface
 {
     public function createNew(): NotificationInterface;

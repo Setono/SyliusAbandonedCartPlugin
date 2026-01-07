@@ -29,7 +29,7 @@ final class OrderFactoryTest extends TestCase
         $orderTokenAssigner->assignTokenValueIfNotSet(Argument::type(OrderInterface::class))->shouldBeCalled();
 
         $factory = new OrderFactory(
-            new Factory(Order::class),
+            new Factory(Order::class), // @phpstan-ignore argument.type
             $orderTokenAssigner->reveal(),
         );
         $factory->createNew();

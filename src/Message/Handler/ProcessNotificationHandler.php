@@ -23,7 +23,7 @@ final class ProcessNotificationHandler implements MessageHandlerInterface
 
     public function __invoke(ProcessNotification $message): void
     {
-        /** @var NotificationInterface|object|null $notification */
+        /** @var NotificationInterface|null $notification */
         $notification = $this->notificationRepository->find($message->notificationId);
         Assert::nullOrIsInstanceOf($notification, NotificationInterface::class);
 

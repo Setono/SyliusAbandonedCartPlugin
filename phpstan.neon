@@ -30,7 +30,7 @@ parameters:
                 identifier: doctrine.columnType
             -
                 identifier: missingType.generics
-                path: src/Form
             -
-                identifier: missingType.generics
-                path: src/Repository
+                identifier: missingType.iterableValue
+            -
+                identifier: catch.neverThrown
