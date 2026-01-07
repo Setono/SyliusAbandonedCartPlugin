@@ -66,7 +66,7 @@ final class NotificationProcessor implements NotificationProcessorInterface
                 $message = sprintf(
                     "A Twig error occurred when processing notification %d.\nTemplate: %s\nError: %s\nLine: %d",
                     (int) $notification->getId(),
-                    (string) ($e->getSourceContext()?->getName() ?? 'Unknown'),
+                    $e->getSourceContext()?->getName() ?? 'Unknown',
                     $e->getRawMessage(),
                     $e->getTemplateLine(),
                 );

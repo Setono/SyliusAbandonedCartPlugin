@@ -21,6 +21,7 @@ final class SetonoSyliusAbandonedCartPlugin extends AbstractResourceBundle
         $container->addCompilerPass(new RegisterNotificationEligibilityCheckersPass());
     }
 
+    /** @return list<string> */
     public function getSupportedDrivers(): array
     {
         return [
