@@ -46,6 +46,141 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
     {
         $container->prependExtensionConfig('framework', [
             'workflows' => NotificationWorkflow::getConfig(),
+            'messenger' => [
+                'buses' => [
+                    'setono_sylius_abandoned_cart.command_bus' => null,
+                ],
+            ],
+        ]);
+
+        $container->prependExtensionConfig('sylius_grid', [
+            'templates' => [
+                'action' => [
+                    'unsubscribed_customers' => '@SetonoSyliusAbandonedCartPlugin/admin/grid/action/unsubscribed_customers.html.twig',
+                ],
+            ],
+            'grids' => [
+                'setono_sylius_abandoned_cart_admin_notification' => [
+                    'driver' => [
+                        'name' => 'doctrine/orm',
+                        'options' => [
+                            'class' => '%setono_sylius_abandoned_cart.model.notification.class%',
+                        ],
+                    ],
+                    'limits' => [100, 250, 500, 1000],
+                    'fields' => [
+                        'order' => [
+                            'type' => 'twig',
+                            'label' => 'sylius.ui.order',
+                            'path' => 'cart',
+                            'options' => [
+                                'template' => '@SetonoSyliusAbandonedCartPlugin/admin/grid/label/cart.html.twig',
+                            ],
+                        ],
+                        'channel' => [
+                            'type' => 'twig',
+                            'label' => 'sylius.ui.channel',
+                            'path' => 'cart.channel',
+                            'options' => [
+                                'template' => '@SyliusAdmin/Order/Grid/Field/channel.html.twig',
+                            ],
+                        ],
+                        'email' => [
+                            'type' => 'string',
+                            'label' => 'sylius.ui.customer',
+                        ],
+                        'state' => [
+                            'type' => 'twig',
+                            'label' => 'setono_sylius_abandoned_cart.ui.state',
+                            'path' => '.',
+                            'options' => [
+                                'template' => '@SetonoSyliusAbandonedCartPlugin/admin/grid/label/notification_state.html.twig',
+                            ],
+                        ],
+                        'createdAt' => [
+                            'type' => 'datetime',
+                            'label' => 'sylius.ui.created_at',
+                            'sortable' => null,
+                            'options' => [
+                                'format' => 'd-m-Y H:i',
+                            ],
+                        ],
+                        'sentAt' => [
+                            'type' => 'datetime',
+                            'label' => 'setono_sylius_abandoned_cart.ui.sent_at',
+                            'sortable' => null,
+                            'options' => [
+                                'format' => 'd-m-Y H:i',
+                            ],
+                        ],
+                    ],
+                    'actions' => [
+                        'main' => [
+                            'unsubscribed_customers' => [
+                                'type' => 'unsubscribed_customers',
+                            ],
+                        ],
+                    ],
+                ],
+                'setono_sylius_abandoned_cart_admin_unsubscribed_customer' => [
+                    'driver' => [
+                        'name' => 'doctrine/orm',
+                        'options' => [
+                            'class' => '%setono_sylius_abandoned_cart.model.unsubscribed_customer.class%',
+                        ],
+                    ],
+                    'limits' => [100, 250, 500, 1000],
+                    'fields' => [
+                        'email' => [
+                            'type' => 'string',
+                            'label' => 'sylius.ui.customer',
+                        ],
+                        'createdAt' => [
+                            'type' => 'datetime',
+                            'label' => 'sylius.ui.created_at',
+                            'sortable' => null,
+                            'options' => [
+                                'format' => 'd-m-Y H:i',
+                            ],
+                        ],
+                    ],
+                    'actions' => [
+                        'main' => [
+                            'create' => [
+                                'type' => 'create',
+                            ],
+                        ],
+                        'item' => [
+                            'update' => [
+                                'type' => 'update',
+                            ],
+                            'delete' => [
+                                'type' => 'delete',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $container->prependExtensionConfig('sylius_mailer', [
+            'emails' => [
+                'abandoned_cart_email' => [
+                    'template' => '@SetonoSyliusAbandonedCartPlugin/email/notification.html.twig',
+                ],
+            ],
+        ]);
+
+        $container->prependExtensionConfig('sylius_ui', [
+            'events' => [
+                'setono_sylius_abandoned_cart.admin.notification.index.javascripts' => [
+                    'blocks' => [
+                        'javascript_popup' => [
+                            'template' => '@SetonoSyliusAbandonedCartPlugin/admin/block/_javascript_popup.html.twig',
+                        ],
+                    ],
+                ],
+            ],
         ]);
     }
 }

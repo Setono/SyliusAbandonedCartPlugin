@@ -1,6 +1,3 @@
-imports:
-    - { resource: "@SetonoSyliusAbandonedCartPlugin/Resources/config/app/config.yaml" }
-
 setono_sylius_abandoned_cart:
     idle_threshold: 0
     prune_older_than: 30
