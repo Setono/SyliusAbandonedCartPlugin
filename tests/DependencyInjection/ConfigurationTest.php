@@ -38,6 +38,7 @@ final class ConfigurationTest extends TestCase
             'driver' => SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
             'salt' => 's3cr3t',
             'idle_threshold' => 60,
+            'lookback_window' => 15,
             'prune_older_than' => 43_200,
             'eligibility_checkers' => [
                 'unsubscribed_customer' => true,

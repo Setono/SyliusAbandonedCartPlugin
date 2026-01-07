@@ -28,6 +28,6 @@ final class PruneCommandTest extends TestCase
         $commandTester = new CommandTester(new PruneCommand($pruner->reveal()));
         $commandTester->execute([]);
 
-        self::assertSame(0, $commandTester->getStatusCode());
+        $commandTester->assertCommandIsSuccessful();
     }
 }

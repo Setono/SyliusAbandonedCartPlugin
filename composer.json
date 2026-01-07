@@ -12,6 +12,7 @@
         "ext-hash": "*",
         "doctrine/persistence": "^2.5 || ^3.0",
         "knplabs/knp-menu": "^3.3",
+        "ocramius/doctrine-batch-utils": "^2.7",
         "psr/log": "^1.1 || ^2.0 || ^3.0",
         "setono/doctrine-orm-trait": "^1.2",
         "sylius/channel": "^1.0",

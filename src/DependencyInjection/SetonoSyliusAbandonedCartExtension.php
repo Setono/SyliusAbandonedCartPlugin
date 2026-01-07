@@ -18,13 +18,14 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
         /**
          * @psalm-suppress PossiblyNullArgument
          *
-         * @var array{driver: string, salt: string, idle_threshold: int, prune_older_than: int, eligibility_checkers: array{unsubscribed_customer: bool, subscribed_to_newsletter: bool}, resources: array<string, mixed>} $config
+         * @var array{driver: string, salt: string, idle_threshold: int, lookback_window: int, prune_older_than: int, eligibility_checkers: array{unsubscribed_customer: bool, subscribed_to_newsletter: bool}, resources: array<string, mixed>} $config
          */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $container->setParameter('setono_sylius_abandoned_cart.salt', $config['salt']);
         $container->setParameter('setono_sylius_abandoned_cart.idle_threshold', $config['idle_threshold']);
+        $container->setParameter('setono_sylius_abandoned_cart.lookback_window', $config['lookback_window']);
         $container->setParameter('setono_sylius_abandoned_cart.prune_older_than', $config['prune_older_than']);
 
         $this->registerResources('setono_sylius_abandoned_cart', $config['driver'], $config['resources'], $container);

@@ -17,5 +17,12 @@
 
             <tag name="console.command"/>
         </service>
+
+        <service id="setono_sylius_abandoned_cart.command.create_notifications"
+                 class="Setono\SyliusAbandonedCartPlugin\Command\CreateNotificationsCommand">
+            <argument type="service" id="setono_sylius_abandoned_cart.creator.notification"/>
+
+            <tag name="console.command"/>
+        </service>
     </services>
 </container>

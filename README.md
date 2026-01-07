@@ -65,18 +65,50 @@ bin/console doctrine:migrations:diff
 bin/console doctrine:migrations:migrate
 ```
 
-### Add cronjob
+### Add cronjobs
 
-The following command should run on a regular basis:
+The plugin requires two commands to run on a regular basis:
 
 ```bash
+# Create notifications for idle carts (should run frequently, e.g., every 5 minutes)
+bin/console setono:sylius-abandoned-cart:create-notifications
+
+# Process pending notifications and send emails
 bin/console setono:sylius-abandoned-cart:process
 ```
 
-also, if you want to prune the notifications table you can run:
+The `create-notifications` command finds carts that have been idle for the configured threshold and creates notification records for them. The `process` command then sends the actual emails.
+
+You can test the `create-notifications` command without persisting anything:
+
+```bash
+bin/console setono:sylius-abandoned-cart:create-notifications --dry-run
+```
+
+To clean up old notifications, run the prune command (e.g., daily):
 
 ```bash
 bin/console setono:sylius-abandoned-cart:prune
+```
+
+### Configuration options
+
+```yaml
+# config/packages/setono_sylius_abandoned_cart.yaml
+setono_sylius_abandoned_cart:
+    salt: your_secret_salt
+
+    # Minutes before a cart is considered idle (default: 60)
+    idle_threshold: 60
+
+    # Lookback window in minutes - only carts that became idle within this window
+    # will be selected for notification creation. This limits the number of
+    # notifications created per command run. (default: 15)
+    # Important: Run the create-notifications command more frequently than this value
+    lookback_window: 15
+
+    # Prune notifications older than this many minutes (default: 43200 = 30 days)
+    prune_older_than: 43200
 ```
 
 [ico-version]: https://poser.pugx.org/setono/sylius-abandoned-cart-plugin/v/stable

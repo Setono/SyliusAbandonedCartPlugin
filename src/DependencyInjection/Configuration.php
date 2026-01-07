@@ -39,6 +39,10 @@ final class Configuration implements ConfigurationInterface
                     ->defaultValue(60)
                     ->info('The number of minutes before a cart is considered idle and could be considered for an abandoned cart notification')
                 ->end()
+                ->integerNode('lookback_window')
+                    ->defaultValue(15)
+                    ->info('Lookback window in minutes. Only carts that became idle within this window will be selected for notification creation. This limits the number of notifications created per command run.')
+                ->end()
                 ->integerNode('prune_older_than')
                     ->info('Prune notifications that are older than this number of minutes. Default: 30 days (30 * 24 * 60)')
                     ->defaultValue(43_200) // 30 days
