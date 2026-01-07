@@ -31,7 +31,7 @@
         "symfony/routing": "^6.4",
         "symfony/validator": "^6.4",
         "symfony/workflow": "^6.4",
-        "twig/twig": "^2.15",
+        "twig/twig": "^2.15 || ^3.0",
         "webmozart/assert": "^1.12"
     },
     "require-dev": {
