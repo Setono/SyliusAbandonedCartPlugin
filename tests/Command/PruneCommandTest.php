@@ -4,28 +4,27 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Command;
 
-use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
-use Setono\SyliusAbandonedCartPlugin\Command\PruneCommand;
-use Setono\SyliusAbandonedCartPlugin\Pruner\PrunerInterface;
+use Setono\SyliusAbandonedCartPlugin\Tests\Application\Kernel;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @test
- */
-final class PruneCommandTest extends TestCase
+final class PruneCommandTest extends KernelTestCase
 {
-    use ProphecyTrait;
+    protected static function getKernelClass(): string
+    {
+        return Kernel::class;
+    }
 
     /**
      * @test
      */
     public function it_prunes(): void
     {
-        $pruner = $this->prophesize(PrunerInterface::class);
-        $pruner->prune()->shouldBeCalled();
+        $application = new Application(self::bootKernel());
 
-        $commandTester = new CommandTester(new PruneCommand($pruner->reveal()));
+        $command = $application->find('setono:sylius-abandoned-cart:prune');
+        $commandTester = new CommandTester($command);
         $commandTester->execute([]);
 
         $commandTester->assertCommandIsSuccessful();
