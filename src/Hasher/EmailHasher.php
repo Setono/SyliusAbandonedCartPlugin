@@ -12,6 +12,6 @@ final class EmailHasher implements EmailHasherInterface
 
     public function hash(string $email): string
     {
-        return hash('sha256', $email . $this->salt);
+        return hash('sha256', strtolower($email) . $this->salt);
     }
 }
