@@ -1,9 +1,12 @@
-# Setono SyliusAbandonedCartPlugin
+# Abandoned cart plugin for Sylius
 
-[![Latest Version][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE)
-[![Build Status][ico-github-actions]][link-github-actions]
-[![Code Coverage][ico-code-coverage]][link-code-coverage]
+[![Latest Stable Version](http://poser.pugx.org/setono/sylius-abandoned-cart-plugin/v)](https://packagist.org/packages/setono/sylius-abandoned-cart-plugin)
+[![Total Downloads](http://poser.pugx.org/setono/sylius-abandoned-cart-plugin/downloads)](https://packagist.org/packages/setono/sylius-abandoned-cart-plugin)
+[![License](http://poser.pugx.org/setono/sylius-abandoned-cart-plugin/license)](https://packagist.org/packages/setono/sylius-abandoned-cart-plugin)
+[![PHP Version Require](http://poser.pugx.org/setono/sylius-abandoned-cart-plugin/require/php)](https://packagist.org/packages/setono/sylius-abandoned-cart-plugin)
+[![build](https://github.com/Setono/SyliusAbandonedCartPlugin/actions/workflows/build.yaml/badge.svg)](https://github.com/Setono/SyliusAbandonedCartPlugin/actions/workflows/build.yaml)
+[![codecov](https://codecov.io/gh/Setono/SyliusAbandonedCartPlugin/graph/badge.svg?token=r7Bhm7aYCl)](https://codecov.io/gh/Setono/SyliusAbandonedCartPlugin)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FSetono%2FSyliusAbandonedCartPlugin%2F1.x)](https://dashboard.stryker-mutator.io/reports/github.com/Setono/SyliusAbandonedCartPlugin/1.x)
 
 ## Installation
 
