@@ -12,8 +12,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand('setono:sylius-abandoned-cart:process', 'Process pending notifications')]
-final class ProcessCommand extends Command
+#[AsCommand('setono:sylius-abandoned-cart:process-notifications', 'Process pending notifications')]
+final class ProcessNotificationsCommand extends Command
 {
     public function __construct(private readonly NotificationDispatcherInterface $notificationDispatcher)
     {

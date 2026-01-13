@@ -71,7 +71,7 @@ Transitions: `start` → `process` → `send` / `fail_eligibility_check` / `fail
 
 ### Console Commands
 
-- `setono:sylius-abandoned-cart:process` - Main worker command (run via cron)
+- `setono:sylius-abandoned-cart:process-notifications` - Main worker command (run via cron)
 - `setono:sylius-abandoned-cart:prune` - Cleanup old notifications
 
 ## Plugin Configuration

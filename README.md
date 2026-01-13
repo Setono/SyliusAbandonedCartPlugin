@@ -74,10 +74,10 @@ The plugin requires two commands to run on a regular basis:
 bin/console setono:sylius-abandoned-cart:create-notifications
 
 # Process pending notifications and send emails
-bin/console setono:sylius-abandoned-cart:process
+bin/console setono:sylius-abandoned-cart:process-notifications
 ```
 
-The `create-notifications` command finds carts that have been idle for the configured threshold and creates notification records for them. The `process` command then sends the actual emails.
+The `create-notifications` command finds carts that have been idle for the configured threshold and creates notification records for them. The `process-notifications` command then sends the actual emails.
 
 You can test the `create-notifications` command without persisting anything:
 
