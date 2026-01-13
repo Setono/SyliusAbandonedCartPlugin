@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-final class PruneCommandTest extends KernelTestCase
+final class PruneNotificationsCommandTest extends KernelTestCase
 {
     protected static function getKernelClass(): string
     {
@@ -23,7 +23,7 @@ final class PruneCommandTest extends KernelTestCase
     {
         $application = new Application(self::bootKernel());
 
-        $command = $application->find('setono:sylius-abandoned-cart:prune');
+        $command = $application->find('setono:sylius-abandoned-cart:prune-notifications');
         $commandTester = new CommandTester($command);
         $commandTester->execute([]);
 

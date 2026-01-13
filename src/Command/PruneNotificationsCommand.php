@@ -10,8 +10,8 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand('setono:sylius-abandoned-cart:prune', 'Prune older notifications')]
-final class PruneCommand extends Command
+#[AsCommand('setono:sylius-abandoned-cart:prune-notifications', 'Prune older notifications')]
+final class PruneNotificationsCommand extends Command
 {
     public function __construct(private readonly PrunerInterface $pruner)
     {

@@ -88,7 +88,7 @@ bin/console setono:sylius-abandoned-cart:create-notifications --dry-run
 To clean up old notifications, run the prune command (e.g., daily):
 
 ```bash
-bin/console setono:sylius-abandoned-cart:prune
+bin/console setono:sylius-abandoned-cart:prune-notifications
 ```
 
 ### Configuration options
