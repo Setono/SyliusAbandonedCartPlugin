@@ -4,10 +4,12 @@
            xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_abandoned_cart.pruner.default"
-                 class="Setono\SyliusAbandonedCartPlugin\Pruner\Pruner">
+        <service id="Setono\SyliusAbandonedCartPlugin\Pruner\Pruner">
             <argument type="service" id="setono_sylius_abandoned_cart.repository.notification"/>
             <argument>%setono_sylius_abandoned_cart.prune_older_than%</argument>
         </service>
+
+        <service id="Setono\SyliusAbandonedCartPlugin\Pruner\PrunerInterface"
+                 alias="Setono\SyliusAbandonedCartPlugin\Pruner\Pruner"/>
     </services>
 </container>

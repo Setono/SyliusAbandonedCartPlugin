@@ -4,23 +4,20 @@
            xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_abandoned_cart.command.process_notifications"
-                 class="Setono\SyliusAbandonedCartPlugin\Command\ProcessNotificationsCommand">
-            <argument type="service" id="setono_sylius_abandoned_cart.dispatcher.notification"/>
+        <service id="Setono\SyliusAbandonedCartPlugin\Command\ProcessNotificationsCommand">
+            <argument type="service" id="Setono\SyliusAbandonedCartPlugin\Dispatcher\NotificationDispatcherInterface"/>
 
             <tag name="console.command"/>
         </service>
 
-        <service id="setono_sylius_abandoned_cart.command.prune_notifications"
-                 class="Setono\SyliusAbandonedCartPlugin\Command\PruneNotificationsCommand">
-            <argument type="service" id="setono_sylius_abandoned_cart.pruner.default"/>
+        <service id="Setono\SyliusAbandonedCartPlugin\Command\PruneNotificationsCommand">
+            <argument type="service" id="Setono\SyliusAbandonedCartPlugin\Pruner\PrunerInterface"/>
 
             <tag name="console.command"/>
         </service>
 
-        <service id="setono_sylius_abandoned_cart.command.create_notifications"
-                 class="Setono\SyliusAbandonedCartPlugin\Command\CreateNotificationsCommand">
-            <argument type="service" id="setono_sylius_abandoned_cart.creator.notification"/>
+        <service id="Setono\SyliusAbandonedCartPlugin\Command\CreateNotificationsCommand">
+            <argument type="service" id="Setono\SyliusAbandonedCartPlugin\Creator\NotificationCreatorInterface"/>
 
             <tag name="console.command"/>
         </service>

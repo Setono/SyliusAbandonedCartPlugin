@@ -4,9 +4,11 @@
            xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_abandoned_cart.hasher.email"
-                 class="Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasher">
+        <service id="Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasher">
             <argument>%setono_sylius_abandoned_cart.salt%</argument>
         </service>
+
+        <service id="Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasherInterface"
+                 alias="Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasher"/>
     </services>
 </container>

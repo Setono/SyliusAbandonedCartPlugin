@@ -4,8 +4,7 @@
            xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_abandoned_cart.dispatcher.notification"
-                 class="Setono\SyliusAbandonedCartPlugin\Dispatcher\NotificationDispatcher">
+        <service id="Setono\SyliusAbandonedCartPlugin\Dispatcher\NotificationDispatcher">
             <argument type="service" id="doctrine"/>
             <argument type="service" id="setono_sylius_abandoned_cart.command_bus"/>
             <argument type="service" id="setono_sylius_abandoned_cart.repository.notification"/>
@@ -15,5 +14,8 @@
                 <argument type="service" id="logger"/>
             </call>
         </service>
+
+        <service id="Setono\SyliusAbandonedCartPlugin\Dispatcher\NotificationDispatcherInterface"
+                 alias="Setono\SyliusAbandonedCartPlugin\Dispatcher\NotificationDispatcher"/>
     </services>
 </container>

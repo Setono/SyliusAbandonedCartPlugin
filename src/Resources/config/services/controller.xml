@@ -6,9 +6,8 @@
     <services>
         <defaults public="true"/>
 
-        <service id="setono_sylius_abandoned_cart.controller.action.unsubscribe_customer"
-                 class="Setono\SyliusAbandonedCartPlugin\Controller\Action\UnsubscribeCustomerAction">
-            <argument type="service" id="setono_sylius_abandoned_cart.hasher.email"/>
+        <service id="Setono\SyliusAbandonedCartPlugin\Controller\Action\UnsubscribeCustomerAction">
+            <argument type="service" id="Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasherInterface"/>
             <argument type="service" id="setono_sylius_abandoned_cart.repository.unsubscribed_customer"/>
             <argument type="service" id="setono_sylius_abandoned_cart.factory.unsubscribed_customer"/>
             <argument type="service" id="twig"/>

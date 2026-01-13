@@ -6,6 +6,8 @@ namespace Setono\SyliusAbandonedCartPlugin\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Setono\SyliusAbandonedCartPlugin\DependencyInjection\SetonoSyliusAbandonedCartExtension;
+use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\SubscribedToNewsletterNotificationEligibilityChecker;
+use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\UnsubscribedCustomerNotificationEligibilityChecker;
 
 /**
  * See examples of tests and configuration options here: https://github.com/SymfonyTest/SymfonyDependencyInjectionTest
@@ -43,8 +45,8 @@ final class SetonoSyliusAbandonedCartExtensionTest extends AbstractExtensionTest
             ],
         ]);
 
-        $this->assertContainerBuilderNotHasService('setono_sylius_abandoned_cart.notification_eligibility_checker.unsubscribed_customer');
-        $this->assertContainerBuilderNotHasService('setono_sylius_abandoned_cart.notification_eligibility_checker.subscribed_to_newsletter');
+        $this->assertContainerBuilderNotHasService(UnsubscribedCustomerNotificationEligibilityChecker::class);
+        $this->assertContainerBuilderNotHasService(SubscribedToNewsletterNotificationEligibilityChecker::class);
     }
 
     /**
@@ -59,7 +61,7 @@ final class SetonoSyliusAbandonedCartExtensionTest extends AbstractExtensionTest
             ],
         ]);
 
-        $this->assertContainerBuilderHasService('setono_sylius_abandoned_cart.notification_eligibility_checker.unsubscribed_customer');
-        $this->assertContainerBuilderHasService('setono_sylius_abandoned_cart.notification_eligibility_checker.subscribed_to_newsletter');
+        $this->assertContainerBuilderHasService(UnsubscribedCustomerNotificationEligibilityChecker::class);
+        $this->assertContainerBuilderHasService(SubscribedToNewsletterNotificationEligibilityChecker::class);
     }
 }

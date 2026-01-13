@@ -2,4 +2,4 @@ setono_sylius_abandoned_cart_shop_unsubscribe_customer:
     path: /abandoned-cart/unsubscribe
     methods: [GET,POST]
     defaults:
-        _controller: setono_sylius_abandoned_cart.controller.action.unsubscribe_customer
+        _controller: Setono\SyliusAbandonedCartPlugin\Controller\Action\UnsubscribeCustomerAction

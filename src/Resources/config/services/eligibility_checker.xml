@@ -4,12 +4,13 @@
            xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_abandoned_cart.notification_eligibility_checker.composite"
-                 class="Setono\SyliusAbandonedCartPlugin\EligibilityChecker\CompositeNotificationEligibilityChecker">
+        <service id="Setono\SyliusAbandonedCartPlugin\EligibilityChecker\CompositeNotificationEligibilityChecker">
         </service>
 
-        <service id="setono_sylius_abandoned_cart.notification_eligibility_checker.order_has_items"
-                 class="Setono\SyliusAbandonedCartPlugin\EligibilityChecker\OrderHasItemsNotificationEligibilityChecker">
+        <service id="Setono\SyliusAbandonedCartPlugin\EligibilityChecker\NotificationEligibilityCheckerInterface"
+                 alias="Setono\SyliusAbandonedCartPlugin\EligibilityChecker\CompositeNotificationEligibilityChecker"/>
+
+        <service id="Setono\SyliusAbandonedCartPlugin\EligibilityChecker\OrderHasItemsNotificationEligibilityChecker">
             <tag name="setono_sylius_abandoned_cart.notification_eligibility_checker"/>
         </service>
     </services>

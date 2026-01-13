@@ -9,8 +9,7 @@
         </parameter>
     </parameters>
     <services>
-        <service id="setono_sylius_abandoned_cart.form.type.unsubscribed_customer"
-                 class="Setono\SyliusAbandonedCartPlugin\Form\Type\UnsubscribedCustomerType">
+        <service id="Setono\SyliusAbandonedCartPlugin\Form\Type\UnsubscribedCustomerType">
             <argument>%setono_sylius_abandoned_cart.model.unsubscribed_customer.class%</argument>
             <argument>%setono_sylius_abandoned_cart.form.type.unsubscribed_customer.validation_groups%</argument>
 

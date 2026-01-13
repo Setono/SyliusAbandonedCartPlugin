@@ -4,10 +4,9 @@
            xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_abandoned_cart.message.handler.process_notification"
-                 class="Setono\SyliusAbandonedCartPlugin\Message\Handler\ProcessNotificationHandler">
+        <service id="Setono\SyliusAbandonedCartPlugin\Message\Handler\ProcessNotificationHandler">
             <argument type="service" id="setono_sylius_abandoned_cart.repository.notification"/>
-            <argument type="service" id="setono_sylius_abandoned_cart.processor.notification"/>
+            <argument type="service" id="Setono\SyliusAbandonedCartPlugin\Processor\NotificationProcessorInterface"/>
 
             <tag name="messenger.message_handler"/>
         </service>

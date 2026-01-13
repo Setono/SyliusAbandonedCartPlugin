@@ -4,11 +4,13 @@
            xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_abandoned_cart.mailer.email_manager"
-                 class="Setono\SyliusAbandonedCartPlugin\Mailer\EmailManager">
+        <service id="Setono\SyliusAbandonedCartPlugin\Mailer\EmailManager">
             <argument type="service" id="sylius.email_sender"/>
-            <argument type="service" id="setono_sylius_abandoned_cart.url_generator.cart_recovery"/>
-            <argument type="service" id="setono_sylius_abandoned_cart.url_generator.unsubscribe"/>
+            <argument type="service" id="Setono\SyliusAbandonedCartPlugin\UrlGenerator\CartRecoveryUrlGeneratorInterface"/>
+            <argument type="service" id="Setono\SyliusAbandonedCartPlugin\UrlGenerator\UnsubscribeUrlGeneratorInterface"/>
         </service>
+
+        <service id="Setono\SyliusAbandonedCartPlugin\Mailer\EmailManagerInterface"
+                 alias="Setono\SyliusAbandonedCartPlugin\Mailer\EmailManager"/>
     </services>
 </container>

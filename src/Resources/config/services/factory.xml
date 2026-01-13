@@ -4,22 +4,19 @@
            xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_abandoned_cart.custom_factory.notification"
-                 class="Setono\SyliusAbandonedCartPlugin\Factory\NotificationFactory" decoration-priority="64"
+        <service id="Setono\SyliusAbandonedCartPlugin\Factory\NotificationFactory" decoration-priority="64"
                  decorates="setono_sylius_abandoned_cart.factory.notification">
-            <argument type="service" id="setono_sylius_abandoned_cart.custom_factory.notification.inner"/>
+            <argument type="service" id="Setono\SyliusAbandonedCartPlugin\Factory\NotificationFactory.inner"/>
         </service>
 
-        <service id="setono_sylius_abandoned_cart.custom_factory.unsubscribed_customer"
-                 class="Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactory" decoration-priority="64"
+        <service id="Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactory" decoration-priority="64"
                  decorates="setono_sylius_abandoned_cart.factory.unsubscribed_customer">
-            <argument type="service" id="setono_sylius_abandoned_cart.custom_factory.unsubscribed_customer.inner"/>
+            <argument type="service" id="Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactory.inner"/>
         </service>
 
-        <service id="setono_sylius_abandoned_cart.custom_factory.order"
-                 class="Setono\SyliusAbandonedCartPlugin\Factory\OrderFactory" decoration-priority="64"
+        <service id="Setono\SyliusAbandonedCartPlugin\Factory\OrderFactory" decoration-priority="64"
                  decorates="sylius.factory.order">
-            <argument type="service" id="setono_sylius_abandoned_cart.custom_factory.order.inner"/>
+            <argument type="service" id="Setono\SyliusAbandonedCartPlugin\Factory\OrderFactory.inner"/>
             <argument type="service" id="sylius.unique_id_based_order_token_assigner"/>
         </service>
     </services>
