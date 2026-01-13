@@ -14,12 +14,14 @@ setono_sylius_abandoned_cart:
             email: Email
     ui:
         abandoned_cart: Paniers abandonnées
+        cart_recovery_link_expired: Votre panier n'a pas pu être trouvé. Il a peut-être expiré ou a déjà été finalisé.
         edit_unsubscribed_customer: Modifier un utilisateur désinscrit
         email_already_unsubscribed: Cet email est déjà désinscrit
         failed: Échec
         ineligible: Non-éligible
         initial: Initial
         invalid_hash: Le hash est invalide
+        last_clicked_at: Dernier clic
         new_unsubscribed_customer: Nouvel utilisateur désinscrit
         no_email_provided: Vous devez fournir un email
         no_hash_provided: Vous devez fournir un hash à désinscrire

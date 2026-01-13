@@ -14,12 +14,14 @@ setono_sylius_abandoned_cart:
             email: Email
     ui:
         abandoned_cart: Abandoned cart
+        cart_recovery_link_expired: Din indkøbskurv kunne ikke findes. Den er muligvis udløbet eller allerede gennemført.
         edit_unsubscribed_customer: Rediger afmeldt kunde
         email_already_unsubscribed: Emailen er allerede afmeldt
         failed: Fejlede
         ineligible: Ikke berettiget
         initial: Initial
         invalid_hash: Hashen er ugyldig
+        last_clicked_at: Sidst klikket
         new_unsubscribed_customer: Ny afmeldt kunde
         no_email_provided: Du skal angive en email
         no_hash_provided: Du skal angive en hash for at afmelde

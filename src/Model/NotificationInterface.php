@@ -43,6 +43,10 @@ interface NotificationInterface extends ResourceInterface, TimestampableInterfac
 
     public function setSentAt(DateTimeInterface $sentAt): void;
 
+    public function getLastClickedAt(): ?DateTimeInterface;
+
+    public function setLastClickedAt(?DateTimeInterface $lastClickedAt): void;
+
     public function isFailed(): bool;
 
     public function isIneligible(): bool;
