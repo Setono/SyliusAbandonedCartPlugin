@@ -46,11 +46,6 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
     {
         $container->prependExtensionConfig('framework', [
             'workflows' => NotificationWorkflow::getConfig(),
-            'messenger' => [
-                'buses' => [
-                    'setono_sylius_abandoned_cart.command_bus' => null,
-                ],
-            ],
         ]);
 
         $container->prependExtensionConfig('sylius_grid', [

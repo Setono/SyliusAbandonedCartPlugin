@@ -15,15 +15,11 @@ final class NotificationWorkflow
 
     public const STATE_INELIGIBLE = 'ineligible';
 
-    public const STATE_INITIAL = 'initial';
-
     public const STATE_PENDING = 'pending';
 
     public const STATE_PROCESSING = 'processing';
 
     public const STATE_SENT = 'sent';
-
-    public const TRANSITION_START = 'start';
 
     public const TRANSITION_PROCESS = 'process';
 
@@ -45,7 +41,6 @@ final class NotificationWorkflow
         return [
             self::STATE_FAILED,
             self::STATE_INELIGIBLE,
-            self::STATE_INITIAL,
             self::STATE_PENDING,
             self::STATE_PROCESSING,
             self::STATE_SENT,
@@ -71,7 +66,7 @@ final class NotificationWorkflow
                     'property' => 'state',
                 ],
                 'supports' => NotificationInterface::class,
-                'initial_marking' => self::STATE_INITIAL,
+                'initial_marking' => self::STATE_PENDING,
                 'places' => self::getStates(),
                 'transitions' => $transitions,
             ],
@@ -84,7 +79,6 @@ final class NotificationWorkflow
     public static function getTransitions(): array
     {
         return [
-            new Transition(self::TRANSITION_START, self::STATE_INITIAL, self::STATE_PENDING),
             new Transition(self::TRANSITION_PROCESS, self::STATE_PENDING, self::STATE_PROCESSING),
             new Transition(self::TRANSITION_SEND, self::STATE_PROCESSING, self::STATE_SENT),
             new Transition(self::TRANSITION_FAIL_ELIGIBILITY_CHECK, self::STATE_PROCESSING, self::STATE_INELIGIBLE),

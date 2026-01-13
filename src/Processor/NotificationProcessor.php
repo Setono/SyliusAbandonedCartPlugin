@@ -5,33 +5,62 @@ declare(strict_types=1);
 namespace Setono\SyliusAbandonedCartPlugin\Processor;
 
 use Doctrine\Persistence\ManagerRegistry;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Setono\Doctrine\ORMTrait;
+use Setono\SyliusAbandonedCartPlugin\DataProvider\PendingNotificationDataProviderInterface;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\NotificationEligibilityCheckerInterface;
 use Setono\SyliusAbandonedCartPlugin\Mailer\EmailManagerInterface;
 use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Setono\SyliusAbandonedCartPlugin\Workflow\NotificationWorkflow;
-use Symfony\Component\Workflow\Registry;
 use Symfony\Component\Workflow\WorkflowInterface;
 use Throwable;
 use Twig\Error\Error;
-use Webmozart\Assert\Assert;
 
-final class NotificationProcessor implements NotificationProcessorInterface
+final class NotificationProcessor implements NotificationProcessorInterface, LoggerAwareInterface
 {
     use ORMTrait;
 
-    private ?WorkflowInterface $workflow = null;
+    private LoggerInterface $logger;
 
     public function __construct(
         ManagerRegistry $managerRegistry,
+        private readonly PendingNotificationDataProviderInterface $pendingNotificationDataProvider,
         private readonly EmailManagerInterface $emailManager,
-        private readonly Registry $workflowRegistry,
+        private readonly WorkflowInterface $workflow,
         private readonly NotificationEligibilityCheckerInterface $notificationEligibilityChecker,
     ) {
         $this->managerRegistry = $managerRegistry;
+        $this->logger = new NullLogger();
     }
 
-    public function process(NotificationInterface $notification): void
+    public function process(): void
+    {
+        $processedCount = 0;
+
+        foreach ($this->pendingNotificationDataProvider->getNotifications() as $notification) {
+            try {
+                $this->processNotification($notification);
+                ++$processedCount;
+            } catch (Throwable $e) {
+                $this->logger->error(sprintf(
+                    'Error processing notification %d: %s',
+                    (int) $notification->getId(),
+                    $e->getMessage(),
+                ));
+            }
+        }
+
+        $this->logger->debug(sprintf('%d notifications processed', $processedCount));
+    }
+
+    public function setLogger(LoggerInterface $logger): void
+    {
+        $this->logger = $logger;
+    }
+
+    private function processNotification(NotificationInterface $notification): void
     {
         try {
             $this->tryTransition($notification, NotificationWorkflow::TRANSITION_PROCESS);
@@ -49,9 +78,6 @@ final class NotificationProcessor implements NotificationProcessorInterface
                 $notification,
                 NotificationWorkflow::TRANSITION_SEND,
                 function (NotificationInterface $notification) {
-                    $order = $notification->getCart();
-                    Assert::notNull($order);
-
                     $this->emailManager->sendNotification($notification);
                 },
             );
@@ -83,10 +109,9 @@ final class NotificationProcessor implements NotificationProcessorInterface
     private function tryTransition(NotificationInterface $notification, string $transition, callable $callable = null): void
     {
         $manager = $this->getManager($notification);
-        $workflow = $this->getWorkflow($notification);
 
         if (null !== $callable) {
-            if (!$workflow->can($notification, $transition)) {
+            if (!$this->workflow->can($notification, $transition)) {
                 $notification->addProcessingError(sprintf(
                     'Could not take transition "%s". The state when trying to take the transition was: "%s"',
                     $transition,
@@ -101,17 +126,8 @@ final class NotificationProcessor implements NotificationProcessorInterface
             $callable($notification);
         }
 
-        $workflow->apply($notification, $transition);
+        $this->workflow->apply($notification, $transition);
 
         $manager->flush();
-    }
-
-    private function getWorkflow(NotificationInterface $notification): WorkflowInterface
-    {
-        if (null === $this->workflow) {
-            $this->workflow = $this->workflowRegistry->get($notification, NotificationWorkflow::NAME);
-        }
-
-        return $this->workflow;
     }
 }

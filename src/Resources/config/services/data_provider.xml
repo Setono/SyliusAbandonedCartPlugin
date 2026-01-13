@@ -15,5 +15,14 @@
 
         <service id="Setono\SyliusAbandonedCartPlugin\DataProvider\IdleCartDataProviderInterface"
                  alias="Setono\SyliusAbandonedCartPlugin\DataProvider\IdleCartDataProvider"/>
+
+        <service id="Setono\SyliusAbandonedCartPlugin\DataProvider\PendingNotificationDataProvider">
+            <argument type="service" id="doctrine"/>
+            <argument>%setono_sylius_abandoned_cart.model.notification.class%</argument>
+            <argument>%setono_sylius_abandoned_cart.idle_threshold%</argument>
+        </service>
+
+        <service id="Setono\SyliusAbandonedCartPlugin\DataProvider\PendingNotificationDataProviderInterface"
+                 alias="Setono\SyliusAbandonedCartPlugin\DataProvider\PendingNotificationDataProvider"/>
     </services>
 </container>
