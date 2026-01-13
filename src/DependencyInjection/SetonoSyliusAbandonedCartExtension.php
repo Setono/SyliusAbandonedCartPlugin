@@ -108,6 +108,14 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
                                 'format' => 'd-m-Y H:i',
                             ],
                         ],
+                        'lastClickedAt' => [
+                            'type' => 'datetime',
+                            'label' => 'setono_sylius_abandoned_cart.ui.last_clicked_at',
+                            'sortable' => null,
+                            'options' => [
+                                'format' => 'd-m-Y H:i',
+                            ],
+                        ],
                     ],
                     'actions' => [
                         'main' => [
