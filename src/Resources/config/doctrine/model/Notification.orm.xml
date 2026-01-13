@@ -23,6 +23,8 @@
 
         <field name="sentAt" type="datetime" nullable="true"/>
 
+        <field name="lastClickedAt" type="datetime" nullable="true"/>
+
         <one-to-one field="cart" target-entity="Sylius\Component\Order\Model\OrderInterface">
             <join-column name="cart_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </one-to-one>

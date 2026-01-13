@@ -26,6 +26,8 @@ class Notification implements NotificationInterface
 
     protected ?DateTimeInterface $sentAt = null;
 
+    protected ?DateTimeInterface $lastClickedAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +93,16 @@ class Notification implements NotificationInterface
     public function setSentAt(DateTimeInterface $sentAt): void
     {
         $this->sentAt = $sentAt;
+    }
+
+    public function getLastClickedAt(): ?DateTimeInterface
+    {
+        return $this->lastClickedAt;
+    }
+
+    public function setLastClickedAt(?DateTimeInterface $lastClickedAt): void
+    {
+        $this->lastClickedAt = $lastClickedAt;
     }
 
     public function isFailed(): bool

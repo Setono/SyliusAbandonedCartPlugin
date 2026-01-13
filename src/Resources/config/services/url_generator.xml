@@ -6,7 +6,7 @@
     <services>
         <service id="Setono\SyliusAbandonedCartPlugin\UrlGenerator\CartRecoveryUrlGenerator">
             <argument type="service" id="router"/>
-            <argument>sylius_shop_cart_summary</argument>
+            <argument>setono_sylius_abandoned_cart_shop_recover_cart</argument>
         </service>
 
         <service id="Setono\SyliusAbandonedCartPlugin\UrlGenerator\CartRecoveryUrlGeneratorInterface"

@@ -3,3 +3,9 @@ setono_sylius_abandoned_cart_shop_unsubscribe_customer:
     methods: [GET,POST]
     defaults:
         _controller: Setono\SyliusAbandonedCartPlugin\Controller\Action\UnsubscribeCustomerAction
+
+setono_sylius_abandoned_cart_shop_recover_cart:
+    path: /recover-cart/{tokenValue}
+    methods: [GET]
+    defaults:
+        _controller: Setono\SyliusAbandonedCartPlugin\Controller\Action\RecoverCartAction

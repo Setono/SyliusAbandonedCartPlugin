@@ -14,5 +14,15 @@
 
             <tag name="controller.service_arguments"/>
         </service>
+
+        <service id="Setono\SyliusAbandonedCartPlugin\Controller\Action\RecoverCartAction">
+            <argument type="service" id="sylius.repository.order"/>
+            <argument type="service" id="setono_sylius_abandoned_cart.repository.notification"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="doctrine"/>
+
+            <tag name="controller.service_arguments"/>
+        </service>
     </services>
 </container>

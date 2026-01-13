@@ -14,12 +14,14 @@ setono_sylius_abandoned_cart:
             email: Email
     ui:
         abandoned_cart: Abandoned cart
+        cart_recovery_link_expired: Your cart could not be found. It may have expired or already been completed.
         edit_unsubscribed_customer: Edit unsubscribed customer
         email_already_unsubscribed: The email is already unsubscribed
         failed: Failed
         ineligible: Ineligible
         initial: Initial
         invalid_hash: The hash is invalid
+        last_clicked_at: Last clicked at
         new_unsubscribed_customer: New unsubscribed customer
         no_email_provided: You need to provide an email
         no_hash_provided: You need to provide a hash to unsubscribe

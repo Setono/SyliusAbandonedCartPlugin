@@ -16,6 +16,7 @@
         "ocramius/doctrine-batch-utils": "^2.7",
         "psr/event-dispatcher": "^1.0",
         "psr/log": "^1.1 || ^2.0 || ^3.0",
+        "setono/composite-compiler-pass": "^1.2",
         "setono/doctrine-orm-trait": "^1.2",
         "sylius/channel": "^1.0",
         "sylius/core": "^1.0",

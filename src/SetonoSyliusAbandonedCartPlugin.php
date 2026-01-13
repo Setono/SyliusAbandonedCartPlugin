@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin;
 
-use Setono\SyliusAbandonedCartPlugin\DependencyInjection\Compiler\RegisterNotificationEligibilityCheckersPass;
+use Setono\CompositeCompilerPass\CompositeCompilerPass;
+use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\CompositeNotificationEligibilityChecker;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -18,7 +19,10 @@ final class SetonoSyliusAbandonedCartPlugin extends AbstractResourceBundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new RegisterNotificationEligibilityCheckersPass());
+        $container->addCompilerPass(new CompositeCompilerPass(
+            CompositeNotificationEligibilityChecker::class,
+            'setono_sylius_abandoned_cart.notification_eligibility_checker',
+        ));
     }
 
     /** @return list<string> */
