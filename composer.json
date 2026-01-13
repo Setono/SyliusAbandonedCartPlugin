@@ -30,7 +30,6 @@
         "symfony/event-dispatcher": "^6.4",
         "symfony/form": "^6.4",
         "symfony/http-foundation": "^6.4",
-        "symfony/messenger": "^6.4",
         "symfony/routing": "^6.4",
         "symfony/validator": "^6.4",
         "symfony/workflow": "^6.4",

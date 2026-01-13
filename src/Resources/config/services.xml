@@ -9,7 +9,6 @@
         <import resource="services/controller.xml"/>
         <import resource="services/creator.xml"/>
         <import resource="services/data_provider.xml"/>
-        <import resource="services/dispatcher.xml"/>
         <import resource="services/eligibility_checker.xml"/>
         <import resource="services/event_subscriber.xml"/>
         <import resource="services/factory.xml"/>
@@ -17,7 +16,6 @@
         <import resource="services/hasher.xml"/>
         <import resource="services/mailer.xml"/>
         <import resource="services/menu.xml"/>
-        <import resource="services/message.xml"/>
         <import resource="services/processor.xml"/>
         <import resource="services/pruner.xml"/>
         <import resource="services/url_generator.xml"/>

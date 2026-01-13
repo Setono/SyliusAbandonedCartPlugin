@@ -17,7 +17,7 @@ final class ResetProcessingErrorsSubscriber implements EventSubscriberInterface
         $event = sprintf(
             'workflow.%s.transition.%s',
             NotificationWorkflow::NAME,
-            NotificationWorkflow::TRANSITION_START,
+            NotificationWorkflow::TRANSITION_PROCESS,
         );
 
         return [

@@ -17,7 +17,7 @@ class Notification implements NotificationInterface
 
     protected ?int $version = 1;
 
-    protected string $state = NotificationWorkflow::STATE_INITIAL;
+    protected string $state = NotificationWorkflow::STATE_PENDING;
 
     protected ?OrderInterface $cart = null;
 
