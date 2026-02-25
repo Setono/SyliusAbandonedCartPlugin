@@ -6,6 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A Sylius e-commerce plugin for abandoned cart recovery. It detects idle shopping carts and sends re-engagement emails with cart recovery URLs and unsubscribe options.
 
+## Workflow
+
+- Do NOT commit unless explicitly asked
+- Do NOT push unless explicitly asked
+- Use relative paths in bash commands, not absolute paths
+
 ## Code Standards
 
 Follow clean code principles and SOLID design patterns:
