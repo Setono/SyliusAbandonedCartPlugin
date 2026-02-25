@@ -11,6 +11,7 @@ A Sylius e-commerce plugin for abandoned cart recovery. It detects idle shopping
 - Do NOT commit unless explicitly asked
 - Do NOT push unless explicitly asked
 - Use relative paths in bash commands, not absolute paths
+- We use [OpenSpec](https://openspec.dev) for structured change management. The `openspec/` directory contains specs, change artifacts, and archives. Always include `openspec/` files when committing.
 
 ## Code Standards
 
