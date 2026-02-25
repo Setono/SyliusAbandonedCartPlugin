@@ -41,45 +41,87 @@ composer fix-style
 
 ### Notification State Machine
 
-The plugin uses Symfony Workflow to manage notification lifecycle (`src/Workflow/NotificationWorkflow.php`):
+The plugin uses Symfony Workflow (state machine type) to manage notification lifecycle (`src/Workflow/NotificationWorkflow.php`):
 
 ```
-initial → pending → processing → sent
-                              ↘ ineligible
-                              ↘ failed
+pending → processing → sent
+                    ↘ ineligible
+(any state) → failed
 ```
 
-Transitions: `start` → `process` → `send` / `fail_eligibility_check` / `fail`
+Initial marking: `pending`
+
+Transitions:
+- `process`: `pending` → `processing`
+- `send`: `processing` → `sent`
+- `fail_eligibility_check`: `processing` → `ineligible`
+- `fail`: any state → `failed`
 
 ### Core Processing Pipeline
 
-1. **Dispatcher** (`src/Dispatcher/`) - Finds idle carts via `NotificationRepository::findIdle()` and creates `Notification` entities
-2. **Messenger** (`src/Message/`) - `ProcessNotification` command is dispatched to the command bus
-3. **Processor** (`src/Processor/`) - Handles the message, runs eligibility checks, transitions state machine
-4. **EligibilityChecker** (`src/EligibilityChecker/`) - Composite checker pattern; validates if notification should be sent
-5. **Mailer** (`src/Mailer/`) - Sends the actual email with recovery/unsubscribe URLs
+1. **Creator** (`src/Creator/NotificationCreator`) - Uses `IdleCartDataProvider` to find idle carts and creates `Notification` entities for each
+2. **Processor** (`src/Processor/NotificationProcessor`) - Iterates pending notifications via `PendingNotificationDataProvider`, runs eligibility checks, sends email, and transitions the state machine
+3. **EligibilityChecker** (`src/EligibilityChecker/`) - Composite checker pattern; validates if notification should be sent
+4. **Mailer** (`src/Mailer/EmailManager`) - Sends the actual email with recovery/unsubscribe URLs
+
+### Data Providers
+
+- `IdleCartDataProvider` (`src/DataProvider/`) - Queries idle carts using configurable `idle_threshold` and `lookback_window`, returns a batch iterator. Dispatches `QueryBuilderForIdleCartsCreated` event for query customization.
+- `PendingNotificationDataProvider` (`src/DataProvider/`) - Queries pending notifications whose carts are still in the cart state
 
 ### Key Models
 
-- `Notification` - Tracks abandoned cart notification state, linked to `Order`
-- `UnsubscribedCustomer` - Records customers who opted out
+- `Notification` (`src/Model/`) - Tracks abandoned cart notification state (linked to Order). Has `state`, `processingErrors`, `sentAt`, `lastClickedAt`. Uses optimistic locking (`version`).
+- `UnsubscribedCustomer` (`src/Model/`) - Records customers who opted out, keyed by unique email
 
 ### URL Generation
 
-- `CartRecoveryUrlGeneratorInterface` - Generates links to restore customer's cart
-- `UnsubscribeUrlGeneratorInterface` - Generates secure unsubscribe links using configurable salt + hash
+- `CartRecoveryUrlGenerator` - Generates links to restore customer's cart (with UTM tracking params)
+- `UnsubscribeUrlGenerator` - Generates secure unsubscribe links using configurable salt + SHA256 hash via `EmailHasher`
+
+### Controllers
+
+- `RecoverCartAction` (`src/Controller/Action/`) - Recovers a cart by token value, sets `lastClickedAt` on the notification for engagement tracking, redirects to cart summary
+- `UnsubscribeCustomerAction` (`src/Controller/Action/`) - Validates email + hash, creates `UnsubscribedCustomer` entity
+
+### Factory Decorators
+
+- `NotificationFactory` - Creates notifications linked to an order
+- `UnsubscribedCustomerFactory` - Creates unsubscribed customer records from email
+- `OrderFactory` - Decorates Sylius order factory to assign tokens on creation
+
+### Other Components
+
+- `TokenValueBasedCartContext` (`src/Context/`) - Cart context using token value from request (priority 100)
+- `AdminMenuListener` (`src/Menu/`) - Adds "Abandoned Cart" under Marketing in admin menu
+- `Pruner` (`src/Pruner/`) - Deletes notifications older than `prune_older_than` minutes
+- `EmailHasher` (`src/Hasher/`) - SHA256 email hashing for secure unsubscribe links
+- `SetSentAtSubscriber` / `ResetProcessingErrorsSubscriber` (`src/EventSubscriber/Workflow/`) - Workflow event subscribers
 
 ### Console Commands
 
-- `setono:sylius-abandoned-cart:process-notifications` - Main worker command (run via cron)
+- `setono:sylius-abandoned-cart:create-notifications` - Finds idle carts and creates notification entities (supports `--dry-run`)
+- `setono:sylius-abandoned-cart:process-notifications` - Processes pending notifications (eligibility check + send email)
 - `setono:sylius-abandoned-cart:prune-notifications` - Cleanup old notifications
+
+### Service Configuration
+
+Services are defined in XML under `src/Resources/config/services/`. The DI extension conditionally loads eligibility checkers from `services/conditional/` based on plugin config. Grids, workflow, and mailer config are prepended in the extension's `prepend()` method.
 
 ## Plugin Configuration
 
-The plugin is configured via `setono_sylius_abandoned_cart` in Symfony config. Key options:
-- `salt` - Secret for unsubscribe URL hashing
-- `idle_threshold` - Time before cart is considered abandoned
-- `eligibility_checkers` - Enable/disable specific checkers
+The plugin is configured via `setono_sylius_abandoned_cart` in Symfony config:
+
+```yaml
+setono_sylius_abandoned_cart:
+    salt: 's3cr3t'              # Secret for unsubscribe URL hashing (required, change in production)
+    idle_threshold: 60          # Minutes before a cart is considered idle (default: 60)
+    lookback_window: 15         # Minutes lookback window for notification creation (default: 15)
+    prune_older_than: 43200     # Prune notifications older than N minutes (default: 43200 = 30 days)
+    eligibility_checkers:
+        unsubscribed_customer: true    # Skip customers who unsubscribed (default: true)
+        subscribed_to_newsletter: false # Only notify newsletter subscribers (default: false)
+```
 
 ## Testing
 
@@ -116,19 +158,18 @@ final class MyTest extends TestCase
 - PHPStan at `max` level with Symfony and Doctrine integrations
 - ECS follows `sylius-labs/coding-standard`
 - Strict typing enforced (`declare(strict_types=1)`)
+- Rector configured for PHP 8.1 level
+- Infection mutation testing with min MSI of 37.33 and 100% covered MSI
 
 ### Translations
-The plugin provides multilingual support through translation files in `src/Resources/translations/`:
 
-- **Translation Files**: Available in 10 languages (en, da, de, es, fr, it, nl, no, pl, sv)
-- **Translation Domains**:
-    - `messages.*` - General UI translations
-    - `flashes.*` - Flash message translations (success/error messages)
+Translation files are in `src/Resources/translations/` (domain: `messages`):
 
-Key translation keys:
-- `setono_sylius_abandoned_cart.ui.*` - UI labels
-- `setono_sylius_abandoned_cart.form.*` - Form field labels
-- `setono_sylius_abandoned_cart.single_message` - A flash message
+- **Available languages**: English (en), Danish (da), French (fr)
+- **Key prefixes**:
+    - `setono_sylius_abandoned_cart.emails.*` - Email template strings
+    - `setono_sylius_abandoned_cart.form.*` - Form field labels
+    - `setono_sylius_abandoned_cart.ui.*` - Admin UI labels and messages
 
 ## Bash Tools
 
