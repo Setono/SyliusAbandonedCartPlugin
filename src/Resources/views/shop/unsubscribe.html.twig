@@ -1,14 +1,33 @@
 {% extends '@SyliusShop/layout.html.twig' %}
 
 {% block content %}
-    <div class="ui segment">
-        {% if error is not null %}
-            <div class="ui icon negative message">
-                <i class="exclamation circle icon"></i>
-                <div class="content">{{ error|trans }}</div>
-            </div>
-        {% else %}
-            {{ 'setono_sylius_abandoned_cart.ui.successfully_unsubscribed'|trans }}
-        {% endif %}
+    <div class="ui hidden divider"></div>
+    <div class="ui grid">
+        <div class="center aligned sixteen wide column">
+            {% if error is not null %}
+                <h1 class="ui icon header">
+                    <i class="circular exclamation triangle icon red"></i>
+                    <div class="content">
+                        {{ 'setono_sylius_abandoned_cart.ui.unsubscribe_error_title'|trans }}
+                        <div class="sub header">{{ error|trans }}</div>
+                    </div>
+                </h1>
+            {% else %}
+                <h1 class="ui icon header">
+                    <i class="circular check icon green"></i>
+                    <div class="content">
+                        {{ 'setono_sylius_abandoned_cart.ui.successfully_unsubscribed'|trans }}
+                        <div class="sub header">{{ 'setono_sylius_abandoned_cart.ui.unsubscribe_confirmation'|trans }}</div>
+                    </div>
+                </h1>
+            {% endif %}
+
+            <div class="ui hidden divider"></div>
+
+            <a href="{{ path('sylius_shop_homepage') }}" class="ui large primary button">
+                <i class="home icon"></i>
+                {{ 'setono_sylius_abandoned_cart.ui.back_to_store'|trans }}
+            </a>
+        </div>
     </div>
 {% endblock %}

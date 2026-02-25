@@ -41,6 +41,12 @@ composer check-style
 
 # Fix coding standards
 composer fix-style
+
+# Start the test application dev server (from tests/Application/)
+symfony server:start
+
+# Check server status
+(cd tests/Application && symfony server:status)
 ```
 
 ## Architecture
@@ -131,7 +137,11 @@ setono_sylius_abandoned_cart:
 
 ## Testing
 
-Tests are in `tests/` with a full Sylius test application in `tests/Application/`. The test app bootstraps via `tests/Application/config/bootstrap.php`.
+Tests are in `tests/` with a full Sylius test application in `tests/Application/`. The test app bootstraps via `tests/Application/config/bootstrap.php`. The test environment requires Sylius fixtures to be loaded for functional tests that render shop templates (they need a Channel):
+
+```bash
+(cd tests/Application && bin/console sylius:fixtures:load -n --env=test)
+```
 
 ### Testing Conventions
 

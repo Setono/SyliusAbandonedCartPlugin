@@ -29,7 +29,7 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         ]);
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.ui.segment', 'You have been successfully unsubscribed');
+        self::assertSelectorTextContains('.ui.icon.header', 'You have been unsubscribed');
 
         self::assertTrue($this->isUnsubscribed('john@example.com'));
     }
@@ -43,7 +43,7 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         ]);
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.ui.segment', 'You have been successfully unsubscribed');
+        self::assertSelectorTextContains('.ui.icon.header', 'You have been unsubscribed');
 
         self::assertTrue($this->isUnsubscribed('john@example.com'));
     }
@@ -54,7 +54,7 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         $this->client->request('GET', '/en_US/abandoned-cart/unsubscribe');
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.ui.negative.message', 'You need to provide an email');
+        self::assertSelectorTextContains('.sub.header', 'You need to provide an email');
     }
 
     /** @test */
@@ -65,7 +65,7 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         ]);
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.ui.negative.message', 'You need to provide a hash to unsubscribe');
+        self::assertSelectorTextContains('.sub.header', 'You need to provide a hash to unsubscribe');
     }
 
     /** @test */
@@ -77,7 +77,7 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         ]);
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.ui.negative.message', 'The hash is invalid');
+        self::assertSelectorTextContains('.sub.header', 'The hash is invalid');
     }
 
     /** @test */
@@ -99,7 +99,7 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         ]);
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.ui.negative.message', 'The email is already unsubscribed');
+        self::assertSelectorTextContains('.sub.header', 'The email is already unsubscribed');
     }
 
     private function computeHash(string $email): string

@@ -32,5 +32,8 @@ setono_sylius_abandoned_cart:
         sent: Afsendt
         sent_at: Afsendt
         state: Tilstand
+        back_to_store: Tilbage til butikken
         successfully_unsubscribed: Du er afmeldt
+        unsubscribe_confirmation: Du vil ikke længere modtage emails om forladte indkøbskurve fra os.
+        unsubscribe_error_title: Noget gik galt
         unsubscribed_customers: Afmeldte kunder

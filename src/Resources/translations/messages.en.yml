@@ -32,5 +32,8 @@ setono_sylius_abandoned_cart:
         sent: Sent
         sent_at: Sent at
         state: State
-        successfully_unsubscribed: You have been successfully unsubscribed
+        back_to_store: Back to store
+        successfully_unsubscribed: You have been unsubscribed
+        unsubscribe_confirmation: You will no longer receive abandoned cart emails from us.
+        unsubscribe_error_title: Something went wrong
         unsubscribed_customers: Unsubscribed customers
