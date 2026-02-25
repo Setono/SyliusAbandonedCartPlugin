@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Command;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\Functional\Command;
 
 use Setono\SyliusAbandonedCartPlugin\Tests\Application\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
