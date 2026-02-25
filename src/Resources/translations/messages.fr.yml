@@ -36,4 +36,5 @@ setono_sylius_abandoned_cart:
         successfully_unsubscribed: Vous avez été désinscrit
         unsubscribe_confirmation: Vous ne recevrez plus d'emails de panier abandonné de notre part.
         unsubscribe_error_title: Une erreur est survenue
+        revenue: Revenu
         unsubscribed_customers: Utilisateurs désinscrits

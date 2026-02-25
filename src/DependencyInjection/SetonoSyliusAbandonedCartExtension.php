@@ -116,6 +116,14 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
                                 'format' => 'd-m-Y H:i',
                             ],
                         ],
+                        'revenue' => [
+                            'type' => 'twig',
+                            'label' => 'setono_sylius_abandoned_cart.ui.revenue',
+                            'path' => '.',
+                            'options' => [
+                                'template' => '@SetonoSyliusAbandonedCartPlugin/admin/grid/label/revenue.html.twig',
+                            ],
+                        ],
                     ],
                     'actions' => [
                         'main' => [
