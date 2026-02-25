@@ -4,6 +4,10 @@
             "src"
         ]
     },
+    "phpUnit": {
+        "customPath": "vendor/bin/phpunit"
+    },
+    "testFrameworkOptions": "--testsuite=unit",
     "logs": {
         "text": "php://stderr",
         "github": true,
