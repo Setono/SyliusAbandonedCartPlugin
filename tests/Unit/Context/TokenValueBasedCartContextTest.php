@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusAbandonedCartPlugin\Tests\Context;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Context;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;

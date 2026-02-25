@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusAbandonedCartPlugin\Tests\Hasher;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Hasher;
 
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasher;

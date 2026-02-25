@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusAbandonedCartPlugin\Tests\UrlGenerator;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\UrlGenerator;
 
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\UrlGenerator\CartRecoveryUrlGenerator;

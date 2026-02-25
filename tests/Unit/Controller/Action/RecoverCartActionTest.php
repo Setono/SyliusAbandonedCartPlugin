@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusAbandonedCartPlugin\Tests\Controller\Action;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Controller\Action;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;

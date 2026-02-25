@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusAbandonedCartPlugin\Tests\DependencyInjection;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Setono\SyliusAbandonedCartPlugin\DependencyInjection\SetonoSyliusAbandonedCartExtension;

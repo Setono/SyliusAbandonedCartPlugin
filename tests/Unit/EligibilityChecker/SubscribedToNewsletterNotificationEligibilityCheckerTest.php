@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusAbandonedCartPlugin\Tests\EligibilityChecker;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\EligibilityChecker;
 
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\SubscribedToNewsletterNotificationEligibilityChecker;

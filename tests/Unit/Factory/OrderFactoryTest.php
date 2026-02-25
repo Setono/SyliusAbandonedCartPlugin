@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusAbandonedCartPlugin\Tests\Factory;
+namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Factory;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
