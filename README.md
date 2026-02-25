@@ -6,7 +6,7 @@
 [![PHP Version Require](http://poser.pugx.org/setono/sylius-abandoned-cart-plugin/require/php)](https://packagist.org/packages/setono/sylius-abandoned-cart-plugin)
 [![build](https://github.com/Setono/SyliusAbandonedCartPlugin/actions/workflows/build.yaml/badge.svg)](https://github.com/Setono/SyliusAbandonedCartPlugin/actions/workflows/build.yaml)
 [![codecov](https://codecov.io/gh/Setono/SyliusAbandonedCartPlugin/graph/badge.svg?token=r7Bhm7aYCl)](https://codecov.io/gh/Setono/SyliusAbandonedCartPlugin)
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FSetono%2FSyliusAbandonedCartPlugin%2F1.x)](https://dashboard.stryker-mutator.io/reports/github.com/Setono/SyliusAbandonedCartPlugin/1.x)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FSetono%2FSyliusAbandonedCartPlugin%2F2.x)](https://dashboard.stryker-mutator.io/reports/github.com/Setono/SyliusAbandonedCartPlugin/2.x)
 
 ## Installation
 
@@ -14,7 +14,7 @@
 composer require setono/sylius-abandoned-cart-plugin
 ```
 
-### Add bundle to `config/bundles.php`:
+### Add bundle to `config/bundles.php`
 
 Make sure you add it before `SyliusGridBundle`, otherwise you'll get
 `You have requested a non-existent parameter "setono_sylius_abandoned_cart.model.notification.class".` exception.
@@ -26,6 +26,8 @@ Make sure you add it before `SyliusGridBundle`, otherwise you'll get
 return [
     // ...
     Setono\SyliusAbandonedCartPlugin\SetonoSyliusAbandonedCartPlugin::class => ['all' => true],
+    Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
+    // ...
 ];
 ```
 
@@ -33,11 +35,8 @@ return [
 
 ```yaml
 # config/packages/setono_sylius_abandoned_cart.yaml
-imports:
-    - { resource: "@SetonoSyliusAbandonedCartPlugin/Resources/config/app/config.yaml" }
-
 setono_sylius_abandoned_cart:
-    # When unsubscribing a customer a hash is used to prevent false unsubscribes. This hash is generated using this salt.
+    # A secret salt used to generate secure unsubscribe URL hashes (SHA256). Change this in production.
     salt: your_secret_salt
 ```
 
@@ -109,13 +108,11 @@ setono_sylius_abandoned_cart:
 
     # Prune notifications older than this many minutes (default: 43200 = 30 days)
     prune_older_than: 43200
+
+    eligibility_checkers:
+        # Skip customers who actively unsubscribed (default: true)
+        unsubscribed_customer: true
+
+        # Only notify customers subscribed to the newsletter (default: false)
+        subscribed_to_newsletter: false
 ```
-
-[ico-version]: https://poser.pugx.org/setono/sylius-abandoned-cart-plugin/v/stable
-[ico-license]: https://poser.pugx.org/setono/sylius-abandoned-cart-plugin/license
-[ico-github-actions]: https://github.com/Setono/SyliusAbandonedCartPlugin/workflows/build/badge.svg
-[ico-code-coverage]: https://codecov.io/gh/Setono/SyliusAbandonedCartPlugin/branch/master/graph/badge.svg
-
-[link-packagist]: https://packagist.org/packages/setono/sylius-abandoned-cart-plugin
-[link-github-actions]: https://github.com/Setono/SyliusAbandonedCartPlugin/actions
-[link-code-coverage]: https://codecov.io/gh/Setono/SyliusAbandonedCartPlugin
