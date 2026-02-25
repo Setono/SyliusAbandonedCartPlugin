@@ -21,6 +21,8 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
     /** @test */
     public function it_unsubscribes_a_customer(): void
     {
+        self::assertFalse($this->isUnsubscribed('john@example.com'));
+
         $this->client->request('GET', '/en_US/abandoned-cart/unsubscribe', [
             'email' => 'john@example.com',
             'hash' => $this->computeHash('john@example.com'),
