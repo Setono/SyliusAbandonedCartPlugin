@@ -5,15 +5,15 @@ setono_sylius_abandoned_cart:
             intro: |
                 Bonjour, %customer%<br><br>                
                 Parfois tout ne se passe pas comme prévu.<br><br>
-                Nous avons conservés votre panier pour vous, vous pouvez reprendre vos achats d'un simple clic.
+                Nous avons conservé votre panier pour vous, vous pouvez reprendre vos achats d'un simple clic.
             continue_shopping: Continuer mes achats
             unsubscribe: Me désinscrire
-            cart_contents: Votre sélection d'article exceptionnel vous attends. N'abandonnez pas si vite !
+            cart_contents: Votre sélection d'articles exceptionnels vous attends. N'abandonnez pas si vite !
     form:
         unsubscribed_customer:
             email: Email
     ui:
-        abandoned_cart: Paniers abandonnées
+        abandoned_cart: Paniers abandonnés
         edit_unsubscribed_customer: Modifier un utilisateur désinscrit
         email_already_unsubscribed: Cet email est déjà désinscrit
         failed: Échec
