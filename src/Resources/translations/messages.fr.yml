@@ -9,6 +9,8 @@ setono_sylius_abandoned_cart:
             continue_shopping: Continuer mes achats
             unsubscribe: Me désinscrire
             cart_contents: Votre sélection d'article exceptionnel vous attends. N'abandonnez pas si vite !
+            quantity: Quantité
+            product: Produit
     form:
         unsubscribed_customer:
             email: Email

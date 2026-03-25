@@ -5,7 +5,7 @@
 
 {% block content %}
     <div style="text-align: center; margin-bottom: 30px;">
-        {{ 'setono_sylius_abandoned_cart.emails.notification.intro'|trans({ '%customer%': notification.recipientFirstName })|raw }}
+        {{ 'setono_sylius_abandoned_cart.emails.notification.intro'|trans({ '%customer%': notification.recipientFirstName }, null, localeCode)|raw }}
     </div>
 
     <div style="text-align: center; margin-bottom: 30px;">
@@ -15,13 +15,13 @@
     </div>
 
     <div style="text-align: center; margin-bottom: 30px;">
-        {{ 'setono_sylius_abandoned_cart.emails.notification.cart_contents'|trans({ '%customer%': notification.recipientFirstName })|raw }}
+        {{ 'setono_sylius_abandoned_cart.emails.notification.cart_contents'|trans({ '%customer%': notification.recipientFirstName }, null, localeCode)|raw }}
     </div>
 
     <table cellpadding="0" cellspacing="0" border="0" width="100%" style=" margin-bottom: 30px;">
         <tr>
-            <th style="text-align: left; padding: 5px 10px">Quantity</th>
-            <th style="text-align: left; padding: 5px 10px">Product</th>
+            <th style="text-align: left; padding: 5px 10px">{{ 'setono_sylius_abandoned_cart.emails.notification.quantity'|trans({}, null, localeCode) }}</th>
+            <th style="text-align: left; padding: 5px 10px">{{ 'setono_sylius_abandoned_cart.emails.notification.product'|trans({}, null, localeCode) }}</th>
         </tr>
         {# @var \Sylius\Component\Core\Model\OrderItemInterface item #}
         {% for item in notification.cart.items %}

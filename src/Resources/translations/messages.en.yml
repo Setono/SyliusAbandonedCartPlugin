@@ -9,6 +9,8 @@ setono_sylius_abandoned_cart:
             continue_shopping: Continue shopping
             unsubscribe: Unsubscribe
             cart_contents: You had the following exceptional, well selected items in your cart when something interrupted your shopping. Don't abandon this!
+            quantity: Quantity
+            product: Product
     form:
         unsubscribed_customer:
             email: Email
