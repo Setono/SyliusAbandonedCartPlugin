@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\EligibilityChecker;
 
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\SubscribedToNewsletterNotificationEligibilityChecker;
@@ -12,7 +11,6 @@ use Setono\SyliusAbandonedCartPlugin\Model\Notification;
 use Sylius\Component\Core\Model\Customer;
 use Sylius\Component\Core\Model\Order;
 
-#[CoversClass(SubscribedToNewsletterNotificationEligibilityChecker::class)]
 final class SubscribedToNewsletterNotificationEligibilityCheckerTest extends TestCase
 {
     #[Test]

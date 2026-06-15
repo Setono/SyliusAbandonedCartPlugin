@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Context;
 
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -14,7 +13,6 @@ use Sylius\Component\Core\Repository\OrderRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-#[CoversClass(TokenValueBasedCartContext::class)]
 final class TokenValueBasedCartContextTest extends TestCase
 {
     use ProphecyTrait;

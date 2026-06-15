@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\UrlGenerator;
 
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasher;
@@ -12,7 +11,6 @@ use Setono\SyliusAbandonedCartPlugin\UrlGenerator\UnsubscribeUrlGenerator;
 use Sylius\Component\Core\Model\Channel;
 use Symfony\Component\Routing\Route;
 
-#[CoversClass(UnsubscribeUrlGenerator::class)]
 final class UnsubscribeUrlGeneratorTest extends UrlGeneratorAwareTestCase
 {
     use ProphecyTrait;

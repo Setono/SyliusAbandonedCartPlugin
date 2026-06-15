@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\EligibilityChecker;
 
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -13,7 +12,6 @@ use Setono\SyliusAbandonedCartPlugin\Model\Notification;
 use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Setono\SyliusAbandonedCartPlugin\Repository\UnsubscribedCustomerRepositoryInterface;
 
-#[CoversClass(UnsubscribedCustomerNotificationEligibilityChecker::class)]
 final class UnsubscribedCustomerNotificationEligibilityCheckerTest extends TestCase
 {
     use ProphecyTrait;

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Factory;
 
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactory;
@@ -12,7 +11,6 @@ use Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactoryInterfac
 use Setono\SyliusAbandonedCartPlugin\Model\UnsubscribedCustomer;
 use Sylius\Component\Resource\Factory\Factory;
 
-#[CoversClass(UnsubscribedCustomerFactory::class)]
 final class UnsubscribedCustomerFactoryTest extends TestCase
 {
     #[Test]

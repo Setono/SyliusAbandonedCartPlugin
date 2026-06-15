@@ -7,7 +7,6 @@ namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Pruner;
 use DateInterval;
 use DateTimeImmutable;
 use DateTimeInterface;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -15,7 +14,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\Pruner\Pruner;
 use Setono\SyliusAbandonedCartPlugin\Repository\NotificationRepositoryInterface;
 
-#[CoversClass(Pruner::class)]
 final class PrunerTest extends TestCase
 {
     use ProphecyTrait;

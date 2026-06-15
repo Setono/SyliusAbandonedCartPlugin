@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Factory;
 
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -15,7 +14,6 @@ use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\TokenAssigner\OrderTokenAssignerInterface;
 use Sylius\Component\Resource\Factory\Factory;
 
-#[CoversClass(OrderFactory::class)]
 final class OrderFactoryTest extends TestCase
 {
     use ProphecyTrait;

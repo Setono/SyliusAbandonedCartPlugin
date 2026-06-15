@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Hasher;
 
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasher;
 
-#[CoversClass(EmailHasher::class)]
 final class EmailHasherTest extends TestCase
 {
     #[Test]

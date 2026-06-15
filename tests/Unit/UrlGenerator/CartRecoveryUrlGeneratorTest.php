@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\UrlGenerator;
 
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\UrlGenerator\CartRecoveryUrlGenerator;
@@ -12,7 +11,6 @@ use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\Order;
 use Symfony\Component\Routing\Route;
 
-#[CoversClass(CartRecoveryUrlGenerator::class)]
 final class CartRecoveryUrlGeneratorTest extends UrlGeneratorAwareTestCase
 {
     use ProphecyTrait;

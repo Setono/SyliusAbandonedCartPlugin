@@ -6,7 +6,6 @@ namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Controller\Action;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -22,7 +21,6 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-#[CoversClass(RecoverCartAction::class)]
 final class RecoverCartActionTest extends TestCase
 {
     use ProphecyTrait;
