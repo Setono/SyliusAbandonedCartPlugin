@@ -15,7 +15,7 @@ setono_sylius_abandoned_cart:
         unsubscribed_customer:
             email: Email
     ui:
-        abandoned_cart: Abandoned cart
+        abandoned_cart: Forladt indkøbskurv
         cart_recovery_link_expired: Din indkøbskurv kunne ikke findes. Den er muligvis udløbet eller allerede gennemført.
         edit_unsubscribed_customer: Rediger afmeldt kunde
         email_already_unsubscribed: Emailen er allerede afmeldt

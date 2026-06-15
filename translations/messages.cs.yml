@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Jejda! Nezapomněli jste na něco?
+            intro: |
+                Dobrý den, %customer%<br><br>
+                Někdy se život postaví do cesty tomu, co chcete.<br><br>
+                Uložili jsme vám košík, abyste mohli pokračovat v nákupu – stačí kliknout na tlačítko níže.
+            continue_shopping: Pokračovat v nákupu
+            unsubscribe: Odhlásit odběr
+            cart_contents: Když něco přerušilo váš nákup, měli jste v košíku následující výjimečné, pečlivě vybrané položky. Neopouštějte je!
+            quantity: Množství
+            product: Produkt
+    form:
+        unsubscribed_customer:
+            email: E-mail
+    ui:
+        abandoned_cart: Opuštěný košík
+        cart_recovery_link_expired: Váš košík se nepodařilo najít. Možná vypršela jeho platnost nebo již byl dokončen.
+        edit_unsubscribed_customer: Upravit odhlášeného zákazníka
+        email_already_unsubscribed: E-mail je již odhlášen
+        failed: Selhalo
+        ineligible: Nezpůsobilé
+        initial: Počáteční
+        invalid_hash: Hash je neplatný
+        last_clicked_at: Naposledy kliknuto
+        new_unsubscribed_customer: Nový odhlášený zákazník
+        no_email_provided: Musíte zadat e-mail
+        no_hash_provided: Pro odhlášení musíte zadat hash
+        not_completed: Nedokončeno
+        notifications: Oznámení
+        pending: Čeká
+        processing: Zpracovává se
+        sent: Odesláno
+        sent_at: Odesláno
+        state: Stav
+        back_to_store: Zpět do obchodu
+        successfully_unsubscribed: Byli jste odhlášeni
+        unsubscribe_confirmation: Již od nás nebudete dostávat e-maily o opuštěném košíku.
+        unsubscribe_error_title: Něco se pokazilo
+        revenue: Tržby
+        unsubscribed_customers: Odhlášení zákazníci

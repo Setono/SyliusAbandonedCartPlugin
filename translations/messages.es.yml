@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: ¡Vaya! ¿Has olvidado algo?
+            intro: |
+                Hola, %customer%<br><br>
+                A veces la vida se interpone en lo que quieres.<br><br>
+                Hemos guardado tu carrito para que puedas continuar con tu compra: solo haz clic en el botón de abajo.
+            continue_shopping: Continuar comprando
+            unsubscribe: Darse de baja
+            cart_contents: Tenías los siguientes artículos excepcionales y bien elegidos en tu carrito cuando algo interrumpió tu compra. ¡No los abandones!
+            quantity: Cantidad
+            product: Producto
+    form:
+        unsubscribed_customer:
+            email: Correo electrónico
+    ui:
+        abandoned_cart: Carrito abandonado
+        cart_recovery_link_expired: No se ha podido encontrar tu carrito. Es posible que haya caducado o que ya se haya completado.
+        edit_unsubscribed_customer: Editar cliente dado de baja
+        email_already_unsubscribed: El correo electrónico ya está dado de baja
+        failed: Fallido
+        ineligible: No elegible
+        initial: Inicial
+        invalid_hash: El hash no es válido
+        last_clicked_at: Último clic
+        new_unsubscribed_customer: Nuevo cliente dado de baja
+        no_email_provided: Debes proporcionar un correo electrónico
+        no_hash_provided: Debes proporcionar un hash para darte de baja
+        not_completed: No completado
+        notifications: Notificaciones
+        pending: Pendiente
+        processing: Procesando
+        sent: Enviado
+        sent_at: Enviado el
+        state: Estado
+        back_to_store: Volver a la tienda
+        successfully_unsubscribed: Te has dado de baja
+        unsubscribe_confirmation: Ya no recibirás correos electrónicos de carrito abandonado por nuestra parte.
+        unsubscribe_error_title: Algo salió mal
+        revenue: Ingresos
+        unsubscribed_customers: Clientes dados de baja

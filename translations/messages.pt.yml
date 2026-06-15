@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Ups! Esqueceu-se de algo?
+            intro: |
+                Olá, %customer%<br><br>
+                Às vezes a vida atravessa-se no caminho do que queremos.<br><br>
+                Guardámos o seu carrinho para que possa continuar as suas compras — basta clicar no botão abaixo.
+            continue_shopping: Continuar a comprar
+            unsubscribe: Cancelar subscrição
+            cart_contents: Tinha os seguintes artigos excecionais e bem escolhidos no seu carrinho quando algo interrompeu as suas compras. Não os abandone!
+            quantity: Quantidade
+            product: Produto
+    form:
+        unsubscribed_customer:
+            email: Email
+    ui:
+        abandoned_cart: Carrinho abandonado
+        cart_recovery_link_expired: Não foi possível encontrar o seu carrinho. Pode ter expirado ou já ter sido concluído.
+        edit_unsubscribed_customer: Editar cliente com subscrição cancelada
+        email_already_unsubscribed: O email já tem a subscrição cancelada
+        failed: Falhou
+        ineligible: Não elegível
+        initial: Inicial
+        invalid_hash: O hash é inválido
+        last_clicked_at: Último clique
+        new_unsubscribed_customer: Novo cliente com subscrição cancelada
+        no_email_provided: Tem de fornecer um email
+        no_hash_provided: Tem de fornecer um hash para cancelar a subscrição
+        not_completed: Não concluído
+        notifications: Notificações
+        pending: Pendente
+        processing: Em processamento
+        sent: Enviado
+        sent_at: Enviado em
+        state: Estado
+        back_to_store: Voltar à loja
+        successfully_unsubscribed: A sua subscrição foi cancelada
+        unsubscribe_confirmation: Deixará de receber emails de carrinho abandonado da nossa parte.
+        unsubscribe_error_title: Algo correu mal
+        revenue: Receita
+        unsubscribed_customers: Clientes com subscrição cancelada

@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Hups! Unohtuiko jotain?
+            intro: |
+                Hei, %customer%<br><br>
+                Joskus elämä tulee väliin sille, mitä haluat.<br><br>
+                Tallensimme ostoskorisi, jotta voit jatkaa ostoksia – klikkaa vain alla olevaa painiketta.
+            continue_shopping: Jatka ostoksia
+            unsubscribe: Peruuta tilaus
+            cart_contents: Sinulla oli ostoskorissasi seuraavat poikkeukselliset, huolella valitut tuotteet, kun jokin keskeytti ostoksesi. Älä hylkää niitä!
+            quantity: Määrä
+            product: Tuote
+    form:
+        unsubscribed_customer:
+            email: Sähköposti
+    ui:
+        abandoned_cart: Hylätty ostoskori
+        cart_recovery_link_expired: Ostoskoriasi ei löytynyt. Se on saattanut vanhentua tai se on jo viimeistelty.
+        edit_unsubscribed_customer: Muokkaa tilauksensa peruuttanutta asiakasta
+        email_already_unsubscribed: Sähköpostiosoitteen tilaus on jo peruutettu
+        failed: Epäonnistui
+        ineligible: Ei kelvollinen
+        initial: Alkutila
+        invalid_hash: Hash on virheellinen
+        last_clicked_at: Viimeksi klikattu
+        new_unsubscribed_customer: Uusi tilauksensa peruuttanut asiakas
+        no_email_provided: Sinun on annettava sähköpostiosoite
+        no_hash_provided: Sinun on annettava hash tilauksen peruuttamiseksi
+        not_completed: Ei valmis
+        notifications: Ilmoitukset
+        pending: Odottaa
+        processing: Käsitellään
+        sent: Lähetetty
+        sent_at: Lähetetty
+        state: Tila
+        back_to_store: Takaisin kauppaan
+        successfully_unsubscribed: Tilauksesi on peruutettu
+        unsubscribe_confirmation: Et saa enää meiltä hylätyn ostoskorin sähköposteja.
+        unsubscribe_error_title: Jokin meni pieleen
+        revenue: Tuotto
+        unsubscribed_customers: Tilauksensa peruuttaneet asiakkaat

@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Ой! Ви про щось забули?
+            intro: |
+                Вітаємо, %customer%<br><br>
+                Іноді життя стає на заваді тому, чого ви прагнете.<br><br>
+                Ми зберегли ваш кошик, щоб ви могли продовжити покупки — просто натисніть кнопку нижче.
+            continue_shopping: Продовжити покупки
+            unsubscribe: Відписатися
+            cart_contents: Коли щось перервало ваші покупки, у вашому кошику були ці виняткові, ретельно дібрані товари. Не залишайте їх!
+            quantity: Кількість
+            product: Товар
+    form:
+        unsubscribed_customer:
+            email: Електронна пошта
+    ui:
+        abandoned_cart: Покинутий кошик
+        cart_recovery_link_expired: Не вдалося знайти ваш кошик. Можливо, термін його дії минув або його вже оформлено.
+        edit_unsubscribed_customer: Редагувати відписаного клієнта
+        email_already_unsubscribed: Цю електронну адресу вже відписано
+        failed: Не вдалося
+        ineligible: Не відповідає умовам
+        initial: Початковий
+        invalid_hash: Хеш недійсний
+        last_clicked_at: Останній клік
+        new_unsubscribed_customer: Новий відписаний клієнт
+        no_email_provided: Потрібно вказати електронну адресу
+        no_hash_provided: Щоб відписатися, потрібно вказати хеш
+        not_completed: Не завершено
+        notifications: Сповіщення
+        pending: Очікує
+        processing: Обробляється
+        sent: Надіслано
+        sent_at: Надіслано
+        state: Стан
+        back_to_store: Повернутися до магазину
+        successfully_unsubscribed: Вас відписано
+        unsubscribe_confirmation: Ви більше не отримуватимете від нас листів про покинутий кошик.
+        unsubscribe_error_title: Щось пішло не так
+        revenue: Дохід
+        unsubscribed_customers: Відписані клієнти

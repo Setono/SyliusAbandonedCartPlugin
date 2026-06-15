@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Ups! Czy o czymś nie zapomniałeś?
+            intro: |
+                Cześć, %customer%<br><br>
+                Czasami życie staje na drodze temu, czego pragniesz.<br><br>
+                Zachowaliśmy Twój koszyk, abyś mógł kontynuować zakupy – wystarczy kliknąć poniższy przycisk.
+            continue_shopping: Kontynuuj zakupy
+            unsubscribe: Wypisz się
+            cart_contents: Gdy coś przerwało Twoje zakupy, w koszyku miałeś następujące wyjątkowe, starannie wybrane produkty. Nie porzucaj ich!
+            quantity: Ilość
+            product: Produkt
+    form:
+        unsubscribed_customer:
+            email: E-mail
+    ui:
+        abandoned_cart: Porzucony koszyk
+        cart_recovery_link_expired: Nie znaleziono Twojego koszyka. Mógł wygasnąć lub został już zrealizowany.
+        edit_unsubscribed_customer: Edytuj wypisanego klienta
+        email_already_unsubscribed: Ten adres e-mail jest już wypisany
+        failed: Nieudane
+        ineligible: Niekwalifikujący się
+        initial: Początkowy
+        invalid_hash: Hash jest nieprawidłowy
+        last_clicked_at: Ostatnie kliknięcie
+        new_unsubscribed_customer: Nowy wypisany klient
+        no_email_provided: Musisz podać adres e-mail
+        no_hash_provided: Musisz podać hash, aby się wypisać
+        not_completed: Nieukończone
+        notifications: Powiadomienia
+        pending: Oczekujące
+        processing: Przetwarzanie
+        sent: Wysłane
+        sent_at: Wysłano
+        state: Stan
+        back_to_store: Powrót do sklepu
+        successfully_unsubscribed: Zostałeś wypisany
+        unsubscribe_confirmation: Nie będziesz już otrzymywać od nas e-maili o porzuconym koszyku.
+        unsubscribe_error_title: Coś poszło nie tak
+        revenue: Przychód
+        unsubscribed_customers: Wypisani klienci

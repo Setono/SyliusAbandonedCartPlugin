@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Oi! Glemte du noe?
+            intro: |
+                Hei, %customer%<br><br>
+                Noen ganger kommer livet i veien for det du vil.<br><br>
+                Vi har lagret handlekurven din, slik at du kan fortsette å handle – bare klikk på knappen nedenfor.
+            continue_shopping: Fortsett å handle
+            unsubscribe: Meld av
+            cart_contents: Du hadde følgende eksepsjonelle og godt utvalgte varer i handlekurven da noe avbrøt handleturen din. Ikke forlat dem!
+            quantity: Antall
+            product: Produkt
+    form:
+        unsubscribed_customer:
+            email: E-post
+    ui:
+        abandoned_cart: Forlatt handlekurv
+        cart_recovery_link_expired: Vi fant ikke handlekurven din. Den kan ha utløpt eller allerede være fullført.
+        edit_unsubscribed_customer: Rediger avmeldt kunde
+        email_already_unsubscribed: E-postadressen er allerede avmeldt
+        failed: Mislyktes
+        ineligible: Ikke kvalifisert
+        initial: Initial
+        invalid_hash: Hashen er ugyldig
+        last_clicked_at: Sist klikket
+        new_unsubscribed_customer: Ny avmeldt kunde
+        no_email_provided: Du må oppgi en e-postadresse
+        no_hash_provided: Du må oppgi en hash for å melde deg av
+        not_completed: Ikke fullført
+        notifications: Varsler
+        pending: Venter
+        processing: Behandler
+        sent: Sendt
+        sent_at: Sendt
+        state: Status
+        back_to_store: Tilbake til butikken
+        successfully_unsubscribed: Du er meldt av
+        unsubscribe_confirmation: Du vil ikke lenger motta e-poster om forlatte handlekurver fra oss.
+        unsubscribe_error_title: Noe gikk galt
+        revenue: Inntekt
+        unsubscribed_customers: Avmeldte kunder
