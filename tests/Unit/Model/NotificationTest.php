@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Model;
 
+use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -181,5 +182,34 @@ final class NotificationTest extends TestCase
         $notification->setCart($order->reveal());
 
         self::assertNull($notification->getRecipientFirstName());
+    }
+
+    #[Test]
+    public function it_returns_null_recipient_first_name_when_cart_has_no_customer(): void
+    {
+        $order = $this->prophesize(OrderInterface::class);
+        $order->getCustomer()->willReturn(null);
+
+        $notification = new Notification();
+        $notification->setCart($order->reveal());
+
+        self::assertNull($notification->getRecipientFirstName());
+    }
+
+    #[Test]
+    public function it_exposes_id_version_and_sent_at(): void
+    {
+        $notification = new Notification();
+
+        self::assertNull($notification->getId());
+        self::assertSame(1, $notification->getVersion());
+        self::assertNull($notification->getSentAt());
+
+        $notification->setVersion(5);
+        self::assertSame(5, $notification->getVersion());
+
+        $sentAt = new DateTimeImmutable('2026-01-01 10:00:00');
+        $notification->setSentAt($sentAt);
+        self::assertSame($sentAt, $notification->getSentAt());
     }
 }

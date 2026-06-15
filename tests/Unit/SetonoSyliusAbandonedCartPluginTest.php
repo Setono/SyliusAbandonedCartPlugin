@@ -6,8 +6,11 @@ namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use ReflectionMethod;
+use Setono\CompositeCompilerPass\CompositeCompilerPass;
 use Setono\SyliusAbandonedCartPlugin\SetonoSyliusAbandonedCartPlugin;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class SetonoSyliusAbandonedCartPluginTest extends TestCase
 {
@@ -26,5 +29,34 @@ final class SetonoSyliusAbandonedCartPluginTest extends TestCase
             [SyliusResourceBundle::DRIVER_DOCTRINE_ORM],
             (new SetonoSyliusAbandonedCartPlugin())->getSupportedDrivers(),
         );
+    }
+
+    #[Test]
+    public function it_registers_the_composite_eligibility_checker_compiler_pass(): void
+    {
+        $container = new ContainerBuilder();
+
+        (new SetonoSyliusAbandonedCartPlugin())->build($container);
+
+        $hasCompositePass = false;
+        foreach ($container->getCompilerPassConfig()->getBeforeOptimizationPasses() as $pass) {
+            if ($pass instanceof CompositeCompilerPass) {
+                $hasCompositePass = true;
+
+                break;
+            }
+        }
+
+        self::assertTrue($hasCompositePass, 'Expected the CompositeCompilerPass to be registered');
+    }
+
+    #[Test]
+    public function it_points_doctrine_mapping_discovery_at_the_model_directory(): void
+    {
+        $plugin = new SetonoSyliusAbandonedCartPlugin();
+
+        $path = (new ReflectionMethod($plugin, 'getConfigFilesPath'))->invoke($plugin);
+
+        self::assertSame($plugin->getPath() . '/config/doctrine/model', $path);
     }
 }

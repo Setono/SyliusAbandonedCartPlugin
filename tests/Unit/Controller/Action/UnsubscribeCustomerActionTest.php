@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use RuntimeException;
 use Setono\SyliusAbandonedCartPlugin\Controller\Action\UnsubscribeCustomerAction;
 use Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactoryInterface;
 use Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasherInterface;
@@ -202,5 +203,29 @@ final class UnsubscribeCustomerActionTest extends TestCase
 
         // The hash is computed with the lowercase email
         $emailHasher->hash('customer@example.com')->shouldHaveBeenCalled();
+    }
+
+    #[Test]
+    public function it_rethrows_unexpected_errors(): void
+    {
+        $emailHasher = $this->prophesize(EmailHasherInterface::class);
+        $emailHasher->hash('customer@example.com')->willReturn('validhash');
+
+        $repository = $this->prophesize(UnsubscribedCustomerRepositoryInterface::class);
+        $repository->isUnsubscribed('customer@example.com')->willThrow(new RuntimeException('Database is down'));
+
+        $factory = $this->prophesize(UnsubscribedCustomerFactoryInterface::class);
+        $twig = $this->prophesize(Environment::class);
+
+        $action = new UnsubscribeCustomerAction(
+            $emailHasher->reveal(),
+            $repository->reveal(),
+            $factory->reveal(),
+            $twig->reveal(),
+        );
+
+        $this->expectException(RuntimeException::class);
+
+        $action(new Request(['email' => 'customer@example.com', 'hash' => 'validhash']));
     }
 }

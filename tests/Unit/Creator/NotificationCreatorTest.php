@@ -10,6 +10,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Log\LoggerInterface;
 use Setono\SyliusAbandonedCartPlugin\Creator\NotificationCreator;
 use Setono\SyliusAbandonedCartPlugin\DataProvider\IdleCartDataProviderInterface;
 use Setono\SyliusAbandonedCartPlugin\Factory\NotificationFactoryInterface;
@@ -97,5 +98,32 @@ final class NotificationCreatorTest extends TestCase
         $count = $creator->create();
 
         self::assertSame(0, $count);
+    }
+
+    #[Test]
+    public function it_logs_through_the_injected_logger(): void
+    {
+        $order = $this->prophesize(OrderInterface::class);
+        $order->getId()->willReturn(1);
+
+        $idleCartDataProvider = $this->prophesize(IdleCartDataProviderInterface::class);
+        $idleCartDataProvider->getCarts()->willReturn([$order->reveal()]);
+
+        $notificationFactory = $this->prophesize(NotificationFactoryInterface::class);
+
+        $managerRegistry = $this->prophesize(ManagerRegistry::class);
+
+        $logger = $this->prophesize(LoggerInterface::class);
+
+        $creator = new NotificationCreator(
+            $managerRegistry->reveal(),
+            $idleCartDataProvider->reveal(),
+            $notificationFactory->reveal(),
+        );
+        $creator->setLogger($logger->reveal());
+
+        self::assertSame(1, $creator->create(true));
+
+        $logger->info(Argument::containingString('Would create notification for cart #1'))->shouldHaveBeenCalled();
     }
 }

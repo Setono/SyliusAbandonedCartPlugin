@@ -10,6 +10,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Setono\SyliusAbandonedCartPlugin\DataProvider\PendingNotificationDataProviderInterface;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\EligibilityCheck;
@@ -19,6 +20,8 @@ use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Setono\SyliusAbandonedCartPlugin\Processor\NotificationProcessor;
 use Setono\SyliusAbandonedCartPlugin\Workflow\NotificationWorkflow;
 use Symfony\Component\Workflow\WorkflowInterface;
+use Twig\Error\Error;
+use Twig\Source;
 
 final class NotificationProcessorTest extends TestCase
 {
@@ -163,5 +166,131 @@ final class NotificationProcessorTest extends TestCase
         $processor->process();
 
         $emailManager->sendNotification(Argument::any())->shouldNotHaveBeenCalled();
+    }
+
+    #[Test]
+    public function it_records_a_descriptive_error_when_rendering_the_email_throws_a_twig_error(): void
+    {
+        $notification = $this->prophesize(NotificationInterface::class);
+        $notification->getId()->willReturn(7);
+        $notification->getState()->willReturn(NotificationWorkflow::STATE_PROCESSING);
+        $notification->addProcessingError(Argument::containingString('A Twig error occurred'))->shouldBeCalled();
+
+        $pendingNotificationDataProvider = $this->prophesize(PendingNotificationDataProviderInterface::class);
+        $pendingNotificationDataProvider->getNotifications()->willReturn([$notification->reveal()]);
+
+        $twigError = new Error('Boom');
+        $twigError->setSourceContext(new Source('', 'notification.html.twig'));
+
+        $emailManager = $this->prophesize(EmailManagerInterface::class);
+        $emailManager->sendNotification($notification->reveal())->willThrow($twigError);
+
+        $workflow = $this->prophesize(WorkflowInterface::class);
+        $workflow->apply($notification->reveal(), NotificationWorkflow::TRANSITION_PROCESS)->shouldBeCalled();
+        $workflow->can($notification->reveal(), NotificationWorkflow::TRANSITION_SEND)->willReturn(true);
+        $workflow->apply($notification->reveal(), NotificationWorkflow::TRANSITION_FAIL)->shouldBeCalled();
+
+        $eligibilityChecker = $this->prophesize(NotificationEligibilityCheckerInterface::class);
+        $eligibilityChecker->check($notification->reveal())->willReturn(new EligibilityCheck(true));
+
+        $entityManager = $this->prophesize(EntityManagerInterface::class);
+        $entityManager->flush()->shouldBeCalled();
+
+        $managerRegistry = $this->prophesize(ManagerRegistry::class);
+        $managerRegistry->getManagerForClass(Argument::any())->willReturn($entityManager->reveal());
+
+        $processor = new NotificationProcessor(
+            $managerRegistry->reveal(),
+            $pendingNotificationDataProvider->reveal(),
+            $emailManager->reveal(),
+            $workflow->reveal(),
+            $eligibilityChecker->reveal(),
+        );
+
+        // The Twig error is caught and logged by the outer process() loop
+        $processor->process();
+    }
+
+    #[Test]
+    public function it_fails_the_notification_when_the_send_transition_is_not_allowed(): void
+    {
+        $notification = $this->prophesize(NotificationInterface::class);
+        $notification->getId()->willReturn(3);
+        $notification->getState()->willReturn(NotificationWorkflow::STATE_PROCESSING);
+        $notification->addProcessingError(Argument::containingString('Could not take transition'))->shouldBeCalled();
+
+        $pendingNotificationDataProvider = $this->prophesize(PendingNotificationDataProviderInterface::class);
+        $pendingNotificationDataProvider->getNotifications()->willReturn([$notification->reveal()]);
+
+        $emailManager = $this->prophesize(EmailManagerInterface::class);
+        $emailManager->sendNotification(Argument::any())->shouldNotBeCalled();
+
+        $workflow = $this->prophesize(WorkflowInterface::class);
+        $workflow->apply($notification->reveal(), NotificationWorkflow::TRANSITION_PROCESS)->shouldBeCalled();
+        $workflow->can($notification->reveal(), NotificationWorkflow::TRANSITION_SEND)->willReturn(false);
+        $workflow->apply($notification->reveal(), NotificationWorkflow::TRANSITION_FAIL)->shouldBeCalled();
+
+        $eligibilityChecker = $this->prophesize(NotificationEligibilityCheckerInterface::class);
+        $eligibilityChecker->check($notification->reveal())->willReturn(new EligibilityCheck(true));
+
+        $entityManager = $this->prophesize(EntityManagerInterface::class);
+        $entityManager->flush()->shouldBeCalled();
+
+        $managerRegistry = $this->prophesize(ManagerRegistry::class);
+        $managerRegistry->getManagerForClass(Argument::any())->willReturn($entityManager->reveal());
+
+        $processor = new NotificationProcessor(
+            $managerRegistry->reveal(),
+            $pendingNotificationDataProvider->reveal(),
+            $emailManager->reveal(),
+            $workflow->reveal(),
+            $eligibilityChecker->reveal(),
+        );
+
+        $processor->process();
+    }
+
+    #[Test]
+    public function it_logs_processing_errors_through_the_injected_logger(): void
+    {
+        $notification = $this->prophesize(NotificationInterface::class);
+        $notification->getId()->willReturn(9);
+        $notification->getState()->willReturn(NotificationWorkflow::STATE_PROCESSING);
+        $notification->addProcessingError(Argument::any())->shouldBeCalled();
+
+        $pendingNotificationDataProvider = $this->prophesize(PendingNotificationDataProviderInterface::class);
+        $pendingNotificationDataProvider->getNotifications()->willReturn([$notification->reveal()]);
+
+        $emailManager = $this->prophesize(EmailManagerInterface::class);
+        $emailManager->sendNotification($notification->reveal())->willThrow(new RuntimeException('SMTP down'));
+
+        $workflow = $this->prophesize(WorkflowInterface::class);
+        $workflow->apply($notification->reveal(), NotificationWorkflow::TRANSITION_PROCESS)->shouldBeCalled();
+        $workflow->can($notification->reveal(), NotificationWorkflow::TRANSITION_SEND)->willReturn(true);
+        $workflow->apply($notification->reveal(), NotificationWorkflow::TRANSITION_FAIL)->shouldBeCalled();
+
+        $eligibilityChecker = $this->prophesize(NotificationEligibilityCheckerInterface::class);
+        $eligibilityChecker->check($notification->reveal())->willReturn(new EligibilityCheck(true));
+
+        $entityManager = $this->prophesize(EntityManagerInterface::class);
+        $entityManager->flush()->shouldBeCalled();
+
+        $managerRegistry = $this->prophesize(ManagerRegistry::class);
+        $managerRegistry->getManagerForClass(Argument::any())->willReturn($entityManager->reveal());
+
+        $logger = $this->prophesize(LoggerInterface::class);
+
+        $processor = new NotificationProcessor(
+            $managerRegistry->reveal(),
+            $pendingNotificationDataProvider->reveal(),
+            $emailManager->reveal(),
+            $workflow->reveal(),
+            $eligibilityChecker->reveal(),
+        );
+        $processor->setLogger($logger->reveal());
+
+        $processor->process();
+
+        $logger->error(Argument::containingString('Error processing notification 9'))->shouldHaveBeenCalled();
     }
 }
