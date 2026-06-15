@@ -6,6 +6,7 @@ namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Controller\Action;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\Controller\Action\RecoverCartAction;
@@ -20,16 +21,11 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-/**
- * @covers \Setono\SyliusAbandonedCartPlugin\Controller\Action\RecoverCartAction
- */
 final class RecoverCartActionTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_redirects_to_cart_and_updates_last_clicked_at(): void
     {
         $order = new Order();
@@ -71,9 +67,7 @@ final class RecoverCartActionTest extends TestCase
         self::assertNotNull($notification->getLastClickedAt());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_redirects_to_homepage_when_cart_not_found(): void
     {
         $orderRepository = $this->prophesize(OrderRepositoryInterface::class);
@@ -110,9 +104,7 @@ final class RecoverCartActionTest extends TestCase
         self::assertSame('/', $response->getTargetUrl());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_forwards_all_query_parameters_to_cart_url(): void
     {
         $order = new Order();
@@ -159,9 +151,7 @@ final class RecoverCartActionTest extends TestCase
         self::assertInstanceOf(RedirectResponse::class, $response);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_handles_cart_without_notification(): void
     {
         $order = new Order();

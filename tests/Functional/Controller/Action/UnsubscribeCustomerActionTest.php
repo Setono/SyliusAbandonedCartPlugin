@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Functional\Controller\Action;
 
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\Attributes\Test;
 use Setono\SyliusAbandonedCartPlugin\Model\UnsubscribedCustomer;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -18,7 +19,7 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         $this->client = self::createClient();
     }
 
-    /** @test */
+    #[Test]
     public function it_unsubscribes_a_customer(): void
     {
         self::assertFalse($this->isUnsubscribed('john@example.com'));
@@ -29,12 +30,12 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         ]);
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.ui.icon.header', 'You have been unsubscribed');
+        self::assertSelectorTextContains('.text-success', 'You have been unsubscribed');
 
         self::assertTrue($this->isUnsubscribed('john@example.com'));
     }
 
-    /** @test */
+    #[Test]
     public function it_normalizes_email_to_lowercase(): void
     {
         $this->client->request('GET', '/en_US/abandoned-cart/unsubscribe', [
@@ -43,21 +44,21 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         ]);
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.ui.icon.header', 'You have been unsubscribed');
+        self::assertSelectorTextContains('.text-success', 'You have been unsubscribed');
 
         self::assertTrue($this->isUnsubscribed('john@example.com'));
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_error_when_email_is_missing(): void
     {
         $this->client->request('GET', '/en_US/abandoned-cart/unsubscribe');
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.sub.header', 'You need to provide an email');
+        self::assertSelectorTextContains('.text-muted', 'You need to provide an email');
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_error_when_hash_is_missing(): void
     {
         $this->client->request('GET', '/en_US/abandoned-cart/unsubscribe', [
@@ -65,10 +66,10 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         ]);
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.sub.header', 'You need to provide a hash to unsubscribe');
+        self::assertSelectorTextContains('.text-muted', 'You need to provide a hash to unsubscribe');
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_error_when_hash_is_invalid(): void
     {
         $this->client->request('GET', '/en_US/abandoned-cart/unsubscribe', [
@@ -77,10 +78,10 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         ]);
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.sub.header', 'The hash is invalid');
+        self::assertSelectorTextContains('.text-muted', 'The hash is invalid');
     }
 
-    /** @test */
+    #[Test]
     public function it_shows_error_when_email_is_already_unsubscribed(): void
     {
         $hash = $this->computeHash('john@example.com');
@@ -99,7 +100,7 @@ final class UnsubscribeCustomerActionTest extends WebTestCase
         ]);
 
         self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.sub.header', 'The email is already unsubscribed');
+        self::assertSelectorTextContains('.text-muted', 'The email is already unsubscribed');
     }
 
     private function computeHash(string $email): string

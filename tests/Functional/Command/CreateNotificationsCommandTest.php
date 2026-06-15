@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Functional\Command;
 
+use PHPUnit\Framework\Attributes\Test;
 use Setono\SyliusAbandonedCartPlugin\Tests\Application\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -16,9 +17,7 @@ final class CreateNotificationsCommandTest extends KernelTestCase
         return Kernel::class;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_creates_notifications(): void
     {
         $application = new Application(self::bootKernel());
@@ -31,9 +30,7 @@ final class CreateNotificationsCommandTest extends KernelTestCase
         self::assertStringContainsString('notification(s)', $commandTester->getDisplay());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_supports_dry_run_option(): void
     {
         $application = new Application(self::bootKernel());

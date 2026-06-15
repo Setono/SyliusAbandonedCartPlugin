@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Hoppla! Haben Sie etwas vergessen?
+            intro: |
+                Hallo, %customer%<br><br>
+                Manchmal kommt das Leben dazwischen.<br><br>
+                Wir haben Ihren Warenkorb für Sie gespeichert, sodass Sie Ihren Einkauf fortsetzen können – klicken Sie einfach auf die Schaltfläche unten.
+            continue_shopping: Einkauf fortsetzen
+            unsubscribe: Abmelden
+            cart_contents: Sie hatten die folgenden besonderen, gut ausgewählten Artikel in Ihrem Warenkorb, als etwas Ihren Einkauf unterbrochen hat. Lassen Sie sie nicht zurück!
+            quantity: Menge
+            product: Produkt
+    form:
+        unsubscribed_customer:
+            email: E-Mail
+    ui:
+        abandoned_cart: Abgebrochener Warenkorb
+        cart_recovery_link_expired: Ihr Warenkorb konnte nicht gefunden werden. Möglicherweise ist er abgelaufen oder wurde bereits abgeschlossen.
+        edit_unsubscribed_customer: Abgemeldeten Kunden bearbeiten
+        email_already_unsubscribed: Die E-Mail ist bereits abgemeldet
+        failed: Fehlgeschlagen
+        ineligible: Nicht berechtigt
+        initial: Initial
+        invalid_hash: Der Hash ist ungültig
+        last_clicked_at: Zuletzt geklickt am
+        new_unsubscribed_customer: Neuer abgemeldeter Kunde
+        no_email_provided: Sie müssen eine E-Mail angeben
+        no_hash_provided: Sie müssen einen Hash zum Abmelden angeben
+        not_completed: Nicht abgeschlossen
+        notifications: Benachrichtigungen
+        pending: Ausstehend
+        processing: In Bearbeitung
+        sent: Gesendet
+        sent_at: Gesendet am
+        state: Status
+        back_to_store: Zurück zum Shop
+        successfully_unsubscribed: Sie wurden abgemeldet
+        unsubscribe_confirmation: Sie erhalten keine E-Mails über abgebrochene Warenkörbe mehr von uns.
+        unsubscribe_error_title: Etwas ist schiefgelaufen
+        revenue: Umsatz
+        unsubscribed_customers: Abgemeldete Kunden

@@ -14,12 +14,12 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
  *
  * @implements FactoryInterface<OrderInterface>
  */
-final class OrderFactory implements FactoryInterface
+final readonly class OrderFactory implements FactoryInterface
 {
     /** @param FactoryInterface<OrderInterface> $decorated */
     public function __construct(
-        private readonly FactoryInterface $decorated,
-        private readonly OrderTokenAssignerInterface $orderTokenAssigner,
+        private FactoryInterface $decorated,
+        private OrderTokenAssignerInterface $orderTokenAssigner,
     ) {
     }
 

@@ -106,7 +106,7 @@ final class NotificationProcessor implements NotificationProcessorInterface, Log
         }
     }
 
-    private function tryTransition(NotificationInterface $notification, string $transition, callable $callable = null): void
+    private function tryTransition(NotificationInterface $notification, string $transition, ?callable $callable = null): void
     {
         $manager = $this->getManager($notification);
 

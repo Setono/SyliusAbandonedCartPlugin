@@ -1,8 +1,12 @@
+# This plugin has no API resources, so the test application only maps its own (empty) paths and does
+# not register the Sylius API resources. This keeps the config independent of where the API bundle
+# lives on disk (the sylius/sylius monorepo vs. the split sylius/api-bundle, which the CI analysis
+# steps swap by removing sylius/sylius).
 api_platform:
     mapping:
         paths:
-            - '%kernel.project_dir%/../../vendor/sylius/sylius/src/Sylius/Bundle/ApiBundle/Resources/config/api_resources'
             - '%kernel.project_dir%/config/api_platform'
+            - '%kernel.project_dir%/src/Entity'
     patch_formats:
         json: ['application/merge-patch+json']
     swagger:

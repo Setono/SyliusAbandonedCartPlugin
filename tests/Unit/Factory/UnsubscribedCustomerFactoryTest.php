@@ -4,20 +4,16 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactory;
 use Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactoryInterface;
 use Setono\SyliusAbandonedCartPlugin\Model\UnsubscribedCustomer;
 use Sylius\Component\Resource\Factory\Factory;
 
-/**
- * @covers \Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactory
- */
 final class UnsubscribedCustomerFactoryTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_creates_with_email(): void
     {
         $entity = $this->getFactory()->createWithEmail('johndoe@example.com');

@@ -119,7 +119,9 @@ Transitions:
 
 ### Service Configuration
 
-Services are defined in XML under `src/Resources/config/services/`. The DI extension conditionally loads eligibility checkers from `services/conditional/` based on plugin config. Grids, workflow, and mailer config are prepended in the extension's `prepend()` method.
+Services are defined with the PHP-DSL `ContainerConfigurator` format under `config/services/` (loaded via `config/services.php`). The DI extension conditionally loads eligibility checkers from `config/services/conditional/` based on plugin config. Grids, workflow, and mailer config are prepended in the extension's `prepend()` method.
+
+The plugin follows the Sylius 2 layout: resources live at the repository root (`config/`, `templates/`, `translations/`) rather than under `src/Resources/`. The bundle class overrides `getPath()` (returns the repo root) and `getConfigFilesPath()` (points Doctrine mapping discovery at `config/doctrine/model/`).
 
 ## Plugin Configuration
 
@@ -147,18 +149,19 @@ Tests are in `tests/` with a full Sylius test application in `tests/Application/
 ### Testing Conventions
 
 - **BDD-style naming**: Use `it_` prefix for test methods (e.g., `it_returns_eligible_when_email_is_null`)
-- **Use `@test` annotation**: Methods use `@test` docblock annotation
+- **Use the `#[Test]` attribute**: Methods are marked with the `PHPUnit\Framework\Attributes\Test` attribute (not the deprecated `@test` docblock annotation). `@covers` is likewise expressed as `#[CoversClass(...)]`.
 - **Prophecy for mocking**: Use `ProphecyTrait` and `$this->prophesize()` for all mocks, NOT PHPUnit's `createMock()`
 
 Example:
 ```php
+use PHPUnit\Framework\Attributes\Test;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 final class MyTest extends TestCase
 {
     use ProphecyTrait;
 
-    /** @test */
+    #[Test]
     public function it_does_something(): void
     {
         $dependency = $this->prophesize(DependencyInterface::class);
@@ -171,16 +174,16 @@ final class MyTest extends TestCase
 
 ## Code Quality
 
-- PHP 8.1+ required
+- PHP 8.2+ required (Sylius 2, Symfony 6.4 || 7.4)
 - PHPStan at `max` level with Symfony and Doctrine integrations
 - ECS follows `sylius-labs/coding-standard`
 - Strict typing enforced (`declare(strict_types=1)`)
-- Rector configured for PHP 8.1 level
+- Rector configured for PHP 8.2 level
 - Infection mutation testing with min MSI of 37.33 and 100% covered MSI
 
 ### Translations
 
-Translation files are in `src/Resources/translations/` (domain: `messages`):
+Translation files are in `translations/` (domain: `messages`):
 
 - **Available languages**: English (en), Danish (da), French (fr)
 - **Key prefixes**:

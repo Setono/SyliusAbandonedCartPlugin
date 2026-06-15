@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Model;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\Model\Notification;
@@ -16,9 +17,7 @@ final class NotificationTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_true_for_is_failed_when_state_is_failed(): void
     {
         $notification = new Notification();
@@ -27,9 +26,7 @@ final class NotificationTest extends TestCase
         self::assertTrue($notification->isFailed());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_false_for_is_failed_when_state_is_not_failed(): void
     {
         $notification = new Notification();
@@ -38,9 +35,7 @@ final class NotificationTest extends TestCase
         self::assertFalse($notification->isFailed());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_true_for_is_ineligible_when_state_is_ineligible(): void
     {
         $notification = new Notification();
@@ -49,9 +44,7 @@ final class NotificationTest extends TestCase
         self::assertTrue($notification->isIneligible());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_false_for_is_ineligible_when_state_is_not_ineligible(): void
     {
         $notification = new Notification();
@@ -60,9 +53,7 @@ final class NotificationTest extends TestCase
         self::assertFalse($notification->isIneligible());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_true_for_is_deletable_when_state_is_not_sent(): void
     {
         $notification = new Notification();
@@ -73,9 +64,7 @@ final class NotificationTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_false_for_is_deletable_when_state_is_sent(): void
     {
         $notification = new Notification();
@@ -84,9 +73,7 @@ final class NotificationTest extends TestCase
         self::assertFalse($notification->isDeletable());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_manages_processing_errors(): void
     {
         $notification = new Notification();
@@ -103,9 +90,7 @@ final class NotificationTest extends TestCase
         self::assertSame([], $notification->getProcessingErrors());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_derives_email_from_cart_customer(): void
     {
         $customer = $this->prophesize(CustomerInterface::class);
@@ -120,9 +105,7 @@ final class NotificationTest extends TestCase
         self::assertSame('customer@example.com', $notification->getEmail());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_null_email_when_no_cart(): void
     {
         $notification = new Notification();
@@ -130,9 +113,7 @@ final class NotificationTest extends TestCase
         self::assertNull($notification->getEmail());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_null_email_when_cart_has_no_customer(): void
     {
         $order = $this->prophesize(OrderInterface::class);
@@ -144,9 +125,7 @@ final class NotificationTest extends TestCase
         self::assertNull($notification->getEmail());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_recipient_first_name_from_customer(): void
     {
         $customer = $this->prophesize(CustomerInterface::class);
@@ -161,9 +140,7 @@ final class NotificationTest extends TestCase
         self::assertSame('John', $notification->getRecipientFirstName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_recipient_first_name_from_billing_address(): void
     {
         $customer = $this->prophesize(CustomerInterface::class);
@@ -182,9 +159,7 @@ final class NotificationTest extends TestCase
         self::assertSame('Jane', $notification->getRecipientFirstName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_null_recipient_first_name_when_no_cart(): void
     {
         $notification = new Notification();
@@ -192,9 +167,7 @@ final class NotificationTest extends TestCase
         self::assertNull($notification->getRecipientFirstName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_null_recipient_first_name_when_no_customer_or_address(): void
     {
         $customer = $this->prophesize(CustomerInterface::class);

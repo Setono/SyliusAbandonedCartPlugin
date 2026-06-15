@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Controller\Action;
 
+use InvalidArgumentException;
 use Setono\SyliusAbandonedCartPlugin\Factory\UnsubscribedCustomerFactoryInterface;
 use Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasherInterface;
 use Setono\SyliusAbandonedCartPlugin\Repository\UnsubscribedCustomerRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 use Twig\Environment;
 use Webmozart\Assert\Assert;
 
-final class UnsubscribeCustomerAction
+final readonly class UnsubscribeCustomerAction
 {
     public function __construct(
-        private readonly EmailHasherInterface $emailHasher,
-        private readonly UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository,
-        private readonly UnsubscribedCustomerFactoryInterface $unsubscribedCustomerFactory,
-        private readonly Environment $twig,
+        private EmailHasherInterface $emailHasher,
+        private UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository,
+        private UnsubscribedCustomerFactoryInterface $unsubscribedCustomerFactory,
+        private Environment $twig,
     ) {
     }
 
@@ -42,9 +44,9 @@ final class UnsubscribeCustomerAction
             );
 
             $this->unsubscribedCustomerRepository->add($this->unsubscribedCustomerFactory->createWithEmail($email));
-        } catch (\InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             $error = $e->getMessage();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             throw $e;
         }
 

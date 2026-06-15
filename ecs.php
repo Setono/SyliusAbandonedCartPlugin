@@ -9,9 +9,14 @@ return static function (ECSConfig $config): void {
     $config->paths([
         'src',
         'tests',
+        'composer-dependency-analyser.php',
+        'ecs.php',
+        'rector.php',
     ]);
     $config->skip([
         'tests/Application/node_modules/**',
         'tests/Application/var/**',
+        // Auto-generated Symfony config reference (gitignored, rebuilt on cache warmup)
+        'tests/Application/config/reference.php',
     ]);
 };

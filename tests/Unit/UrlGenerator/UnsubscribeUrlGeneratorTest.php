@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\UrlGenerator;
 
+use PHPUnit\Framework\Attributes\Test;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\Hasher\EmailHasher;
 use Setono\SyliusAbandonedCartPlugin\UrlGenerator\UnsubscribeUrlGenerator;
 use Sylius\Component\Core\Model\Channel;
 use Symfony\Component\Routing\Route;
 
-/**
- * @covers \Setono\SyliusAbandonedCartPlugin\UrlGenerator\UnsubscribeUrlGenerator
- */
 final class UnsubscribeUrlGeneratorTest extends UrlGeneratorAwareTestCase
 {
     use ProphecyTrait;
@@ -22,9 +20,7 @@ final class UnsubscribeUrlGeneratorTest extends UrlGeneratorAwareTestCase
         yield 'setono_sylius_abandoned_cart_shop_unsubscribe_customer' => new Route('/abandoned-cart/unsubscribe');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_generates_url(): void
     {
         $urlGenerator = new UnsubscribeUrlGenerator(
@@ -42,9 +38,7 @@ final class UnsubscribeUrlGeneratorTest extends UrlGeneratorAwareTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_allows_to_overwrite_parameters(): void
     {
         $urlGenerator = new UnsubscribeUrlGenerator(

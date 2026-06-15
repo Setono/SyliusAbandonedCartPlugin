@@ -7,10 +7,10 @@ namespace Setono\SyliusAbandonedCartPlugin\Factory;
 use Setono\SyliusAbandonedCartPlugin\Model\UnsubscribedCustomerInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-final class UnsubscribedCustomerFactory implements UnsubscribedCustomerFactoryInterface
+final readonly class UnsubscribedCustomerFactory implements UnsubscribedCustomerFactoryInterface
 {
     /** @param FactoryInterface<UnsubscribedCustomerInterface> $decorated */
-    public function __construct(private readonly FactoryInterface $decorated)
+    public function __construct(private FactoryInterface $decorated)
     {
     }
 

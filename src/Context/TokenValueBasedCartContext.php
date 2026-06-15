@@ -10,11 +10,11 @@ use Sylius\Component\Order\Context\CartNotFoundException;
 use Sylius\Component\Order\Model\OrderInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-final class TokenValueBasedCartContext implements CartContextInterface
+final readonly class TokenValueBasedCartContext implements CartContextInterface
 {
     public function __construct(
-        private readonly RequestStack $requestStack,
-        private readonly OrderRepositoryInterface $orderRepository,
+        private RequestStack $requestStack,
+        private OrderRepositoryInterface $orderRepository,
     ) {
     }
 

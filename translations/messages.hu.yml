@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Hoppá! Elfelejtett valamit?
+            intro: |
+                Üdvözöljük, %customer%<br><br>
+                Néha az élet közbeszól.<br><br>
+                Elmentettük a kosarát, így folytathatja a vásárlást – csak kattintson az alábbi gombra.
+            continue_shopping: Vásárlás folytatása
+            unsubscribe: Leiratkozás
+            cart_contents: A következő kivételes, gondosan kiválasztott termékek voltak a kosarában, amikor valami megszakította a vásárlást. Ne hagyja őket ott!
+            quantity: Mennyiség
+            product: Termék
+    form:
+        unsubscribed_customer:
+            email: E-mail
+    ui:
+        abandoned_cart: Elhagyott kosár
+        cart_recovery_link_expired: A kosara nem található. Lehet, hogy lejárt, vagy már teljesítették.
+        edit_unsubscribed_customer: Leiratkozott ügyfél szerkesztése
+        email_already_unsubscribed: Az e-mail-cím már leiratkozott
+        failed: Sikertelen
+        ineligible: Nem jogosult
+        initial: Kezdeti
+        invalid_hash: A hash érvénytelen
+        last_clicked_at: Utoljára kattintva
+        new_unsubscribed_customer: Új leiratkozott ügyfél
+        no_email_provided: Meg kell adnia egy e-mail-címet
+        no_hash_provided: A leiratkozáshoz meg kell adnia egy hash-t
+        not_completed: Nem teljesített
+        notifications: Értesítések
+        pending: Függőben
+        processing: Feldolgozás alatt
+        sent: Elküldve
+        sent_at: Elküldve
+        state: Állapot
+        back_to_store: Vissza az üzletbe
+        successfully_unsubscribed: Sikeresen leiratkozott
+        unsubscribe_confirmation: A továbbiakban nem kap tőlünk elhagyott kosárról szóló e-maileket.
+        unsubscribe_error_title: Valami hiba történt
+        revenue: Bevétel
+        unsubscribed_customers: Leiratkozott ügyfelek

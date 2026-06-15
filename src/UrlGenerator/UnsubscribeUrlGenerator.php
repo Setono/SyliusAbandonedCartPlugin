@@ -9,12 +9,12 @@ use Sylius\Component\Channel\Model\ChannelInterface;
 use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-final class UnsubscribeUrlGenerator implements UnsubscribeUrlGeneratorInterface
+final readonly class UnsubscribeUrlGenerator implements UnsubscribeUrlGeneratorInterface
 {
     public function __construct(
-        private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly EmailHasherInterface $emailHasher,
-        private readonly string $route,
+        private UrlGeneratorInterface $urlGenerator,
+        private EmailHasherInterface $emailHasher,
+        private string $route,
     ) {
     }
 

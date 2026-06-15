@@ -4,20 +4,16 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\EligibilityChecker;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\SubscribedToNewsletterNotificationEligibilityChecker;
 use Setono\SyliusAbandonedCartPlugin\Model\Notification;
 use Sylius\Component\Core\Model\Customer;
 use Sylius\Component\Core\Model\Order;
 
-/**
- * @covers \Setono\SyliusAbandonedCartPlugin\EligibilityChecker\SubscribedToNewsletterNotificationEligibilityChecker
- */
 final class SubscribedToNewsletterNotificationEligibilityCheckerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_eligible_when_customer_is_null(): void
     {
         $order = new Order();
@@ -28,9 +24,7 @@ final class SubscribedToNewsletterNotificationEligibilityCheckerTest extends Tes
         self::assertTrue($checker->check($notification)->eligible);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_eligible_when_customer_is_subscribed(): void
     {
         $customer = new Customer();
@@ -46,9 +40,7 @@ final class SubscribedToNewsletterNotificationEligibilityCheckerTest extends Tes
         self::assertTrue($checker->check($notification)->eligible);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_non_eligible_when_customer_is_not_subscribed(): void
     {
         $customer = new Customer();

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\EventSubscriber\Workflow;
 
+use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -18,13 +20,11 @@ final class SetSentAtSubscriberTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_sets_sent_at_on_send_completion(): void
     {
         $notification = $this->prophesize(NotificationInterface::class);
-        $notification->setSentAt(Argument::type(\DateTimeImmutable::class))->shouldBeCalled();
+        $notification->setSentAt(Argument::type(DateTimeImmutable::class))->shouldBeCalled();
 
         $event = new Event(
             $notification->reveal(),
@@ -36,9 +36,7 @@ final class SetSentAtSubscriberTest extends TestCase
         $subscriber->set($event);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_subscribes_to_send_completed_event(): void
     {
         $events = SetSentAtSubscriber::getSubscribedEvents();

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Functional\Controller\Action;
 
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\Attributes\Test;
 use Setono\SyliusAbandonedCartPlugin\Model\Notification;
 use Sylius\Component\Core\Model\Order;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -19,7 +20,7 @@ final class RecoverCartActionTest extends WebTestCase
         $this->client = self::createClient();
     }
 
-    /** @test */
+    #[Test]
     public function it_redirects_to_cart_summary_when_cart_exists(): void
     {
         $this->createOrder('recover-token');
@@ -30,7 +31,7 @@ final class RecoverCartActionTest extends WebTestCase
         self::assertStringContainsString('tokenValue=recover-token', (string) $this->client->getResponse()->headers->get('Location'));
     }
 
-    /** @test */
+    #[Test]
     public function it_updates_last_clicked_at_on_notification(): void
     {
         $order = $this->createOrder('click-token');
@@ -51,7 +52,7 @@ final class RecoverCartActionTest extends WebTestCase
         self::assertNotNull($updatedNotification->getLastClickedAt());
     }
 
-    /** @test */
+    #[Test]
     public function it_redirects_to_homepage_when_cart_not_found(): void
     {
         $this->client->request('GET', '/en_US/recover-cart/non-existent-token');
@@ -61,7 +62,7 @@ final class RecoverCartActionTest extends WebTestCase
         self::assertStringNotContainsString('recover-cart', (string) $this->client->getResponse()->headers->get('Location'));
     }
 
-    /** @test */
+    #[Test]
     public function it_forwards_query_parameters_to_cart_url(): void
     {
         $this->createOrder('utm-token');
@@ -79,7 +80,7 @@ final class RecoverCartActionTest extends WebTestCase
         self::assertStringContainsString('tokenValue=utm-token', $location);
     }
 
-    /** @test */
+    #[Test]
     public function it_redirects_to_cart_summary_even_without_notification(): void
     {
         $this->createOrder('no-notification-token');

@@ -7,9 +7,9 @@ namespace Setono\SyliusAbandonedCartPlugin\EligibilityChecker;
 use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Setono\SyliusAbandonedCartPlugin\Repository\UnsubscribedCustomerRepositoryInterface;
 
-final class UnsubscribedCustomerNotificationEligibilityChecker implements NotificationEligibilityCheckerInterface
+final readonly class UnsubscribedCustomerNotificationEligibilityChecker implements NotificationEligibilityCheckerInterface
 {
-    public function __construct(private readonly UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository)
+    public function __construct(private UnsubscribedCustomerRepositoryInterface $unsubscribedCustomerRepository)
     {
     }
 

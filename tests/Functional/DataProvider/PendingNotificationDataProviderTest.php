@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Functional\DataProvider;
 
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\Attributes\Test;
 use Setono\SyliusAbandonedCartPlugin\DataProvider\PendingNotificationDataProviderInterface;
 use Setono\SyliusAbandonedCartPlugin\Model\Notification;
 use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
@@ -16,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 final class PendingNotificationDataProviderTest extends KernelTestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_pending_notifications_with_idle_carts(): void
     {
         $customer = $this->createCustomer('pending@example.com');
@@ -32,7 +33,7 @@ final class PendingNotificationDataProviderTest extends KernelTestCase
         self::assertSame('pending-token', $cart->getTokenValue());
     }
 
-    /** @test */
+    #[Test]
     public function it_excludes_notifications_not_in_pending_state(): void
     {
         $customer = $this->createCustomer('processing@example.com');
@@ -42,7 +43,7 @@ final class PendingNotificationDataProviderTest extends KernelTestCase
         self::assertCount(0, $this->getNotifications());
     }
 
-    /** @test */
+    #[Test]
     public function it_excludes_notifications_whose_cart_is_no_longer_in_cart_state(): void
     {
         $customer = $this->createCustomer('completed@example.com');
@@ -52,7 +53,7 @@ final class PendingNotificationDataProviderTest extends KernelTestCase
         self::assertCount(0, $this->getNotifications());
     }
 
-    /** @test */
+    #[Test]
     public function it_excludes_notifications_whose_cart_has_no_customer(): void
     {
         $order = $this->createOrder('no-customer-token', null);
@@ -61,7 +62,7 @@ final class PendingNotificationDataProviderTest extends KernelTestCase
         self::assertCount(0, $this->getNotifications());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_multiple_pending_notifications(): void
     {
         $customer1 = $this->createCustomer('multi1@example.com');

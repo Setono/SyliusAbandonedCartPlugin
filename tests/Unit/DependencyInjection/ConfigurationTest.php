@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\DependencyInjection;
 
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusAbandonedCartPlugin\DependencyInjection\Configuration;
 use Setono\SyliusAbandonedCartPlugin\Form\Type\UnsubscribedCustomerType;
@@ -29,9 +30,7 @@ final class ConfigurationTest extends TestCase
         return new Configuration();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function processed_value_contains_required_value(): void
     {
         $this->assertProcessedConfigurationEquals([], [

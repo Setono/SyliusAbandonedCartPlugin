@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Controller\Action;
 
+use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Setono\Doctrine\ORMTrait;
 use Setono\SyliusAbandonedCartPlugin\Repository\NotificationRepositoryInterface;
@@ -42,7 +43,7 @@ final class RecoverCartAction
         $notification = $this->notificationRepository->findOneByOrder($cart);
 
         if (null !== $notification) {
-            $notification->setLastClickedAt(new \DateTime());
+            $notification->setLastClickedAt(new DateTime());
             $this->getManager($notification)->flush();
         }
 

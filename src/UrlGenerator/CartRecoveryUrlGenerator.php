@@ -9,11 +9,11 @@ use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Webmozart\Assert\Assert;
 
-final class CartRecoveryUrlGenerator implements CartRecoveryUrlGeneratorInterface
+final readonly class CartRecoveryUrlGenerator implements CartRecoveryUrlGeneratorInterface
 {
     public function __construct(
-        private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly string $route,
+        private UrlGeneratorInterface $urlGenerator,
+        private string $route,
     ) {
     }
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Hasher;
 
-final class EmailHasher implements EmailHasherInterface
+final readonly class EmailHasher implements EmailHasherInterface
 {
-    public function __construct(private readonly string $salt)
+    public function __construct(private string $salt)
     {
     }
 

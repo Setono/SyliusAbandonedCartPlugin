@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\UrlGenerator;
 
+use PHPUnit\Framework\Attributes\Test;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\UrlGenerator\CartRecoveryUrlGenerator;
 use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\Order;
 use Symfony\Component\Routing\Route;
 
-/**
- * @covers \Setono\SyliusAbandonedCartPlugin\UrlGenerator\CartRecoveryUrlGenerator
- */
 final class CartRecoveryUrlGeneratorTest extends UrlGeneratorAwareTestCase
 {
     use ProphecyTrait;
@@ -22,9 +20,7 @@ final class CartRecoveryUrlGeneratorTest extends UrlGeneratorAwareTestCase
         yield 'sylius_shop_cart_summary' => new Route('/cart');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_generates_url(): void
     {
         $channel = new Channel();
@@ -39,9 +35,7 @@ final class CartRecoveryUrlGeneratorTest extends UrlGeneratorAwareTestCase
         self::assertSame('https://example.com/cart?tokenValue=token&utm_source=sylius&utm_medium=email&utm_campaign=Abandoned%20Cart&_locale=en_US', $cartRecoveryUrlGenerator->generate($order));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_allows_to_overwrite_parameters(): void
     {
         $channel = new Channel();

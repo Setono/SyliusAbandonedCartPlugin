@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Hopa! Ai uitat ceva?
+            intro: |
+                Bună, %customer%<br><br>
+                Uneori viața îți stă în calea a ceea ce îți dorești.<br><br>
+                Ți-am salvat coșul, ca să poți continua cumpărăturile – trebuie doar să dai clic pe butonul de mai jos.
+            continue_shopping: Continuă cumpărăturile
+            unsubscribe: Dezabonează-te
+            cart_contents: Aveai următoarele articole excepționale și bine alese în coș atunci când ceva ți-a întrerupt cumpărăturile. Nu le abandona!
+            quantity: Cantitate
+            product: Produs
+    form:
+        unsubscribed_customer:
+            email: E-mail
+    ui:
+        abandoned_cart: Coș abandonat
+        cart_recovery_link_expired: Coșul tău nu a putut fi găsit. Este posibil să fi expirat sau să fi fost deja finalizat.
+        edit_unsubscribed_customer: Editează clientul dezabonat
+        email_already_unsubscribed: E-mailul este deja dezabonat
+        failed: Eșuat
+        ineligible: Neeligibil
+        initial: Inițial
+        invalid_hash: Hash-ul este invalid
+        last_clicked_at: Ultimul clic
+        new_unsubscribed_customer: Client dezabonat nou
+        no_email_provided: Trebuie să furnizezi un e-mail
+        no_hash_provided: Trebuie să furnizezi un hash pentru a te dezabona
+        not_completed: Nefinalizat
+        notifications: Notificări
+        pending: În așteptare
+        processing: Se procesează
+        sent: Trimis
+        sent_at: Trimis la
+        state: Stare
+        back_to_store: Înapoi la magazin
+        successfully_unsubscribed: Te-ai dezabonat
+        unsubscribe_confirmation: Nu vei mai primi e-mailuri despre coșuri abandonate de la noi.
+        unsubscribe_error_title: Ceva n-a mers bine
+        revenue: Venit
+        unsubscribed_customers: Clienți dezabonați

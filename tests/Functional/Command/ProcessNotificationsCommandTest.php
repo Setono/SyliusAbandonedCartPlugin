@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Functional\Command;
 
+use PHPUnit\Framework\Attributes\Test;
 use Setono\SyliusAbandonedCartPlugin\Tests\Application\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -16,9 +17,7 @@ final class ProcessNotificationsCommandTest extends KernelTestCase
         return Kernel::class;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_executes_successfully_with_no_pending_notifications(): void
     {
         $application = new Application(self::bootKernel());
@@ -30,9 +29,7 @@ final class ProcessNotificationsCommandTest extends KernelTestCase
         $commandTester->assertCommandIsSuccessful();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_is_registered_and_findable(): void
     {
         $application = new Application(self::bootKernel());

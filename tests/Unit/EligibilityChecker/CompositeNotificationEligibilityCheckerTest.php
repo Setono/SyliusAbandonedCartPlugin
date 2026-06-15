@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\EligibilityChecker;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\CompositeNotificationEligibilityChecker;
@@ -15,9 +16,7 @@ final class CompositeNotificationEligibilityCheckerTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_eligible_when_all_checkers_pass(): void
     {
         $notification = $this->prophesize(NotificationInterface::class);
@@ -38,9 +37,7 @@ final class CompositeNotificationEligibilityCheckerTest extends TestCase
         self::assertSame([], $result->reasons);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_ineligible_when_one_checker_fails(): void
     {
         $notification = $this->prophesize(NotificationInterface::class);
@@ -61,9 +58,7 @@ final class CompositeNotificationEligibilityCheckerTest extends TestCase
         self::assertSame(['Customer unsubscribed'], $result->reasons);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_merges_reasons_when_multiple_checkers_fail(): void
     {
         $notification = $this->prophesize(NotificationInterface::class);
@@ -84,9 +79,7 @@ final class CompositeNotificationEligibilityCheckerTest extends TestCase
         self::assertSame(['Reason A', 'Reason B', 'Reason C'], $result->reasons);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_eligible_when_no_checkers_registered(): void
     {
         $notification = $this->prophesize(NotificationInterface::class);

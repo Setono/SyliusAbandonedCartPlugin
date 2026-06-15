@@ -1,0 +1,19 @@
+setono_sylius_abandoned_cart_admin_notification:
+    resource: |
+        alias: setono_sylius_abandoned_cart.notification
+        section: admin
+        permission: true
+        templates: '@SyliusAdmin\\shared\\crud'
+        redirect: index
+        grid: setono_sylius_abandoned_cart_admin_notification
+    type: sylius.resource
+
+setono_sylius_abandoned_cart_admin_unsubscribed_customer:
+    resource: |
+        alias: setono_sylius_abandoned_cart.unsubscribed_customer
+        section: admin
+        permission: true
+        templates: '@SyliusAdmin\\shared\\crud'
+        redirect: index
+        grid: setono_sylius_abandoned_cart_admin_unsubscribed_customer
+    type: sylius.resource

@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Oeps! Ben je iets vergeten?
+            intro: |
+                Hallo, %customer%<br><br>
+                Soms komt het leven in de weg van wat je wilt.<br><br>
+                We hebben je winkelwagen voor je bewaard, zodat je verder kunt winkelen - klik gewoon op de knop hieronder.
+            continue_shopping: Verder winkelen
+            unsubscribe: Afmelden
+            cart_contents: Je had de volgende uitzonderlijke, zorgvuldig gekozen artikelen in je winkelwagen toen er iets je aankoop onderbrak. Laat ze niet achter!
+            quantity: Aantal
+            product: Product
+    form:
+        unsubscribed_customer:
+            email: E-mail
+    ui:
+        abandoned_cart: Verlaten winkelwagen
+        cart_recovery_link_expired: Je winkelwagen kon niet worden gevonden. Mogelijk is deze verlopen of al afgerond.
+        edit_unsubscribed_customer: Afgemelde klant bewerken
+        email_already_unsubscribed: Het e-mailadres is al afgemeld
+        failed: Mislukt
+        ineligible: Niet in aanmerking komend
+        initial: Initieel
+        invalid_hash: De hash is ongeldig
+        last_clicked_at: Laatst geklikt op
+        new_unsubscribed_customer: Nieuwe afgemelde klant
+        no_email_provided: Je moet een e-mailadres opgeven
+        no_hash_provided: Je moet een hash opgeven om je af te melden
+        not_completed: Niet voltooid
+        notifications: Meldingen
+        pending: In afwachting
+        processing: Verwerken
+        sent: Verzonden
+        sent_at: Verzonden op
+        state: Status
+        back_to_store: Terug naar de winkel
+        successfully_unsubscribed: Je bent afgemeld
+        unsubscribe_confirmation: Je ontvangt geen e-mails meer over verlaten winkelwagens van ons.
+        unsubscribe_error_title: Er is iets misgegaan
+        revenue: Omzet
+        unsubscribed_customers: Afgemelde klanten

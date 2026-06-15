@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Ops! Hai dimenticato qualcosa?
+            intro: |
+                Ciao, %customer%<br><br>
+                A volte la vita si mette in mezzo a ciò che desideri.<br><br>
+                Abbiamo salvato il tuo carrello, così puoi continuare i tuoi acquisti: basta cliccare sul pulsante qui sotto.
+            continue_shopping: Continua gli acquisti
+            unsubscribe: Annulla iscrizione
+            cart_contents: Avevi i seguenti articoli eccezionali e ben selezionati nel carrello quando qualcosa ha interrotto i tuoi acquisti. Non abbandonarli!
+            quantity: Quantità
+            product: Prodotto
+    form:
+        unsubscribed_customer:
+            email: Email
+    ui:
+        abandoned_cart: Carrello abbandonato
+        cart_recovery_link_expired: Impossibile trovare il tuo carrello. Potrebbe essere scaduto o già stato completato.
+        edit_unsubscribed_customer: Modifica cliente disiscritto
+        email_already_unsubscribed: L'email è già disiscritta
+        failed: Fallito
+        ineligible: Non idoneo
+        initial: Iniziale
+        invalid_hash: L'hash non è valido
+        last_clicked_at: Ultimo clic
+        new_unsubscribed_customer: Nuovo cliente disiscritto
+        no_email_provided: Devi fornire un'email
+        no_hash_provided: Devi fornire un hash per disiscriverti
+        not_completed: Non completato
+        notifications: Notifiche
+        pending: In attesa
+        processing: In elaborazione
+        sent: Inviato
+        sent_at: Inviato il
+        state: Stato
+        back_to_store: Torna al negozio
+        successfully_unsubscribed: Sei stato disiscritto
+        unsubscribe_confirmation: Non riceverai più email sui carrelli abbandonati da parte nostra.
+        unsubscribe_error_title: Qualcosa è andato storto
+        revenue: Ricavi
+        unsubscribed_customers: Clienti disiscritti

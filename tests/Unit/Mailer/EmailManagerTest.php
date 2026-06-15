@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Mailer;
 
+use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\Mailer\EmailManager;
@@ -18,9 +20,7 @@ final class EmailManagerTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_sends_email_with_correct_parameters(): void
     {
         $channel = $this->prophesize(ChannelInterface::class);
@@ -59,9 +59,7 @@ final class EmailManagerTest extends TestCase
         $emailManager->sendNotification($notification->reveal());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_throws_when_notification_has_no_cart(): void
     {
         $notification = $this->prophesize(NotificationInterface::class);
@@ -77,13 +75,11 @@ final class EmailManagerTest extends TestCase
             $unsubscribeUrlGenerator->reveal(),
         );
 
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $emailManager->sendNotification($notification->reveal());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_throws_when_cart_has_no_channel(): void
     {
         $order = $this->prophesize(OrderInterface::class);
@@ -102,13 +98,11 @@ final class EmailManagerTest extends TestCase
             $unsubscribeUrlGenerator->reveal(),
         );
 
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $emailManager->sendNotification($notification->reveal());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_throws_when_notification_has_no_email(): void
     {
         $channel = $this->prophesize(ChannelInterface::class);
@@ -130,7 +124,7 @@ final class EmailManagerTest extends TestCase
             $unsubscribeUrlGenerator->reveal(),
         );
 
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $emailManager->sendNotification($notification->reveal());
     }
 }

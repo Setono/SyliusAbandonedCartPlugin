@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\EligibilityChecker;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\OrderHasItemsNotificationEligibilityChecker;
 use Setono\SyliusAbandonedCartPlugin\Model\Notification;
@@ -12,9 +13,7 @@ use Sylius\Component\Core\Model\OrderItem;
 
 final class OrderHasItemsNotificationEligibilityCheckerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_ineligible_when_order_is_null(): void
     {
         $notification = new Notification();
@@ -23,9 +22,7 @@ final class OrderHasItemsNotificationEligibilityCheckerTest extends TestCase
         self::assertFalse($checker->check($notification)->eligible);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_ineligible_when_order_is_empty(): void
     {
         $order = new Order();
@@ -37,9 +34,7 @@ final class OrderHasItemsNotificationEligibilityCheckerTest extends TestCase
         self::assertFalse($checker->check($notification)->eligible);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_eligible_when_order_has_items(): void
     {
         $orderItem = new OrderItem();

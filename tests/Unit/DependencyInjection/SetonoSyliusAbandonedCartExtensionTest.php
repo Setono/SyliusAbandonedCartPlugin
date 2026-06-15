@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use PHPUnit\Framework\Attributes\Test;
 use Setono\SyliusAbandonedCartPlugin\DependencyInjection\SetonoSyliusAbandonedCartExtension;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\SubscribedToNewsletterNotificationEligibilityChecker;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\UnsubscribedCustomerNotificationEligibilityChecker;
@@ -21,9 +22,7 @@ final class SetonoSyliusAbandonedCartExtensionTest extends AbstractExtensionTest
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function after_loading_the_correct_parameter_has_been_set(): void
     {
         $this->load();
@@ -33,9 +32,7 @@ final class SetonoSyliusAbandonedCartExtensionTest extends AbstractExtensionTest
         $this->assertContainerBuilderHasParameter('setono_sylius_abandoned_cart.prune_older_than', 43_200);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_does_not_load_eligibility_checkers(): void
     {
         $this->load([
@@ -49,9 +46,7 @@ final class SetonoSyliusAbandonedCartExtensionTest extends AbstractExtensionTest
         $this->assertContainerBuilderNotHasService(SubscribedToNewsletterNotificationEligibilityChecker::class);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_loads_eligibility_checkers(): void
     {
         $this->load([

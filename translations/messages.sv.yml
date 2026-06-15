@@ -1,0 +1,42 @@
+setono_sylius_abandoned_cart:
+    emails:
+        notification:
+            subject: Hoppsan! Glömde du något?
+            intro: |
+                Hej, %customer%<br><br>
+                Ibland kommer livet i vägen för det du vill.<br><br>
+                Vi har sparat din varukorg åt dig så att du kan fortsätta handla – klicka bara på knappen nedan.
+            continue_shopping: Fortsätt handla
+            unsubscribe: Avregistrera
+            cart_contents: Du hade följande exceptionella och välvalda varor i din varukorg när något avbröt din shopping. Överge dem inte!
+            quantity: Antal
+            product: Produkt
+    form:
+        unsubscribed_customer:
+            email: E-post
+    ui:
+        abandoned_cart: Övergiven varukorg
+        cart_recovery_link_expired: Din varukorg kunde inte hittas. Den kan ha löpt ut eller redan ha slutförts.
+        edit_unsubscribed_customer: Redigera avregistrerad kund
+        email_already_unsubscribed: E-postadressen är redan avregistrerad
+        failed: Misslyckades
+        ineligible: Inte berättigad
+        initial: Initial
+        invalid_hash: Hashen är ogiltig
+        last_clicked_at: Senast klickad
+        new_unsubscribed_customer: Ny avregistrerad kund
+        no_email_provided: Du måste ange en e-postadress
+        no_hash_provided: Du måste ange en hash för att avregistrera dig
+        not_completed: Inte slutförd
+        notifications: Aviseringar
+        pending: Väntar
+        processing: Bearbetar
+        sent: Skickad
+        sent_at: Skickad
+        state: Status
+        back_to_store: Tillbaka till butiken
+        successfully_unsubscribed: Du har avregistrerats
+        unsubscribe_confirmation: Du kommer inte längre att få e-post om övergivna varukorgar från oss.
+        unsubscribe_error_title: Något gick fel
+        revenue: Intäkt
+        unsubscribed_customers: Avregistrerade kunder
