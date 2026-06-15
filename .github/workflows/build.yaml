@@ -8,12 +8,12 @@ on:
 jobs:
     backwards-compatibility:
         runs-on: "ubuntu-latest"
-        # The 3.x line is a Sylius 1 -> 2 major upgrade, so backwards compatibility breaks against the
-        # base branch are intentional. Keep the report informational instead of blocking the PR.
-        continue-on-error: true
         if: "github.event_name == 'pull_request'"
         steps:
+            # The 3.x line is a Sylius 1 -> 2 major upgrade, so backwards compatibility breaks against
+            # the base branch are intentional. Keep the report informational instead of blocking the PR.
             -   uses: "setono/sylius-plugin/backwards-compatibility@v2"
+                continue-on-error: true
     
     coding-standards:
         runs-on: "ubuntu-latest"
