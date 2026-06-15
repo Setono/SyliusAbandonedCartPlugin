@@ -8,6 +8,9 @@ on:
 jobs:
     backwards-compatibility:
         runs-on: "ubuntu-latest"
+        # The 3.x line is a Sylius 1 -> 2 major upgrade, so backwards compatibility breaks against the
+        # base branch are intentional. Keep the report informational instead of blocking the PR.
+        continue-on-error: true
         if: "github.event_name == 'pull_request'"
         steps:
             -   uses: "setono/sylius-plugin/backwards-compatibility@v2"
@@ -92,3 +95,6 @@ jobs:
             -   uses: "setono/sylius-plugin/code-coverage@v2"
                 with:
                     codecov-token: "${{ secrets.CODECOV_TOKEN }}"
+                    # Only the unit suite is covered here; the functional suite needs a database that
+                    # this job does not provision (it runs in the dedicated functional-tests job).
+                    testsuite: "unit"
