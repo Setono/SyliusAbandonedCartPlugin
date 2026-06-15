@@ -40,6 +40,7 @@
     "require-dev": {
         "api-platform/symfony": "~4.2.13",
         "dama/doctrine-test-bundle": "^8.2",
+        "doctrine/doctrine-bundle": "^2.13",
         "lexik/jwt-authentication-bundle": "^3.1",
         "payum/core": "^1.7.5",
         "phpspec/prophecy-phpunit": "^2.3",
