@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Functional\Command;
 
+use PHPUnit\Framework\Attributes\Test;
 use Setono\SyliusAbandonedCartPlugin\Tests\Application\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -16,9 +17,7 @@ final class PruneNotificationsCommandTest extends KernelTestCase
         return Kernel::class;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_prunes(): void
     {
         $application = new Application(self::bootKernel());

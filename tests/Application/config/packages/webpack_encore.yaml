@@ -3,3 +3,9 @@ webpack_encore:
     builds:
         shop: '%kernel.project_dir%/public/build/shop'
         admin: '%kernel.project_dir%/public/build/admin'
+
+when@test:
+    webpack_encore:
+        # Functional tests assert controller behaviour, not compiled assets, so do not
+        # require a webpack build (missing entrypoints render as empty instead of throwing).
+        strict_mode: false

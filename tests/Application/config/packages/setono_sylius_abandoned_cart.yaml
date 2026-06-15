@@ -1,3 +1,4 @@
 setono_sylius_abandoned_cart:
+    # Use aggressive values so functional tests can create/process notifications immediately
     idle_threshold: 0
     prune_older_than: 30

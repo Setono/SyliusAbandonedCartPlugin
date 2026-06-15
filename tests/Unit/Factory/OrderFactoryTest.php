@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Factory;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -13,16 +15,12 @@ use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\TokenAssigner\OrderTokenAssignerInterface;
 use Sylius\Component\Resource\Factory\Factory;
 
-/**
- * @covers \Setono\SyliusAbandonedCartPlugin\Factory\OrderFactory
- */
+#[CoversClass(OrderFactory::class)]
 final class OrderFactoryTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_creates_notification_when_creating_order(): void
     {
         $orderTokenAssigner = $this->prophesize(OrderTokenAssignerInterface::class);

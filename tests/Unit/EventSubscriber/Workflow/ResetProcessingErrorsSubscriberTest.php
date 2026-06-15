@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\EventSubscriber\Workflow;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\EventSubscriber\Workflow\ResetProcessingErrorsSubscriber;
@@ -17,9 +18,7 @@ final class ResetProcessingErrorsSubscriberTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_resets_errors_on_process_transition(): void
     {
         $notification = $this->prophesize(NotificationInterface::class);
@@ -35,9 +34,7 @@ final class ResetProcessingErrorsSubscriberTest extends TestCase
         $subscriber->reset($event);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_subscribes_to_process_transition_event(): void
     {
         $events = ResetProcessingErrorsSubscriber::getSubscribedEvents();

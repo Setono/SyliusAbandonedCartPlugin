@@ -8,10 +8,10 @@ use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-final class NotificationFactory implements NotificationFactoryInterface
+final readonly class NotificationFactory implements NotificationFactoryInterface
 {
     /** @param FactoryInterface<NotificationInterface> $decorated */
-    public function __construct(private readonly FactoryInterface $decorated)
+    public function __construct(private FactoryInterface $decorated)
     {
     }
 

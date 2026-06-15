@@ -10,12 +10,12 @@ use Setono\SyliusAbandonedCartPlugin\UrlGenerator\UnsubscribeUrlGeneratorInterfa
 use Sylius\Component\Mailer\Sender\SenderInterface;
 use Webmozart\Assert\Assert;
 
-final class EmailManager implements EmailManagerInterface
+final readonly class EmailManager implements EmailManagerInterface
 {
     public function __construct(
-        private readonly SenderInterface $emailSender,
-        private readonly CartRecoveryUrlGeneratorInterface $cartRecoveryUrlGenerator,
-        private readonly UnsubscribeUrlGeneratorInterface $unsubscribeUrlGenerator,
+        private SenderInterface $emailSender,
+        private CartRecoveryUrlGeneratorInterface $cartRecoveryUrlGenerator,
+        private UnsubscribeUrlGeneratorInterface $unsubscribeUrlGenerator,
     ) {
     }
 

@@ -1,0 +1,19 @@
+{# @var \Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface data #}
+{%
+    set colors = {
+        failed: 'bg-red-lt',
+        ineligible: 'bg-orange-lt',
+        initial: '',
+        pending: 'bg-yellow-lt',
+        processing: 'bg-indigo-lt',
+        sent: 'bg-green-lt',
+    }
+%}
+
+{% set label = ('setono_sylius_abandoned_cart.ui.' ~ data.state)|trans %}
+
+{% if (data.ineligible or data.failed) and data.processingErrors is not empty %}
+    <span class="badge {{ colors[data.state]|default('') }}" title="{{ data.processingErrors|join("\n") }}">{{ label }}</span>
+{% else %}
+    <span class="badge {{ colors[data.state]|default('') }}">{{ label }}</span>
+{% endif %}

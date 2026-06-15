@@ -12,7 +12,7 @@
         "text": "php://stderr",
         "github": true,
         "stryker": {
-            "badge": "2.x"
+            "badge": "3.x"
         }
     },
     "minMsi": 37.33,

@@ -25,7 +25,7 @@ final class AdminMenuListener
                 'route' => 'setono_sylius_abandoned_cart_admin_notification_index',
             ])
             ->setLabel('setono_sylius_abandoned_cart.ui.abandoned_cart')
-            ->setLabelAttribute('icon', 'envelope outline')
+            ->setLabelAttribute('icon', 'tabler:mail')
         ;
     }
 }

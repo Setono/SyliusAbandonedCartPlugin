@@ -6,9 +6,11 @@ namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Processor;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use RuntimeException;
 use Setono\SyliusAbandonedCartPlugin\DataProvider\PendingNotificationDataProviderInterface;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\EligibilityCheck;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\NotificationEligibilityCheckerInterface;
@@ -22,9 +24,7 @@ final class NotificationProcessorTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_sends_eligible_notification(): void
     {
         $notification = $this->prophesize(NotificationInterface::class);
@@ -62,9 +62,7 @@ final class NotificationProcessorTest extends TestCase
         $processor->process();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_marks_ineligible_notification(): void
     {
         $notification = $this->prophesize(NotificationInterface::class);
@@ -102,9 +100,7 @@ final class NotificationProcessorTest extends TestCase
         $processor->process();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_fails_notification_when_email_sending_throws(): void
     {
         $notification = $this->prophesize(NotificationInterface::class);
@@ -116,7 +112,7 @@ final class NotificationProcessorTest extends TestCase
         $pendingNotificationDataProvider->getNotifications()->willReturn([$notification->reveal()]);
 
         $emailManager = $this->prophesize(EmailManagerInterface::class);
-        $emailManager->sendNotification($notification->reveal())->willThrow(new \RuntimeException('SMTP connection failed'));
+        $emailManager->sendNotification($notification->reveal())->willThrow(new RuntimeException('SMTP connection failed'));
 
         $workflow = $this->prophesize(WorkflowInterface::class);
         $workflow->apply($notification->reveal(), NotificationWorkflow::TRANSITION_PROCESS)->shouldBeCalled();
@@ -145,9 +141,7 @@ final class NotificationProcessorTest extends TestCase
         $processor->process();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_completes_without_errors_when_no_pending_notifications(): void
     {
         $pendingNotificationDataProvider = $this->prophesize(PendingNotificationDataProviderInterface::class);

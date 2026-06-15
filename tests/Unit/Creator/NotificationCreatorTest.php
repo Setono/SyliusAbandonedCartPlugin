@@ -6,6 +6,7 @@ namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Creator;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -19,9 +20,7 @@ final class NotificationCreatorTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_creates_notifications_for_idle_carts(): void
     {
         $order = $this->prophesize(OrderInterface::class);
@@ -54,9 +53,7 @@ final class NotificationCreatorTest extends TestCase
         self::assertSame(1, $count);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_does_not_persist_in_dry_run_mode(): void
     {
         $order = $this->prophesize(OrderInterface::class);
@@ -81,9 +78,7 @@ final class NotificationCreatorTest extends TestCase
         self::assertSame(1, $count);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_zero_when_no_idle_carts(): void
     {
         $idleCartDataProvider = $this->prophesize(IdleCartDataProviderInterface::class);

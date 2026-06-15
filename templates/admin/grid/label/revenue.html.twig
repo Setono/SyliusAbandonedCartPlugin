@@ -1,0 +1,6 @@
+{# @var \Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface data #}
+{% if data.state == 'sent' and data.lastClickedAt is not null and data.cart is not null and data.cart.state in ['new', 'fulfilled'] %}
+    {{ data.cart.total|sylius_format_money(data.cart.currencyCode) }}
+{% else %}
+    &mdash;
+{% endif %}

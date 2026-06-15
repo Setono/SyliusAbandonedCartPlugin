@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\EligibilityChecker;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Setono\SyliusAbandonedCartPlugin\EligibilityChecker\UnsubscribedCustomerNotificationEligibilityChecker;
@@ -11,16 +13,12 @@ use Setono\SyliusAbandonedCartPlugin\Model\Notification;
 use Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface;
 use Setono\SyliusAbandonedCartPlugin\Repository\UnsubscribedCustomerRepositoryInterface;
 
-/**
- * @covers \Setono\SyliusAbandonedCartPlugin\EligibilityChecker\UnsubscribedCustomerNotificationEligibilityChecker
- */
+#[CoversClass(UnsubscribedCustomerNotificationEligibilityChecker::class)]
 final class UnsubscribedCustomerNotificationEligibilityCheckerTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_eligible_when_email_is_null(): void
     {
         $repository = $this->prophesize(UnsubscribedCustomerRepositoryInterface::class);
@@ -29,9 +27,7 @@ final class UnsubscribedCustomerNotificationEligibilityCheckerTest extends TestC
         self::assertTrue($checker->check(new Notification())->eligible);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_eligible_when_email_is_not_unsubscribed(): void
     {
         $repository = $this->prophesize(UnsubscribedCustomerRepositoryInterface::class);
@@ -44,9 +40,7 @@ final class UnsubscribedCustomerNotificationEligibilityCheckerTest extends TestC
         self::assertTrue($checker->check($notification->reveal())->eligible);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_non_eligible_when_email_is_unsubscribed(): void
     {
         $repository = $this->prophesize(UnsubscribedCustomerRepositoryInterface::class);

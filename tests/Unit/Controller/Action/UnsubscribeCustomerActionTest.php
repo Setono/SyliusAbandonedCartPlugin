@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAbandonedCartPlugin\Tests\Unit\Controller\Action;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -19,9 +20,7 @@ final class UnsubscribeCustomerActionTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_unsubscribes_customer_successfully(): void
     {
         $emailHasher = $this->prophesize(EmailHasherInterface::class);
@@ -54,9 +53,7 @@ final class UnsubscribeCustomerActionTest extends TestCase
         self::assertSame('success', $response->getContent());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_renders_error_when_email_is_missing(): void
     {
         $emailHasher = $this->prophesize(EmailHasherInterface::class);
@@ -84,9 +81,7 @@ final class UnsubscribeCustomerActionTest extends TestCase
         $repository->add(Argument::any())->shouldNotHaveBeenCalled();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_renders_error_when_hash_is_missing(): void
     {
         $emailHasher = $this->prophesize(EmailHasherInterface::class);
@@ -114,9 +109,7 @@ final class UnsubscribeCustomerActionTest extends TestCase
         $repository->add(Argument::any())->shouldNotHaveBeenCalled();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_renders_error_when_hash_is_invalid(): void
     {
         $emailHasher = $this->prophesize(EmailHasherInterface::class);
@@ -146,9 +139,7 @@ final class UnsubscribeCustomerActionTest extends TestCase
         $repository->add(Argument::any())->shouldNotHaveBeenCalled();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_renders_error_when_already_unsubscribed(): void
     {
         $emailHasher = $this->prophesize(EmailHasherInterface::class);
@@ -180,9 +171,7 @@ final class UnsubscribeCustomerActionTest extends TestCase
         $repository->add(Argument::any())->shouldNotHaveBeenCalled();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_normalizes_email_to_lowercase(): void
     {
         $emailHasher = $this->prophesize(EmailHasherInterface::class);

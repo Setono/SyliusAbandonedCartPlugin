@@ -6,6 +6,7 @@ namespace Setono\SyliusAbandonedCartPlugin\Tests\Functional\DataProvider;
 
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\Attributes\Test;
 use Setono\SyliusAbandonedCartPlugin\DataProvider\IdleCartDataProviderInterface;
 use Setono\SyliusAbandonedCartPlugin\Model\Notification;
 use Sylius\Component\Core\Model\Customer;
@@ -15,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 final class IdleCartDataProviderTest extends KernelTestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_idle_carts_without_notifications(): void
     {
         $customer = $this->createCustomer('idle@example.com');
@@ -27,7 +28,7 @@ final class IdleCartDataProviderTest extends KernelTestCase
         self::assertSame('idle-token', $carts[0]->getTokenValue());
     }
 
-    /** @test */
+    #[Test]
     public function it_excludes_carts_that_already_have_a_notification(): void
     {
         $customer = $this->createCustomer('notified@example.com');
@@ -41,7 +42,7 @@ final class IdleCartDataProviderTest extends KernelTestCase
         self::assertCount(0, $this->getCarts());
     }
 
-    /** @test */
+    #[Test]
     public function it_excludes_carts_without_a_customer(): void
     {
         $this->createOrder('no-customer-token', null);
@@ -49,7 +50,7 @@ final class IdleCartDataProviderTest extends KernelTestCase
         self::assertCount(0, $this->getCarts());
     }
 
-    /** @test */
+    #[Test]
     public function it_excludes_carts_not_in_cart_state(): void
     {
         $customer = $this->createCustomer('completed@example.com');
@@ -58,7 +59,7 @@ final class IdleCartDataProviderTest extends KernelTestCase
         self::assertCount(0, $this->getCarts());
     }
 
-    /** @test */
+    #[Test]
     public function it_excludes_carts_outside_the_lookback_window(): void
     {
         $customer = $this->createCustomer('old@example.com');
@@ -69,7 +70,7 @@ final class IdleCartDataProviderTest extends KernelTestCase
         self::assertCount(0, $this->getCarts());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_multiple_idle_carts(): void
     {
         $customer1 = $this->createCustomer('multi1@example.com');

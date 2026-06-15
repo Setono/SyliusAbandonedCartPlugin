@@ -9,7 +9,7 @@ use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceE
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension implements PrependExtensionInterface
 {
@@ -21,7 +21,7 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
          * @var array{driver: string, salt: string, idle_threshold: int, lookback_window: int, prune_older_than: int, eligibility_checkers: array{unsubscribed_customer: bool, subscribed_to_newsletter: bool}, resources: array<string, mixed>} $config
          */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
 
         $container->setParameter('setono_sylius_abandoned_cart.salt', $config['salt']);
         $container->setParameter('setono_sylius_abandoned_cart.idle_threshold', $config['idle_threshold']);
@@ -30,15 +30,15 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
 
         $this->registerResources('setono_sylius_abandoned_cart', $config['driver'], $config['resources'], $container);
 
-        $loader->load('services.xml');
+        $loader->load('services.php');
 
         $eligibilityCheckers = $config['eligibility_checkers'];
         if ($eligibilityCheckers['unsubscribed_customer']) {
-            $loader->load('services/conditional/unsubscribed_customer.xml');
+            $loader->load('services/conditional/unsubscribed_customer.php');
         }
 
         if ($eligibilityCheckers['subscribed_to_newsletter']) {
-            $loader->load('services/conditional/subscribed_to_newsletter.xml');
+            $loader->load('services/conditional/subscribed_to_newsletter.php');
         }
     }
 
@@ -77,7 +77,7 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
                             'label' => 'sylius.ui.channel',
                             'path' => 'cart.channel',
                             'options' => [
-                                'template' => '@SyliusAdmin/Order/Grid/Field/channel.html.twig',
+                                'template' => '@SyliusAdmin/shared/grid/field/channel.html.twig',
                             ],
                         ],
                         'email' => [
@@ -178,18 +178,6 @@ final class SetonoSyliusAbandonedCartExtension extends AbstractResourceExtension
             'emails' => [
                 'abandoned_cart_email' => [
                     'template' => '@SetonoSyliusAbandonedCartPlugin/email/notification.html.twig',
-                ],
-            ],
-        ]);
-
-        $container->prependExtensionConfig('sylius_ui', [
-            'events' => [
-                'setono_sylius_abandoned_cart.admin.notification.index.javascripts' => [
-                    'blocks' => [
-                        'javascript_popup' => [
-                            'template' => '@SetonoSyliusAbandonedCartPlugin/admin/block/_javascript_popup.html.twig',
-                        ],
-                    ],
                 ],
             ],
         ]);
