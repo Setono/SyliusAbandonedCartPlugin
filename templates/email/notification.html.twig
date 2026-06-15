@@ -1,7 +1,7 @@
 {# @var \Setono\SyliusAbandonedCartPlugin\Model\NotificationInterface notification #}
 {% extends '@SyliusShop/Email/layout.html.twig' %}
 
-{% block subject %}{{ 'setono_sylius_abandoned_cart.emails.notification.subject'|trans }}{% endblock %}
+{% block subject %}{{ 'setono_sylius_abandoned_cart.emails.notification.subject'|trans({}, null, localeCode) }}{% endblock %}
 
 {% block content %}
     <div style="text-align: center; margin-bottom: 30px;">
